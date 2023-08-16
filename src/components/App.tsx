@@ -14,7 +14,7 @@ import Home from './pages/Home';
 
 const App: React.FC = () => {
   return (
-    <Box minH='100dvh' maxW='100dvw' bgColor='Primary.black'>
+    <Box minH='100dvh' maxW='100dvw' bgColor='Primary.dkSlate'>
       <Heading>Hello</Heading>
       <Text>World</Text>
       <Routes>
