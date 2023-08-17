@@ -1,8 +1,11 @@
 import { defineStyle, defineStyleConfig } from '@chakra-ui/react';
 
 const baseStyle = defineStyle({
-  color: 'Secondary.white',
-  fontSize: '18px'
+  color: 'Primary.black',
+  fontSize: '18px',
+  _dark: {
+    color: 'Secondary.slate'
+  }
 });
 
 const label = defineStyle({

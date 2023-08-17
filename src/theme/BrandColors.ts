@@ -1,6 +1,4 @@
-import { defineStyle } from '@chakra-ui/react';
-
-const colors = defineStyle({
+const colors = {
   Primary: {
     black: '#01080E',
     dkSlate: '#011627',
@@ -19,6 +17,6 @@ const colors = defineStyle({
     purple: '#C98BDF'
   },
   Lines: '#1E2D3D'
-});
+};
 
 export default colors;
