@@ -1,8 +1,23 @@
-import React from 'react';
-import { Container, Flex, Icon, Text } from '@chakra-ui/react';
+import React, { useEffect, useState } from 'react';
+import { Container, Flex, Icon, Input, Text } from '@chakra-ui/react';
 import { RiLinkedinBoxLine, RiGithubLine } from 'react-icons/ri';
 
 const Footer: React.FC = () => {
+  const [terminalInput, setTerminalInput] = useState('');
+  const [showCursor, setShowCursor] = useState(false);
+
+  useEffect(() => {
+    const cursorInterval = setInterval(() => {
+      setShowCursor((prev) => !prev);
+    }, 600);
+
+    return () => {
+      if (cursorInterval) {
+        clearInterval(cursorInterval);
+      }
+    };
+  }, []);
+
   return (
     <Container variant='footer'>
       <Flex
@@ -24,10 +39,8 @@ const Footer: React.FC = () => {
         <Icon as={RiLinkedinBoxLine} fontSize='24px' />
       </Flex>
       <Flex h='100%' grow={1} alignItems='center' px='1.5rem'>
-        <Text color='Accent.emerald !important'>
-          {'>'}
-        </Text>
-        <Text fontWeight='bold'>{'_'}</Text>
+        <Text color='Accent.emerald !important'>{'>'}</Text>
+        <Input placeholder={showCursor ? '_' : ''}></Input>
       </Flex>
       <Flex
         h='100%'

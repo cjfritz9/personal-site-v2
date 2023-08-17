@@ -9,7 +9,11 @@ import Footer from './Shared/Footer';
 
 const App: React.FC = () => {
   return (
-    <Box minH='100dvh' w='100dvw' bgColor='Primary.dkSlate'>
+    <Box
+      maxH='100dvh'
+      maxW='100dvw'
+      bgColor='Primary.dkSlate'
+    >
       <Header />
       <Routes>
         <Route path='/' element={<HomePage />} />

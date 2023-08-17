@@ -1,16 +1,17 @@
-import React, { useEffect } from 'react';
-import { Container, Stack } from '@chakra-ui/react';
+import React from 'react';
+import { Container, Flex, Stack } from '@chakra-ui/react';
+import Intro from './Intro';
+import Codle from './Codle';
 
 const HomePage: React.FC = () => {
-  useEffect(() => {
-    const viewHeight = document.body.clientHeight;
-    const filler = document.getElementById('filler')! as HTMLDivElement;
-    filler.style.height = viewHeight - 104 + 'px';
-  }, []);
-  
   return (
     <Container variant='page'>
-      <Stack id='filler'></Stack>
+      <Stack h='100%' justifyContent='center'>
+        <Flex gap='8rem'>
+          <Intro />
+          <Codle />
+        </Flex>
+      </Stack>
     </Container>
   );
 };

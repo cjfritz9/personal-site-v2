@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react';
-
+import { ColorModeScript } from '@chakra-ui/react';
+import { SiteProvider } from './context/SiteContext';
 import theme from './theme/ChakraTheme';
 import App from './components/App';
-import { SiteProvider } from './context/SiteContext';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLDivElement
@@ -13,6 +13,7 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <ChakraProvider theme={theme}>
+    <ColorModeScript initialColorMode={theme.config.initialColorMode} />
     <SiteProvider>
       <React.StrictMode>
         <Router>

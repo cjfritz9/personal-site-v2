@@ -33,7 +33,7 @@ const header = defineStyle({
 });
 
 const page = defineStyle({
-  h: '100%',
+  h: 'calc(100dvh - 104px)',
   minW: '100dvw',
   p: 0,
   display: 'flex',
