@@ -1,19 +1,12 @@
 import React from 'react';
 import { Flex, Container, Tab, TabList, Tabs, Text } from '@chakra-ui/react';
 
+import Panel from './Panel';
+
 const Header: React.FC = () => {
   return (
     <Container variant='header'>
-      <Flex
-        h='100%'
-        w='320px'
-        alignItems='center'
-        pl='1.5rem'
-        borderRight='1px solid'
-        borderRightColor='Lines'
-      >
-        <Text>cj-fritz</Text>
-      </Flex>
+      <Panel content={<Text>cj-fritz</Text>} variant='left' width='320px' />
       <Flex h='100%' grow={1}>
         <Tabs>
           <TabList>
@@ -23,15 +16,10 @@ const Header: React.FC = () => {
           </TabList>
         </Tabs>
       </Flex>
-      <Flex
-        h='100%'
-        px='1.5rem'
-        alignItems='center'
-        borderLeft='1px solid'
-        borderLeftColor='Lines'
-      >
-        <Text>ContactMe.tsx</Text>
-      </Flex>
+      <Panel
+        content={<Text>ContactMe.tsx</Text>}
+        variant='right'
+      />
     </Container>
   );
 };

@@ -12,6 +12,7 @@ const App: React.FC = () => {
     <Box
       maxH='100dvh'
       maxW='100dvw'
+      overflow='hidden'
       bgColor='Primary.dkSlate'
     >
       <Header />

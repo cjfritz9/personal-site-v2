@@ -7,7 +7,7 @@ const { definePartsStyle, defineMultiStyleConfig } =
 const baseStyle = definePartsStyle({
   field: {
     _focus: {
-      boxShadow: 'none !important',
+      boxShadow: 'none !important'
     },
     _placeholder: {
       fontWeight: 'bold'
@@ -20,6 +20,18 @@ const baseStyle = definePartsStyle({
   }
 });
 
-const inputConfig = defineMultiStyleConfig({ baseStyle });
+const codle = definePartsStyle({
+  field: {
+    w: '56px',
+    h: '56px',
+    py: '8px',
+    color: 'Secondary.white',
+    fontSize: '48px',
+    textAlign: 'center',
+    bgColor: 'Primary.dkGray'
+  }
+});
+
+const inputConfig = defineMultiStyleConfig({ baseStyle, variants: { codle } });
 
 export default inputConfig;
