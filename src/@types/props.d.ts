@@ -1,3 +1,6 @@
+import React from "react";
+import { StyleMap } from "./context";
+
 export interface PanelProps {
   content: any;
   variant: 'left' | 'right';
@@ -11,5 +14,10 @@ export interface BoltProps {
 export interface CodleInputRowProps {
   isActive: boolean;
   setActiveRow: React.Dispatch<React.SetStateAction<number>>;
-  solution: string;
+  dailyGuess: string | undefined;
+  dailyMap: StyleMap | undefined;
+}
+
+export interface ContextProps {
+  children: React.ReactNode
 }

@@ -1,9 +1,41 @@
-import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Box, Flex, Heading, Input, Stack, Text } from '@chakra-ui/react';
+
 import { BoltProps, CodleInputRowProps } from '../../../@types/props';
-import axios from 'axios';
+import { CodleContext } from '../../../context/CodleContext';
+import { CodleInterface, StyleMap } from '../../../@types/context';
+import useCodle from '../../../hooks/useCodle';
+import {
+  getHasTodaysData,
+  getTodaysData,
+  validateEntry
+} from '../../../utils/codle';
 
 const Codle: React.FC = () => {
+  const {
+    didWin,
+    didLose,
+    setDidWin,
+    setSolution,
+    setDailyGuesses,
+    setDailyMap
+  } = useContext(CodleContext) as CodleInterface;
+
+  const word = useCodle();
+
+  useEffect(() => {
+    setSolution(word);
+  }, [word]);
+
+  useEffect(() => {
+    if (getHasTodaysData()) {
+      const { didWin: dailyWin, guesses, guessMap } = getTodaysData();
+      setDidWin(dailyWin);
+      setDailyGuesses(guesses);
+      setDailyMap(guessMap);
+    }
+  }, []);
+
   return (
     <Box
       w='512px'
@@ -28,9 +60,19 @@ const Codle: React.FC = () => {
         <Text
           variant='label'
           textAlign='center'
-          color='Accent.orange !important'
+          color={
+            didWin
+              ? 'Accent.emerald !important'
+              : didLose
+              ? 'Accent.purple !important'
+              : 'Accent.orange !important'
+          }
         >
-          Programming themed Wordle
+          {didWin
+            ? 'You win!'
+            : didLose
+            ? 'You lose!'
+            : 'Programming Themed Wordle'}
         </Text>
         <Stack>
           <CodleBoard />
@@ -41,102 +83,87 @@ const Codle: React.FC = () => {
 };
 
 const CodleBoard: React.FC = () => {
-  const [activeRow, setActiveRow] = useState(0);
-  const [solution, setSolution] = useState('');
+  const { setActiveRow, setDidLose, activeRow, dailyGuesses, dailyMap } =
+    useContext(CodleContext) as CodleInterface;
 
   useEffect(() => {
-    (async () => {
-      const result = await axios.get(
-        'https://codle-api-xbai7z5q3q-uc.a.run.app/codle/word'
-      );
-
-      if (result.status === 200) {
-        const { codleWord } = result.data;
-        setSolution(codleWord);
-      }
-    })();
-  }, []);
+    if (activeRow >= 6) {
+      setDidLose(true);
+    }
+    if (dailyGuesses.length) {
+      setActiveRow(dailyGuesses.length);
+    }
+  }, [activeRow, dailyGuesses]);
 
   return (
     <Stack w='100%' h='100%' justifyContent='center' alignItems='center'>
       <CodleInputRow
-        isActive={activeRow === 0 ? true : false}
         setActiveRow={setActiveRow}
-        solution={solution}
+        isActive={activeRow >= 0 ? true : false}
+        dailyGuess={dailyGuesses[0]}
+        dailyMap={dailyMap[0]}
       />
       <CodleInputRow
-        isActive={activeRow === 1 ? true : false}
         setActiveRow={setActiveRow}
-        solution={solution}
+        isActive={activeRow >= 1 ? true : false}
+        dailyGuess={dailyGuesses[1]}
+        dailyMap={dailyMap[1]}
       />
       <CodleInputRow
-        isActive={activeRow === 2 ? true : false}
         setActiveRow={setActiveRow}
-        solution={solution}
+        isActive={activeRow >= 2 ? true : false}
+        dailyGuess={dailyGuesses[2]}
+        dailyMap={dailyMap[2]}
       />
       <CodleInputRow
-        isActive={activeRow === 3 ? true : false}
         setActiveRow={setActiveRow}
-        solution={solution}
+        isActive={activeRow >= 3 ? true : false}
+        dailyGuess={dailyGuesses[3]}
+        dailyMap={dailyMap[3]}
       />
       <CodleInputRow
-        isActive={activeRow === 4 ? true : false}
         setActiveRow={setActiveRow}
-        solution={solution}
+        isActive={activeRow >= 4 ? true : false}
+        dailyGuess={dailyGuesses[4]}
+        dailyMap={dailyMap[4]}
       />
       <CodleInputRow
-        isActive={activeRow === 5 ? true : false}
         setActiveRow={setActiveRow}
-        solution={solution}
+        isActive={activeRow >= 5 ? true : false}
+        dailyGuess={dailyGuesses[5]}
+        dailyMap={dailyMap[5]}
       />
     </Stack>
   );
 };
 
 const CodleInputRow: React.FC<CodleInputRowProps> = ({
-  solution,
   isActive,
-  setActiveRow
+  setActiveRow,
+  dailyGuess,
+  dailyMap
 }) => {
+  const map = [
+    { bgColor: isActive ? 'Primary.dkGray' : 'Primary.black' },
+    { bgColor: isActive ? 'Primary.dkGray' : 'Primary.black' },
+    { bgColor: isActive ? 'Primary.dkGray' : 'Primary.black' },
+    { bgColor: isActive ? 'Primary.dkGray' : 'Primary.black' },
+    { bgColor: isActive ? 'Primary.dkGray' : 'Primary.black' }
+  ];
+  const { setDidWin, solution, didWin, dailyGuesses } = useContext(
+    CodleContext
+  ) as CodleInterface;
   const [guess, setGuess] = useState('');
-  const [didWin, setDidWin] = useState(false);
-  const [styleMap, setStyleMap] = useState([
-    { bgColor: 'Primary.dkGray' },
-    { bgColor: 'Primary.dkGray' },
-    { bgColor: 'Primary.dkGray' },
-    { bgColor: 'Primary.dkGray' },
-    { bgColor: 'Primary.dkGray' }
-  ]);
+  const [styleMap, setStyleMap] = useState<StyleMap>(map);
   const firstInputRef = useRef(null);
 
-  const validateEntry = (guess: string) => {
-    const map = [
-      { bgColor: 'Primary.dkGray' },
-      { bgColor: 'Primary.dkGray' },
-      { bgColor: 'Primary.dkGray' },
-      { bgColor: 'Primary.dkGray' },
-      { bgColor: 'Primary.dkGray' }
-    ];
-
-    for (let i = 0; i < solution.length; i++) {
-      if (solution[i] === guess[i]) {
-        map[i].bgColor = 'green.500';
-      } else {
-        if (solution.includes(guess[i])) {
-          map[i].bgColor = 'Accent.orange';
-        }
-      }
-    }
-
-    setStyleMap(map);
-  };
-
   const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (didWin) return;
     if (e.key === 'Enter' && guess.length === 5) {
       if (guess.toLowerCase() === solution) {
         setDidWin(true);
       }
-      validateEntry(guess.toLowerCase());
+      setStyleMap(validateEntry(guess, solution, styleMap));
       setActiveRow((prev) => prev + 1);
     }
     if (e.key === 'Backspace' && guess.length) {
@@ -149,11 +176,25 @@ const CodleInputRow: React.FC<CodleInputRowProps> = ({
   };
 
   useEffect(() => {
-    if (isActive && firstInputRef && firstInputRef.current) {
+    if (
+      isActive &&
+      !didWin &&
+      !dailyGuess &&
+      firstInputRef &&
+      firstInputRef.current
+    ) {
+      setStyleMap(map);
       const firstInput: HTMLInputElement = firstInputRef.current;
       firstInput.focus();
     }
   }, [isActive]);
+
+  useEffect(() => {
+    if (dailyGuess && dailyMap) {
+      setGuess(dailyGuess);
+      setStyleMap(dailyMap);
+    }
+  }, [dailyGuesses]);
 
   return (
     <Flex gap='.5rem'>
