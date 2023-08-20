@@ -20,6 +20,7 @@ export const fetchPlayerData = async (playerId: string) => {
 
 export const postPlayerData = async () => {
   const result = await axios.post(`${API_URL}/users`);
+  console.log('post result: ', result.status, result.data);
   if (result.status !== 201) return;
 
   return result.data;
