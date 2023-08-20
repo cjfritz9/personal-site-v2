@@ -21,10 +21,11 @@ const useCodle = () => {
       setPlayerData(fetchedData);
     } else {
       const fetchedData = await postPlayerData();
+      console.log('useCodle fetched data', fetchedData);
       setPlayerData(fetchedData);
-      setPlayerId(fetchedData.id)
+      setPlayerId(fetchedData.id);
     }
-  }, [playerId]);
+  }, []);
 
   useEffect(() => {
     getDailyWord();
