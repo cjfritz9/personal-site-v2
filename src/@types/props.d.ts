@@ -13,7 +13,6 @@ export interface BoltProps {
 
 export interface CodleInputRowProps {
   isActive: boolean;
-  setActiveRow: React.Dispatch<React.SetStateAction<number>>;
   dailyGuess: string | undefined;
   dailyMap: StyleMap | undefined;
 }

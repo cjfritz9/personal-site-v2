@@ -3,10 +3,11 @@ import { useCallback, useEffect, useState } from 'react';
 import { fetchCodleWord, fetchPlayerData, postPlayerData } from './requests';
 import { CodlePlayerData } from '../@types/codle';
 import { getPlayerId, setPlayerId } from '../utils/codle';
+import { PlayerData } from '../models/Codle';
 
 const useCodle = () => {
   const [solution, setSolution] = useState('');
-  const [playerData, setPlayerData] = useState<CodlePlayerData>();
+  const [playerData, setPlayerData] = useState<any>();
 
   const playerId = getPlayerId();
 
@@ -21,6 +22,9 @@ const useCodle = () => {
       setPlayerData(fetchedData);
     } else {
       const fetchedData = await postPlayerData();
+      if (fetchedData.guessMap.length) {
+        fetchedData.guessMap = JSON.parse(fetchedData.guessMap);
+      }
       console.log('useCodle fetched data', fetchedData);
       setPlayerData(fetchedData);
       setPlayerId(fetchedData.id);

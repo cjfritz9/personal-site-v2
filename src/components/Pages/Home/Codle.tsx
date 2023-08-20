@@ -9,7 +9,7 @@ import { handleUpdateBoard } from '../../../utils/codle';
 import { updatePlayerData } from '../../../hooks/requests';
 
 const Codle: React.FC = () => {
-  const { didWin, didLose } = useContext(CodleContext) as CodleInterface;
+  const { gameBoard } = useContext(CodleContext) as CodleInterface;
 
   return (
     <Box
@@ -36,16 +36,16 @@ const Codle: React.FC = () => {
           variant='label'
           textAlign='center'
           color={
-            didWin
+            gameBoard.isWon
               ? 'Accent.emerald !important'
-              : didLose
+              : gameBoard.isLost
               ? 'Accent.purple !important'
               : 'Accent.orange !important'
           }
         >
-          {didWin
+          {gameBoard.isWon
             ? 'You win!'
-            : didLose
+            : gameBoard.isLost
             ? 'You lose!'
             : 'Programming Themed Wordle'}
         </Text>
@@ -58,55 +58,39 @@ const Codle: React.FC = () => {
 };
 
 const CodleBoard: React.FC = () => {
-  const { setActiveRow, setDidLose, activeRow, dailyGuesses, dailyMap } =
-    useContext(CodleContext) as CodleInterface;
-
-  useEffect(() => {
-    if (activeRow >= 6) {
-      setDidLose(true);
-    }
-    if (dailyGuesses.length) {
-      setActiveRow(dailyGuesses.length);
-    }
-  }, [activeRow, dailyGuesses]);
+  const { gameBoard } = useContext(CodleContext) as CodleInterface;
 
   return (
     <Stack w='100%' h='100%' justifyContent='center' alignItems='center'>
       <CodleInputRow
-        setActiveRow={setActiveRow}
-        isActive={activeRow >= 0 ? true : false}
-        dailyGuess={dailyGuesses[0]}
-        dailyMap={dailyMap[0]}
+        isActive={gameBoard.currentRow >= 0 ? true : false}
+        dailyGuess={gameBoard.guesses[0]}
+        dailyMap={gameBoard.boardStyle[0]}
       />
       <CodleInputRow
-        setActiveRow={setActiveRow}
-        isActive={activeRow >= 1 ? true : false}
-        dailyGuess={dailyGuesses[1]}
-        dailyMap={dailyMap[1]}
+        isActive={gameBoard.currentRow >= 1 ? true : false}
+        dailyGuess={gameBoard.guesses[1]}
+        dailyMap={gameBoard.boardStyle[1]}
       />
       <CodleInputRow
-        setActiveRow={setActiveRow}
-        isActive={activeRow >= 2 ? true : false}
-        dailyGuess={dailyGuesses[2]}
-        dailyMap={dailyMap[2]}
+        isActive={gameBoard.currentRow >= 2 ? true : false}
+        dailyGuess={gameBoard.guesses[2]}
+        dailyMap={gameBoard.boardStyle[2]}
       />
       <CodleInputRow
-        setActiveRow={setActiveRow}
-        isActive={activeRow >= 3 ? true : false}
-        dailyGuess={dailyGuesses[3]}
-        dailyMap={dailyMap[3]}
+        isActive={gameBoard.currentRow >= 3 ? true : false}
+        dailyGuess={gameBoard.guesses[3]}
+        dailyMap={gameBoard.boardStyle[3]}
       />
       <CodleInputRow
-        setActiveRow={setActiveRow}
-        isActive={activeRow >= 4 ? true : false}
-        dailyGuess={dailyGuesses[4]}
-        dailyMap={dailyMap[4]}
+        isActive={gameBoard.currentRow >= 4 ? true : false}
+        dailyGuess={gameBoard.guesses[4]}
+        dailyMap={gameBoard.boardStyle[4]}
       />
       <CodleInputRow
-        setActiveRow={setActiveRow}
-        isActive={activeRow >= 5 ? true : false}
-        dailyGuess={dailyGuesses[5]}
-        dailyMap={dailyMap[5]}
+        isActive={gameBoard.currentRow >= 5 ? true : false}
+        dailyGuess={gameBoard.guesses[5]}
+        dailyMap={gameBoard.boardStyle[5]}
       />
     </Stack>
   );
@@ -114,8 +98,8 @@ const CodleBoard: React.FC = () => {
 
 const CodleInputRow: React.FC<CodleInputRowProps> = ({
   isActive,
-  setActiveRow,
   dailyGuess,
+  dailyMap
 }) => {
   const map = [
     { bgColor: isActive ? 'Primary.dkGray' : 'Primary.black' },
@@ -124,45 +108,30 @@ const CodleInputRow: React.FC<CodleInputRowProps> = ({
     { bgColor: isActive ? 'Primary.dkGray' : 'Primary.black' },
     { bgColor: isActive ? 'Primary.dkGray' : 'Primary.black' }
   ];
-  const {
-    setDidWin,
-    setDailyGuesses,
-    setDailyMap,
-    playerId,
-    solution,
-    didWin,
-    dailyGuesses,
-    dailyMap
-  } = useContext(CodleContext) as CodleInterface;
+  const { playerId, solution, gameBoard } = useContext(
+    CodleContext
+  ) as CodleInterface;
   const [guess, setGuess] = useState('');
   const [styleMap, setStyleMap] = useState<StyleMap>(map);
   const firstInputRef = useRef(null);
 
   const handleRowSubmission = () => {
     const { wonGame, map } = handleUpdateBoard(guess, solution, styleMap);
-    setDidWin(wonGame);
-    setStyleMap(map);
-    setActiveRow((prev) => prev + 1);
-    setDailyGuesses((prev) => [...prev, guess]);
-    setDailyMap((prev) => [...prev, styleMap]);
-    console.log('daily map', dailyMap, dailyGuesses)
-    console.log(
-      'before send to server: ',
-      wonGame,
-      dailyGuesses,
-      dailyMap || []
-    );
+    if (wonGame) gameBoard.setGameWon();
+    gameBoard.addGuess(guess);
+    gameBoard.addRowStyle(map);
+    console.log('game board (row submit component)', gameBoard);
     (async () => {
       await updatePlayerData(playerId, {
         didWin: wonGame,
-        guesses: dailyGuesses,
-        guessMap: JSON.stringify(dailyMap)
+        guesses: gameBoard.guesses,
+        guessMap: JSON.stringify(gameBoard.boardStyle)
       });
     })();
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (didWin) return;
+    if (gameBoard.isWon) return;
     if (e.key === 'Enter' && guess.length === 5) {
       handleRowSubmission();
     }
@@ -178,8 +147,8 @@ const CodleInputRow: React.FC<CodleInputRowProps> = ({
   useEffect(() => {
     if (
       isActive &&
-      !didWin &&
-      !dailyGuess &&
+      !gameBoard.isWon &&
+      // !dailyGuess &&
       firstInputRef &&
       firstInputRef.current
     ) {
@@ -190,11 +159,12 @@ const CodleInputRow: React.FC<CodleInputRowProps> = ({
   }, [isActive]);
 
   useEffect(() => {
+    console.log('in ue gameboard dep');
     if (dailyGuess && dailyMap) {
       setGuess(dailyGuess);
       setStyleMap(dailyMap);
     }
-  }, [dailyGuesses]);
+  }, [dailyMap]);
 
   return (
     <Flex gap='.5rem'>

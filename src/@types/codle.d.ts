@@ -4,7 +4,7 @@ export interface CodlePlayerData {
   id: string;
   updatedAt: string;
   guesses: string[];
-  guessMap: StyleMap[];
+  guessMap: string;
   didWin: boolean;
 }
 
