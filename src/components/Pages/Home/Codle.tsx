@@ -116,7 +116,6 @@ const CodleInputRow: React.FC<CodleInputRowProps> = ({
   isActive,
   setActiveRow,
   dailyGuess,
-  dailyMap
 }) => {
   const map = [
     { bgColor: isActive ? 'Primary.dkGray' : 'Primary.black' },
@@ -132,7 +131,8 @@ const CodleInputRow: React.FC<CodleInputRowProps> = ({
     playerId,
     solution,
     didWin,
-    dailyGuesses
+    dailyGuesses,
+    dailyMap
   } = useContext(CodleContext) as CodleInterface;
   const [guess, setGuess] = useState('');
   const [styleMap, setStyleMap] = useState<StyleMap>(map);
@@ -145,7 +145,13 @@ const CodleInputRow: React.FC<CodleInputRowProps> = ({
     setActiveRow((prev) => prev + 1);
     setDailyGuesses((prev) => [...prev, guess]);
     setDailyMap((prev) => [...prev, styleMap]);
-    console.log('before send to server: ', wonGame, dailyGuesses, dailyMap);
+    console.log('daily map', dailyMap, dailyGuesses)
+    console.log(
+      'before send to server: ',
+      wonGame,
+      dailyGuesses,
+      dailyMap || []
+    );
     (async () => {
       await updatePlayerData(playerId, {
         didWin: wonGame,
