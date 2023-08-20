@@ -138,18 +138,21 @@ const CodleInputRow: React.FC<CodleInputRowProps> = ({
   const [styleMap, setStyleMap] = useState<StyleMap>(map);
   const firstInputRef = useRef(null);
 
-  const handleRowSubmission = async () => {
+  const handleRowSubmission = () => {
     const { wonGame, map } = handleUpdateBoard(guess, solution, styleMap);
     setDidWin(wonGame);
     setStyleMap(map);
     setActiveRow((prev) => prev + 1);
     setDailyGuesses((prev) => [...prev, guess]);
     setDailyMap((prev) => [...prev, styleMap]);
-    await updatePlayerData(playerId, {
-      didWin: wonGame,
-      guesses: dailyGuesses,
-      guessMap: JSON.stringify(dailyMap)
-    });
+    console.log('before send to server: ', wonGame, dailyGuesses, dailyMap);
+    (async () => {
+      await updatePlayerData(playerId, {
+        didWin: wonGame,
+        guesses: dailyGuesses,
+        guessMap: JSON.stringify(dailyMap)
+      });
+    })();
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
