@@ -31,11 +31,11 @@ export const handleUpdateBoard = (
   return { wonGame, map };
 };
 
-export const getPlayerId = () => {
+export const getStoragePlayerId = () => {
   return localStorage.getItem(storageName);
 };
 
-export const setPlayerId = (playerId: string) => {
+export const setStoragePlayerId = (playerId: string) => {
   return localStorage.setItem(storageName, playerId);
 };
 

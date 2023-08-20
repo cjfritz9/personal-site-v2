@@ -9,7 +9,7 @@ import { handleUpdateBoard } from '../../../utils/codle';
 import { updatePlayerData } from '../../../hooks/requests';
 
 const Codle: React.FC = () => {
-  const { gameBoard } = useContext(CodleContext) as CodleInterface;
+  const { currentBoard } = useContext(CodleContext) as CodleInterface;
 
   return (
     <Box
@@ -36,16 +36,16 @@ const Codle: React.FC = () => {
           variant='label'
           textAlign='center'
           color={
-            gameBoard.isWon
+            currentBoard.isWon
               ? 'Accent.emerald !important'
-              : gameBoard.isLost
+              : currentBoard.isLost
               ? 'Accent.purple !important'
               : 'Accent.orange !important'
           }
         >
-          {gameBoard.isWon
+          {currentBoard.isWon
             ? 'You win!'
-            : gameBoard.isLost
+            : currentBoard.isLost
             ? 'You lose!'
             : 'Programming Themed Wordle'}
         </Text>
@@ -58,39 +58,39 @@ const Codle: React.FC = () => {
 };
 
 const CodleBoard: React.FC = () => {
-  const { gameBoard } = useContext(CodleContext) as CodleInterface;
+  const { currentBoard } = useContext(CodleContext) as CodleInterface;
 
   return (
     <Stack w='100%' h='100%' justifyContent='center' alignItems='center'>
       <CodleInputRow
-        isActive={gameBoard.currentRow >= 0 ? true : false}
-        dailyGuess={gameBoard.guesses[0]}
-        dailyMap={gameBoard.boardStyle[0]}
+        isActive={currentBoard.currentRow >= 0 ? true : false}
+        dailyGuess={currentBoard.guesses[0]}
+        dailyMap={currentBoard.boardStyle[0]}
       />
       <CodleInputRow
-        isActive={gameBoard.currentRow >= 1 ? true : false}
-        dailyGuess={gameBoard.guesses[1]}
-        dailyMap={gameBoard.boardStyle[1]}
+        isActive={currentBoard.currentRow >= 1 ? true : false}
+        dailyGuess={currentBoard.guesses[1]}
+        dailyMap={currentBoard.boardStyle[1]}
       />
       <CodleInputRow
-        isActive={gameBoard.currentRow >= 2 ? true : false}
-        dailyGuess={gameBoard.guesses[2]}
-        dailyMap={gameBoard.boardStyle[2]}
+        isActive={currentBoard.currentRow >= 2 ? true : false}
+        dailyGuess={currentBoard.guesses[2]}
+        dailyMap={currentBoard.boardStyle[2]}
       />
       <CodleInputRow
-        isActive={gameBoard.currentRow >= 3 ? true : false}
-        dailyGuess={gameBoard.guesses[3]}
-        dailyMap={gameBoard.boardStyle[3]}
+        isActive={currentBoard.currentRow >= 3 ? true : false}
+        dailyGuess={currentBoard.guesses[3]}
+        dailyMap={currentBoard.boardStyle[3]}
       />
       <CodleInputRow
-        isActive={gameBoard.currentRow >= 4 ? true : false}
-        dailyGuess={gameBoard.guesses[4]}
-        dailyMap={gameBoard.boardStyle[4]}
+        isActive={currentBoard.currentRow >= 4 ? true : false}
+        dailyGuess={currentBoard.guesses[4]}
+        dailyMap={currentBoard.boardStyle[4]}
       />
       <CodleInputRow
-        isActive={gameBoard.currentRow >= 5 ? true : false}
-        dailyGuess={gameBoard.guesses[5]}
-        dailyMap={gameBoard.boardStyle[5]}
+        isActive={currentBoard.currentRow >= 5 ? true : false}
+        dailyGuess={currentBoard.guesses[5]}
+        dailyMap={currentBoard.boardStyle[5]}
       />
     </Stack>
   );
@@ -108,7 +108,7 @@ const CodleInputRow: React.FC<CodleInputRowProps> = ({
     { bgColor: isActive ? 'Primary.dkGray' : 'Primary.black' },
     { bgColor: isActive ? 'Primary.dkGray' : 'Primary.black' }
   ];
-  const { playerId, solution, gameBoard } = useContext(
+  const { playerId, solution, currentBoard, setCurrentBoard } = useContext(
     CodleContext
   ) as CodleInterface;
   const [guess, setGuess] = useState('');
@@ -117,21 +117,23 @@ const CodleInputRow: React.FC<CodleInputRowProps> = ({
 
   const handleRowSubmission = () => {
     const { wonGame, map } = handleUpdateBoard(guess, solution, styleMap);
-    if (wonGame) gameBoard.setGameWon();
-    gameBoard.addGuess(guess);
-    gameBoard.addRowStyle(map);
-    console.log('game board (row submit component)', gameBoard);
+    if (wonGame) currentBoard.setGameWon();
+    currentBoard.addGuess(guess);
+    currentBoard.addRowStyle(map);
+    console.log('cb', currentBoard);
+    // setCurrentBoard(currentBoard);
+    currentBoard.updateBoard(setCurrentBoard);
     (async () => {
       await updatePlayerData(playerId, {
         didWin: wonGame,
-        guesses: gameBoard.guesses,
-        guessMap: JSON.stringify(gameBoard.boardStyle)
+        guesses: currentBoard.guesses,
+        guessMap: JSON.stringify(currentBoard.boardStyle)
       });
     })();
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (gameBoard.isWon) return;
+    if (currentBoard.isWon) return;
     if (e.key === 'Enter' && guess.length === 5) {
       handleRowSubmission();
     }
@@ -147,7 +149,7 @@ const CodleInputRow: React.FC<CodleInputRowProps> = ({
   useEffect(() => {
     if (
       isActive &&
-      !gameBoard.isWon &&
+      !currentBoard.isWon &&
       // !dailyGuess &&
       firstInputRef &&
       firstInputRef.current
