@@ -4,7 +4,7 @@ import useCodle from '../hooks/useCodle';
 import { CodleInterface } from '../@types/context';
 import { ContextProps } from '../@types/props';
 import { StyleMap } from '../@types/codle';
-import { hasPlayedToday } from '../utils/codle';
+import { getPlayerId, hasPlayedToday } from '../utils/codle';
 
 export const CodleContext = React.createContext<CodleInterface | null>(null);
 
@@ -26,6 +26,10 @@ export const CodleProvider: React.FC<ContextProps> = ({ children }) => {
       setDailyMap(playerData.guessMap);
     }
   }, [playerData]);
+
+  console.log('pid', playerId)
+  console.log('solution', solution)
+  console.log('pdata', playerData)
 
   return (
     <CodleContext.Provider

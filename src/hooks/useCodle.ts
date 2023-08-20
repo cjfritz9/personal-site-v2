@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { fetchCodleWord, fetchPlayerData, postPlayerData } from './requests';
 import { CodlePlayerData } from '../@types/codle';
-import { getPlayerId } from '../utils/codle';
+import { getPlayerId, setPlayerId } from '../utils/codle';
 
 const useCodle = () => {
   const [solution, setSolution] = useState('');
@@ -22,6 +22,7 @@ const useCodle = () => {
     } else {
       const fetchedData = await postPlayerData();
       setPlayerData(fetchedData);
+      setPlayerId(fetchedData.id)
     }
   }, [playerId]);
 

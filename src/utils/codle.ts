@@ -35,6 +35,10 @@ export const getPlayerId = () => {
   return localStorage.getItem(storageName);
 };
 
+export const setPlayerId = (playerId: string) => {
+  return localStorage.setItem(storageName, playerId);
+};
+
 export const hasPlayedToday = (playersDate: Date) => {
   if (playersDate.getDate() > new Date().getDate()) {
     return false;
