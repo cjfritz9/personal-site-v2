@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { UpdatedPlayerData } from '../@types/codle';
+import { setPlayerId } from '../utils/codle';
 
 const API_URL = 'https://codle-api-xbai7z5q3q-uc.a.run.app';
 
@@ -21,6 +22,7 @@ export const fetchPlayerData = async (playerId: string) => {
 export const postPlayerData = async () => {
   const result = await axios.post(`${API_URL}/users`);
   if (result.status !== 201) return;
+  setPlayerId(result.data.id);
 
   return result.data;
 };
@@ -29,8 +31,11 @@ export const updatePlayerData = async (
   playerId: string,
   newData: UpdatedPlayerData
 ) => {
+  console.log('updated player data to server:', newData);
   const result = await axios.patch(`${API_URL}/users/${playerId}`, {
-    data: newData
+    didWin: newData.didWin,
+    guesses: newData.guesses,
+    guessMap: newData.guessMap
   });
   if (result.status !== 200) return;
 
