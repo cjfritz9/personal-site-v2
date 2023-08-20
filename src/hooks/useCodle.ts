@@ -6,7 +6,7 @@ import { getPlayerId, setPlayerId } from '../utils/codle';
 
 const useCodle = () => {
   const [solution, setSolution] = useState('');
-  const [playerData, setPlayerData] = useState<CodlePlayerData>();
+  const [currentBoard, setCurrentBoard] = useState<any>();
 
   const playerId = getPlayerId();
 
@@ -15,26 +15,26 @@ const useCodle = () => {
     setSolution(fetchedWord);
   }, []);
 
-  const getPlayerData = useCallback(async () => {
+  const getDailyBoard = useCallback(async () => {
     if (playerId) {
       const fetchedData = await fetchPlayerData(playerId);
-      setPlayerData(fetchedData);
+      // setPlayerData(fetchedData);
     } else {
       const fetchedData = await postPlayerData();
       console.log('useCodle fetched data', fetchedData);
-      setPlayerData(fetchedData);
+      // setPlayerData(fetchedData);
       setPlayerId(fetchedData.id);
     }
   }, []);
 
   useEffect(() => {
     getDailyWord();
-    getPlayerData();
-  }, [getDailyWord, getPlayerData]);
+    getDailyBoard();
+  }, [getDailyWord, getDailyBoard]);
 
   return {
     solution,
-    playerData
+    // playerData
   };
 };
 
