@@ -1,20 +1,39 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import fetchCodleWord from './requests';
+import { fetchCodleWord, fetchPlayerData, postPlayerData } from './requests';
+import { CodlePlayerData } from '../@types/codle';
+import { getPlayerId } from '../utils/codle';
 
 const useCodle = () => {
-  const [dailyWord, setDailyWord] = useState('');
+  const [solution, setSolution] = useState('');
+  const [playerData, setPlayerData] = useState<CodlePlayerData>();
+
+  const playerId = getPlayerId();
 
   const getDailyWord = useCallback(async () => {
     const fetchedWord = await fetchCodleWord();
-    setDailyWord(fetchedWord);
+    setSolution(fetchedWord);
   }, []);
+
+  const getPlayerData = useCallback(async () => {
+    if (playerId) {
+      const fetchedData = await fetchPlayerData(playerId);
+      setPlayerData(fetchedData);
+    } else {
+      const fetchedData = await postPlayerData();
+      setPlayerData(fetchedData);
+    }
+  }, [playerId]);
 
   useEffect(() => {
     getDailyWord();
-  }, [getDailyWord]);
+    getPlayerData();
+  }, [getDailyWord, getPlayerData]);
 
-  return dailyWord;
-}
+  return {
+    solution,
+    playerData
+  };
+};
 
 export default useCodle;

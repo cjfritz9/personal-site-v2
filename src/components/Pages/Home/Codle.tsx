@@ -1,40 +1,15 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Box, Flex, Heading, Input, Stack, Text } from '@chakra-ui/react';
 
-import { BoltProps, CodleInputRowProps } from '../../../@types/props';
 import { CodleContext } from '../../../context/CodleContext';
-import { CodleInterface, StyleMap } from '../../../@types/context';
-import useCodle from '../../../hooks/useCodle';
-import {
-  getHasTodaysData,
-  getTodaysData,
-  validateEntry
-} from '../../../utils/codle';
+import { BoltProps, CodleInputRowProps } from '../../../@types/props';
+import { CodleInterface } from '../../../@types/context';
+import { StyleMap } from '../../../@types/codle';
+import { handleUpdateBoard } from '../../../utils/codle';
+import { updatePlayerData } from '../../../hooks/requests';
 
 const Codle: React.FC = () => {
-  const {
-    didWin,
-    didLose,
-    setDidWin,
-    setSolution,
-    setDailyGuesses,
-    setDailyMap
-  } = useContext(CodleContext) as CodleInterface;
-
-  const word = useCodle();
-
-  useEffect(() => {
-    setSolution(word);
-  }, [word]);
-
-  useEffect(() => {
-    if (getHasTodaysData()) {
-      const { didWin: dailyWin, guesses, guessMap } = getTodaysData();
-      setDidWin(dailyWin);
-      setDailyGuesses(guesses);
-      setDailyMap(guessMap);
-    }
-  }, []);
+  const { didWin, didLose } = useContext(CodleContext) as CodleInterface;
 
   return (
     <Box
@@ -43,7 +18,7 @@ const Codle: React.FC = () => {
       pt='1rem'
       border='1px solid'
       borderColor='Primary.black'
-      bg='linear-gradient(154deg, rgba(23, 85, 83, 0.90) 0%, rgba(67, 217, 173, 0.5) 100%)'
+      bg='linear-gradient(154deg, rgba(23, 85, 83, 0.70) 0%, rgba(67, 217, 173, 0.15) 100%)'
       boxShadow='0px 2px 0px 0px rgba(255, 255, 255, 0.30) inset'
       borderRadius='.5rem'
       pos='relative'
@@ -150,21 +125,39 @@ const CodleInputRow: React.FC<CodleInputRowProps> = ({
     { bgColor: isActive ? 'Primary.dkGray' : 'Primary.black' },
     { bgColor: isActive ? 'Primary.dkGray' : 'Primary.black' }
   ];
-  const { setDidWin, solution, didWin, dailyGuesses } = useContext(
-    CodleContext
-  ) as CodleInterface;
+  const {
+    setDidWin,
+    setDailyGuesses,
+    setDailyMap,
+    playerId,
+    solution,
+    didWin,
+    dailyGuesses
+  } = useContext(CodleContext) as CodleInterface;
   const [guess, setGuess] = useState('');
   const [styleMap, setStyleMap] = useState<StyleMap>(map);
   const firstInputRef = useRef(null);
 
+  const handleRowSubmission = () => {
+    const { wonGame, map } = handleUpdateBoard(guess, solution, styleMap);
+    setDidWin(wonGame);
+    setStyleMap(map);
+    setActiveRow((prev) => prev + 1);
+    setDailyGuesses((prev) => [...prev, guess]);
+    setDailyMap((prev) => [...prev, styleMap]);
+    (async () => {
+      await updatePlayerData(playerId, {
+        didWin: wonGame,
+        guesses: dailyGuesses,
+        guessMap: JSON.stringify(dailyMap)
+      });
+    })();
+  };
+
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (didWin) return;
     if (e.key === 'Enter' && guess.length === 5) {
-      if (guess.toLowerCase() === solution) {
-        setDidWin(true);
-      }
-      setStyleMap(validateEntry(guess, solution, styleMap));
-      setActiveRow((prev) => prev + 1);
+      handleRowSubmission();
     }
     if (e.key === 'Backspace' && guess.length) {
       return setGuess((prev) => prev.slice(0, -1));
