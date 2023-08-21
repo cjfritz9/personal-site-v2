@@ -91,7 +91,7 @@ const CodleInputRow: React.FC<CodleInputRowProps> = ({
   setActiveRow,
   index
 }) => {
-  const { playerId, solution, startingBoard, setGameWon } = useContext(
+  const { playerId, solution, startingBoard, isLoading, setGameWon } = useContext(
     CodleContext
   ) as CodleInterface;
 
@@ -167,7 +167,8 @@ const CodleInputRow: React.FC<CodleInputRowProps> = ({
       onClick={isActive ? handleClick : undefined}
     >
       <Input
-        bgColor={styleMap[0].bgColor}
+        bgColor={isLoading ? 'gray.600' : styleMap[0].bgColor}
+        transition='all .75s ease'
         ref={firstInputRef}
         variant='codle'
         maxLength={1}
@@ -181,7 +182,8 @@ const CodleInputRow: React.FC<CodleInputRowProps> = ({
         readOnly
       />
       <Input
-        bgColor={styleMap[1].bgColor}
+        bgColor={isLoading ? 'gray.600' : styleMap[1].bgColor}
+        transition='all .75s ease'
         variant='codle'
         maxLength={1}
         cursor={'text'}
@@ -195,7 +197,8 @@ const CodleInputRow: React.FC<CodleInputRowProps> = ({
         readOnly
       />
       <Input
-        bgColor={styleMap[2].bgColor}
+        bgColor={isLoading ? 'gray.600' : styleMap[2].bgColor}
+        transition='all .75s ease'
         variant='codle'
         maxLength={1}
         cursor={'text'}
@@ -209,7 +212,8 @@ const CodleInputRow: React.FC<CodleInputRowProps> = ({
         readOnly
       />
       <Input
-        bgColor={styleMap[3].bgColor}
+        bgColor={isLoading ? 'gray.600' : styleMap[3].bgColor}
+        transition='all .75s ease'
         variant='codle'
         maxLength={1}
         cursor={'text'}
@@ -223,7 +227,8 @@ const CodleInputRow: React.FC<CodleInputRowProps> = ({
         readOnly
       />
       <Input
-        bgColor={styleMap[4].bgColor}
+        bgColor={isLoading ? 'gray.600' : styleMap[4].bgColor}
+        transition='all .75s ease'
         variant='codle'
         maxLength={1}
         cursor={'text'}

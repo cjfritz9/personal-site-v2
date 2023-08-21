@@ -7,7 +7,7 @@ import { ContextProps } from '../@types/props';
 export const CodleContext = React.createContext<CodleInterface | null>(null);
 
 export const CodleProvider: React.FC<ContextProps> = ({ children }) => {
-  const { playerId, solution, startingBoard } = useCodle();
+  const { playerId, solution, startingBoard, isLoading } = useCodle();
   const [gameWon, setGameWon] = useState(false);
   const [gameLost, setGameLost] = useState(false);
 
@@ -23,9 +23,10 @@ export const CodleProvider: React.FC<ContextProps> = ({ children }) => {
         solution,
         gameWon,
         gameLost,
+        startingBoard,
+        isLoading,
         setGameWon,
         setGameLost,
-        startingBoard
       }}
     >
       {children}

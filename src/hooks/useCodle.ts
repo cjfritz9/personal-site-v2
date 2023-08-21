@@ -13,6 +13,7 @@ const useCodle = () => {
   const [playerId, setPlayerId] = useState(getStoragePlayerId() ?? '');
   const [solution, setSolution] = useState('');
   const [startingBoard, setStartingBoard] = useState(new GameBoard());
+  const [isLoading, setIsLoading] = useState(true);
 
   const getDailyWord = useCallback(async () => {
     const fetchedWord = await fetchCodleWord();
@@ -34,6 +35,7 @@ const useCodle = () => {
       setStoragePlayerId(fetchedData.id);
       setPlayerId(fetchedData.id);
     }
+    setIsLoading(false);
   }, []);
 
   useEffect(() => {
@@ -44,7 +46,8 @@ const useCodle = () => {
   return {
     playerId: playerId as string,
     solution,
-    startingBoard
+    startingBoard,
+    isLoading
   };
 };
 

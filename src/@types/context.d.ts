@@ -6,6 +6,7 @@ export interface CodleInterface {
   gameWon: boolean;
   gameLost: boolean;
   startingBoard: GameBoard;
+  isLoading: boolean;
   setGameWon: React.Dispatch<React.SetStateAction<boolean>>;
   setGameLost: React.Dispatch<React.SetStateAction<boolean>>;
 }
