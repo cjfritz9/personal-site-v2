@@ -3,8 +3,9 @@ import { GameBoard } from '../models/Codle';
 export interface CodleInterface {
   playerId: string;
   solution: string;
-  activeRow: number;
-  currentBoard: GameBoard;
-  setActiveRow: React.Dispatch<React.SetStateAction<number>>;
-  setCurrentBoard: React.Dispatch<React.SetStateAction<GameBoard>>;
+  gameWon: boolean;
+  gameLost: boolean;
+  startingBoard: GameBoard;
+  setGameWon: React.Dispatch<React.SetStateAction<boolean>>;
+  setGameLost: React.Dispatch<React.SetStateAction<boolean>>;
 }

@@ -2,13 +2,17 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { fetchCodleWord, fetchPlayerData, postPlayerData } from './requests';
 import { CodlePlayerData, StyleMap } from '../@types/codle';
-import { getStoragePlayerId, setStoragePlayerId } from '../utils/codle';
+import {
+  getStoragePlayerId,
+  hasPlayedToday,
+  setStoragePlayerId
+} from '../utils/codle';
 import { GameBoard } from '../models/Codle';
 
 const useCodle = () => {
   const [playerId, setPlayerId] = useState(getStoragePlayerId() ?? '');
   const [solution, setSolution] = useState('');
-  const [currentBoard, setCurrentBoard] = useState<GameBoard>(new GameBoard());
+  const [startingBoard, setStartingBoard] = useState(new GameBoard());
 
   const getDailyWord = useCallback(async () => {
     const fetchedWord = await fetchCodleWord();
@@ -18,7 +22,7 @@ const useCodle = () => {
   const getDailyBoard = useCallback(async () => {
     if (playerId) {
       const fetchedData = (await fetchPlayerData(playerId)) as CodlePlayerData;
-      setCurrentBoard(
+      setStartingBoard(
         new GameBoard(
           fetchedData?.didWin ?? false,
           fetchedData?.guesses ?? [],
@@ -27,8 +31,8 @@ const useCodle = () => {
       );
     } else {
       const fetchedData = await postPlayerData();
-      setPlayerId(fetchedData.id);
       setStoragePlayerId(fetchedData.id);
+      setPlayerId(fetchedData.id);
     }
   }, []);
 
@@ -38,10 +42,9 @@ const useCodle = () => {
   }, [getDailyWord, getDailyBoard]);
 
   return {
-    playerId,
+    playerId: playerId as string,
     solution,
-    currentBoard,
-    setCurrentBoard
+    startingBoard
   };
 };
 

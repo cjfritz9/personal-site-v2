@@ -1,5 +1,6 @@
-import React from "react";
-import { StyleMap } from "./context";
+import React from 'react';
+import { StyleMap } from './context';
+import { GameBoard } from '../models/Codle';
 
 export interface PanelProps {
   content: any;
@@ -12,11 +13,16 @@ export interface BoltProps {
 }
 
 export interface CodleInputRowProps {
+  // isActive: boolean;
+  // dailyGuess: string | undefined;
+  // dailyMap: StyleMap | undefined;
+  // currentBoard: GameBoard;
+  // setCurrentBoard: React.Dispatch<React.SetStateAction<GameBoard>>;
   isActive: boolean;
-  dailyGuess: string | undefined;
-  dailyMap: StyleMap | undefined;
+  setActiveRow: React.Dispatch<React.SetStateAction<number>>;
+  index: number;
 }
 
 export interface ContextProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }

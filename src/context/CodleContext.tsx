@@ -7,19 +7,25 @@ import { ContextProps } from '../@types/props';
 export const CodleContext = React.createContext<CodleInterface | null>(null);
 
 export const CodleProvider: React.FC<ContextProps> = ({ children }) => {
-  const [activeRow, setActiveRow] = useState(0);
+  const { playerId, solution, startingBoard } = useCodle();
+  const [gameWon, setGameWon] = useState(false);
+  const [gameLost, setGameLost] = useState(false);
 
-  const { playerId, solution, currentBoard, setCurrentBoard } = useCodle();
+  useEffect(() => {
+    setGameWon(startingBoard.isWon);
+    setGameLost(startingBoard.isLost);
+  }, [startingBoard]);
 
   return (
     <CodleContext.Provider
       value={{
         playerId,
         solution,
-        activeRow,
-        currentBoard,
-        setActiveRow,
-        setCurrentBoard
+        gameWon,
+        gameLost,
+        setGameWon,
+        setGameLost,
+        startingBoard
       }}
     >
       {children}

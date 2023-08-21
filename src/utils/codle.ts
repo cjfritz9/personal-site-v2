@@ -4,11 +4,17 @@ const storageName = 'codle-id';
 
 export const handleUpdateBoard = (
   guess: string,
-  solution: string,
-  map: StyleMap
+  solution: string
 ) => {
   let matches = '';
   let wonGame = false;
+  const map = [
+    { bgColor: 'Primary.dkGray' },
+    { bgColor: 'Primary.dkGray' },
+    { bgColor: 'Primary.dkGray' },
+    { bgColor: 'Primary.dkGray' },
+    { bgColor: 'Primary.dkGray' }
+  ];
   for (let i = 0; i < solution.length; i++) {
     if (solution[i] === guess[i]) {
       matches += solution[i];
@@ -29,6 +35,16 @@ export const handleUpdateBoard = (
   }
 
   return { wonGame, map };
+};
+
+export const getStyleMap = (isActive: boolean): StyleMap => {
+  return [
+    { bgColor: isActive ? 'Primary.dkGray' : 'Primary.black' },
+    { bgColor: isActive ? 'Primary.dkGray' : 'Primary.black' },
+    { bgColor: isActive ? 'Primary.dkGray' : 'Primary.black' },
+    { bgColor: isActive ? 'Primary.dkGray' : 'Primary.black' },
+    { bgColor: isActive ? 'Primary.dkGray' : 'Primary.black' }
+  ];
 };
 
 export const getStoragePlayerId = () => {

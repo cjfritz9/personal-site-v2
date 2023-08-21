@@ -1,4 +1,5 @@
 import { StyleMap } from '../@types/codle';
+import { getStyleMap } from '../utils/codle';
 
 export class PlayerData {
   public updatedAt: string;
@@ -46,7 +47,7 @@ export class GameBoard {
   }
 
   private nextRow() {
-    if (this.currentRow < 6) {
+    if (this.currentRow < 5) {
       this.currentRow++;
     } else {
       this.setGameLost();

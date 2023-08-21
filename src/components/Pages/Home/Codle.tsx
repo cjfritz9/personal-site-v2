@@ -4,12 +4,15 @@ import { Box, Flex, Heading, Input, Stack, Text } from '@chakra-ui/react';
 import { CodleContext } from '../../../context/CodleContext';
 import { BoltProps, CodleInputRowProps } from '../../../@types/props';
 import { CodleInterface } from '../../../@types/context';
-import { StyleMap } from '../../../@types/codle';
-import { handleUpdateBoard } from '../../../utils/codle';
+import { getStyleMap, handleUpdateBoard } from '../../../utils/codle';
 import { updatePlayerData } from '../../../hooks/requests';
+import { GameBoard } from '../../../models/Codle';
+import { StyleMap } from '../../../@types/codle';
 
 const Codle: React.FC = () => {
-  const { currentBoard } = useContext(CodleContext) as CodleInterface;
+  const { solution, gameWon, gameLost } = useContext(
+    CodleContext
+  ) as CodleInterface;
 
   return (
     <Box
@@ -36,17 +39,17 @@ const Codle: React.FC = () => {
           variant='label'
           textAlign='center'
           color={
-            currentBoard.isWon
+            gameWon
               ? 'Accent.emerald !important'
-              : currentBoard.isLost
+              : gameLost
               ? 'Accent.purple !important'
               : 'Accent.orange !important'
           }
         >
-          {currentBoard.isWon
+          {gameWon
             ? 'You win!'
-            : currentBoard.isLost
-            ? 'You lose!'
+            : gameLost
+            ? `You lose! Answer: "${solution}"`
             : 'Programming Themed Wordle'}
         </Text>
         <Stack>
@@ -58,71 +61,59 @@ const Codle: React.FC = () => {
 };
 
 const CodleBoard: React.FC = () => {
-  const { currentBoard } = useContext(CodleContext) as CodleInterface;
+  const { setGameLost } = useContext(CodleContext) as CodleInterface;
+  const [activeRow, setActiveRow] = useState(0);
+
+  useEffect(() => {
+    if (activeRow >= 6) {
+      setGameLost(true);
+    }
+  }, [activeRow]);
 
   return (
     <Stack w='100%' h='100%' justifyContent='center' alignItems='center'>
-      <CodleInputRow
-        isActive={currentBoard.currentRow >= 0 ? true : false}
-        dailyGuess={currentBoard.guesses[0]}
-        dailyMap={currentBoard.boardStyle[0]}
-      />
-      <CodleInputRow
-        isActive={currentBoard.currentRow >= 1 ? true : false}
-        dailyGuess={currentBoard.guesses[1]}
-        dailyMap={currentBoard.boardStyle[1]}
-      />
-      <CodleInputRow
-        isActive={currentBoard.currentRow >= 2 ? true : false}
-        dailyGuess={currentBoard.guesses[2]}
-        dailyMap={currentBoard.boardStyle[2]}
-      />
-      <CodleInputRow
-        isActive={currentBoard.currentRow >= 3 ? true : false}
-        dailyGuess={currentBoard.guesses[3]}
-        dailyMap={currentBoard.boardStyle[3]}
-      />
-      <CodleInputRow
-        isActive={currentBoard.currentRow >= 4 ? true : false}
-        dailyGuess={currentBoard.guesses[4]}
-        dailyMap={currentBoard.boardStyle[4]}
-      />
-      <CodleInputRow
-        isActive={currentBoard.currentRow >= 5 ? true : false}
-        dailyGuess={currentBoard.guesses[5]}
-        dailyMap={currentBoard.boardStyle[5]}
-      />
+      {Array.from(new Array(6)).map((_, i) => {
+        return (
+          <CodleInputRow
+            key={i}
+            isActive={activeRow === i}
+            setActiveRow={setActiveRow}
+            index={i}
+          />
+        );
+      })}
     </Stack>
   );
 };
 
 const CodleInputRow: React.FC<CodleInputRowProps> = ({
   isActive,
-  dailyGuess,
-  dailyMap
+  setActiveRow,
+  index
 }) => {
-  const map = [
-    { bgColor: isActive ? 'Primary.dkGray' : 'Primary.black' },
-    { bgColor: isActive ? 'Primary.dkGray' : 'Primary.black' },
-    { bgColor: isActive ? 'Primary.dkGray' : 'Primary.black' },
-    { bgColor: isActive ? 'Primary.dkGray' : 'Primary.black' },
-    { bgColor: isActive ? 'Primary.dkGray' : 'Primary.black' }
-  ];
-  const { playerId, solution, currentBoard, setCurrentBoard } = useContext(
+  const { playerId, solution, startingBoard, setGameWon } = useContext(
     CodleContext
   ) as CodleInterface;
+
+  const [currentBoard, setCurrentBoard] =
+    React.useState<GameBoard>(startingBoard);
   const [guess, setGuess] = useState('');
-  const [styleMap, setStyleMap] = useState<StyleMap>(map);
+  const [styleMap, setStyleMap] = useState<StyleMap>(getStyleMap(index === 0));
+
   const firstInputRef = useRef(null);
 
   const handleRowSubmission = () => {
-    const { wonGame, map } = handleUpdateBoard(guess, solution, styleMap);
-    if (wonGame) currentBoard.setGameWon();
+    const { wonGame, map } = handleUpdateBoard(guess, solution);
+    if (wonGame) {
+      currentBoard.setGameWon();
+      setGameWon(wonGame);
+    } else {
+      setActiveRow((prev) => prev + 1);
+    }
     currentBoard.addGuess(guess);
     currentBoard.addRowStyle(map);
-    console.log('cb', currentBoard);
-    // setCurrentBoard(currentBoard);
-    currentBoard.updateBoard(setCurrentBoard);
+    setStyleMap(map);
+    setCurrentBoard(currentBoard);
     (async () => {
       await updatePlayerData(playerId, {
         didWin: wonGame,
@@ -135,7 +126,7 @@ const CodleInputRow: React.FC<CodleInputRowProps> = ({
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (currentBoard.isWon) return;
     if (e.key === 'Enter' && guess.length === 5) {
-      handleRowSubmission();
+      return handleRowSubmission();
     }
     if (e.key === 'Backspace' && guess.length) {
       return setGuess((prev) => prev.slice(0, -1));
@@ -146,74 +137,103 @@ const CodleInputRow: React.FC<CodleInputRowProps> = ({
     }
   };
 
+  const handleClick = () => {
+    if (firstInputRef.current) {
+      (firstInputRef.current as HTMLInputElement).focus();
+    }
+  };
+
   useEffect(() => {
-    if (
-      isActive &&
-      !currentBoard.isWon &&
-      // !dailyGuess &&
-      firstInputRef &&
-      firstInputRef.current
-    ) {
-      setStyleMap(map);
+    if (isActive && firstInputRef && firstInputRef.current) {
       const firstInput: HTMLInputElement = firstInputRef.current;
       firstInput.focus();
     }
+    setStyleMap(currentBoard.boardStyle[index] ?? getStyleMap(isActive));
   }, [isActive]);
 
   useEffect(() => {
-    console.log('in ue gameboard dep');
-    if (dailyGuess && dailyMap) {
-      setGuess(dailyGuess);
-      setStyleMap(dailyMap);
-    }
-  }, [dailyMap]);
+    console.log(isActive);
+    console.log(currentBoard.currentRow);
+    setCurrentBoard(startingBoard);
+    setStyleMap(startingBoard.boardStyle[index] ?? getStyleMap(isActive));
+    setActiveRow(startingBoard.currentRow);
+    console.log('re-render');
+  }, [startingBoard]);
 
   return (
-    <Flex gap='.5rem'>
+    <Flex
+      gap='.5rem'
+      cursor={'text'}
+      onClick={isActive ? handleClick : undefined}
+    >
       <Input
         bgColor={styleMap[0].bgColor}
         ref={firstInputRef}
         variant='codle'
         maxLength={1}
-        pointerEvents={isActive ? 'auto' : 'none'}
+        pointerEvents={isActive && !currentBoard.isWon ? 'auto' : 'none'}
         onKeyDown={(e) => handleKeyDown(e)}
-        value={guess[0] || ''}
+        value={
+          (currentBoard.guesses[index] && currentBoard.guesses[index][0]) ||
+          guess[0] ||
+          ''
+        }
         readOnly
       />
       <Input
         bgColor={styleMap[1].bgColor}
         variant='codle'
         maxLength={1}
+        cursor={'text'}
         pointerEvents='none'
         onKeyDown={(e) => handleKeyDown(e)}
-        value={guess[1] || ''}
+        value={
+          (currentBoard.guesses[index] && currentBoard.guesses[index][1]) ||
+          guess[1] ||
+          ''
+        }
         readOnly
       />
       <Input
         bgColor={styleMap[2].bgColor}
         variant='codle'
         maxLength={1}
+        cursor={'text'}
         pointerEvents='none'
         onKeyDown={(e) => handleKeyDown(e)}
-        value={guess[2] || ''}
+        value={
+          (currentBoard.guesses[index] && currentBoard.guesses[index][2]) ||
+          guess[2] ||
+          ''
+        }
         readOnly
       />
       <Input
         bgColor={styleMap[3].bgColor}
         variant='codle'
         maxLength={1}
+        cursor={'text'}
         pointerEvents='none'
         onKeyDown={(e) => handleKeyDown(e)}
-        value={guess[3] || ''}
+        value={
+          (currentBoard.guesses[index] && currentBoard.guesses[index][3]) ||
+          guess[3] ||
+          ''
+        }
         readOnly
       />
       <Input
         bgColor={styleMap[4].bgColor}
         variant='codle'
         maxLength={1}
+        cursor={'text'}
         pointerEvents='none'
         onKeyDown={(e) => handleKeyDown(e)}
-        value={guess[4] || ''}
+        value={
+          (currentBoard.guesses[index] && currentBoard.guesses[index][4]) ||
+          guess[4] ||
+          ''
+        }
         readOnly
       />
     </Flex>
