@@ -44,7 +44,7 @@ const Intro: React.FC = () => {
             isExternal
             overflowWrap='anywhere'
           >
-            github.com/cjfritz9
+            "github.com/cjfritz9"
           </Text>
         </Flex>
       </Stack>
