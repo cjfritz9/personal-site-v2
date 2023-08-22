@@ -31,7 +31,6 @@ export const updatePlayerData = async (
   playerId: string,
   newData: UpdatedPlayerData
 ) => {
-  console.log('updated player data to server:', newData);
   const result = await axios.patch(`${API_URL}/users/${playerId}`, {
     didWin: newData.didWin,
     guesses: newData.guesses,
