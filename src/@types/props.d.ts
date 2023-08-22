@@ -5,6 +5,7 @@ import { GameBoard } from '../models/Codle';
 export interface PanelProps {
   content: any;
   variant: 'left' | 'right' | 'center' | 'mobile';
+  clickHandler?: () => void;
   width?: string;
   styles?: any;
 }
@@ -46,7 +47,7 @@ export interface CDResult {
   handle: string;
 }
 
-export type TerminalModes = 'auto-complete' | 'search' | 'cd';
+export type TerminalModes = 'auto-complete' | 'search' | 'cd' | 'sudo';
 
 export interface SuggestionsProps {
   mode: TerminalModes;

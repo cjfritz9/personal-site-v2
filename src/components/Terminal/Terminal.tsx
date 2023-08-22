@@ -119,6 +119,10 @@ const Terminal: React.FC = () => {
       setMode('cd');
       setTerminalInput((prev) => prev.slice(3));
     }
+    if (comparisonValue.includes('sudo:')) {
+      setMode('sudo');
+      setTerminalInput((prev) => prev.slice(5));
+    }
   };
 
   const handleKeyUp = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -140,6 +144,10 @@ const Terminal: React.FC = () => {
         }
         if (terminalInput.includes('ho')) {
           setTerminalInput('home');
+        }
+        if (terminalInput.includes('su')) {
+          setMode('sudo');
+          setTerminalInput((prev) => prev.slice(7));
         }
       }
     }
@@ -190,6 +198,7 @@ const Terminal: React.FC = () => {
     <Flex
       cursor='text'
       pointerEvents={showSuggestions ? 'none' : 'auto'}
+      bg={isUsingTerminal ? 'Primary.dkGray' : 'Primary.dkSlate'}
       pos='relative'
       h='100%'
       grow={1}
@@ -216,6 +225,11 @@ const Terminal: React.FC = () => {
       {mode === 'cd' && (
         <Badge colorScheme='red' mx='.5rem'>
           cd
+        </Badge>
+      )}
+      {mode === 'sudo' && (
+        <Badge colorScheme='red' mx='.5rem'>
+          sudo
         </Badge>
       )}
       <Input

@@ -3,9 +3,19 @@ import { Flex } from '@chakra-ui/react';
 
 import { PanelProps } from '../../@types/props';
 
-const Panel: React.FC<PanelProps> = ({ content, variant, width, styles }) => {
+const Panel: React.FC<PanelProps> = ({
+  content,
+  variant,
+  clickHandler,
+  width,
+  styles
+}) => {
   return (
     <Flex
+      _hover={{
+        bgColor: 'Primary.dkGray'
+      }}
+      cursor='pointer'
       display={[variant === 'left' || 'right' ? 'flex' : 'none', 'flex']}
       h='100%'
       w={width ? width : 'fit-content'}
@@ -17,6 +27,7 @@ const Panel: React.FC<PanelProps> = ({ content, variant, width, styles }) => {
       borderRight={variant === 'left' ? '1px solid' : 'none'}
       borderColor='Lines'
       gap='.75rem'
+      onClick={clickHandler}
       {...styles}
     >
       {content}

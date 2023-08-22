@@ -52,7 +52,7 @@ const Codle: React.FC = () => {
             ? 'You win!'
             : gameLost
             ? `You lose! Answer: "${solution}"`
-            : 'Programming Themed Wordle'}
+            : 'Wordle for Programmers'}
         </Text>
         <Stack>
           <CodleBoard />
@@ -73,7 +73,7 @@ const CodleBoard: React.FC = () => {
   }, [activeRow]);
 
   return (
-    <Stack w='100%' h='100%' justifyContent='center' alignItems='center'>
+    <Stack w='100%' h='100%' py='1rem' justifyContent='center' alignItems='center'>
       {Array.from(new Array(6)).map((_, i) => {
         return (
           <CodleInputRow

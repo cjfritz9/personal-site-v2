@@ -10,12 +10,21 @@ const Footer: React.FC = () => {
   return (
     <Container variant='footer'>
       {isLargerThan480 && (
-        <Panel content={<Text>connect</Text>} variant='left' />
+        <Panel
+          content={<Text>connect</Text>}
+          variant='left'
+          styles={{ _hover: { bgColor: 'Primary.dkSlate' }, cursor: 'auto' }}
+        />
       )}
       <Panel
         content={<Icon as={RiLinkedinBoxLine} fontSize='24px' />}
         variant='left'
-        styles={{ px: isLargerThan480 && '1.5rem' }}
+        clickHandler={() =>
+          window.open('https://linkedin.com/in/cj-fritz', '_blank')
+        }
+        styles={{
+          px: isLargerThan480 && '1.5rem'
+        }}
       />
       <Terminal />
       <Panel
@@ -26,6 +35,9 @@ const Footer: React.FC = () => {
           </>
         }
         variant='right'
+        clickHandler={() =>
+          window.open('https://github.com/cjfritz9', '_blank')
+        }
       />
     </Container>
   );

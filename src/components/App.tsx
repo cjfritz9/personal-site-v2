@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router';
 import Header from './Shared/Header';
 import HomePage from './Pages/Home/_Home.page';
 import Footer from './Shared/Footer';
+import _404Page from './Pages/404/_404.page';
 
 const App: React.FC = () => {
   return (
@@ -14,7 +15,10 @@ const App: React.FC = () => {
     >
       <Header />
       <Routes>
-        <Route path='/' element={<HomePage />} />
+        {['/', '/home'].map((path, i) => (
+          <Route key={i} path={path} element={<HomePage />} />
+        ))}
+        <Route path='/*' element={<_404Page />} />
       </Routes>
       <Footer />
     </Box>

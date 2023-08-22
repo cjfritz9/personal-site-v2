@@ -35,7 +35,7 @@ const Suggestions: React.FC<SuggestionsProps> = ({
     );
   } else {
     return (
-      <Container variant='suggestions' minW={['calc(100dvw - 360px)']}>
+      <Container variant='suggestions'>
         <Stack gap='4px'>
           {autoCompleteResults?.map((result, i) => (
             <Flex key={i}>

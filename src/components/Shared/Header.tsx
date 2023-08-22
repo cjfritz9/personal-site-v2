@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Flex,
   Container,
@@ -10,22 +10,26 @@ import {
   Menu,
   MenuButton,
   MenuList,
-  MenuItem,
-  IconButton,
-  HStack,
-  Button
+  MenuItem
 } from '@chakra-ui/react';
 import { RiCloseLine, RiMenuLine } from 'react-icons/ri';
 
 import Panel from './Panel';
+import { useNavigate } from 'react-router';
 
-const links = ['Home.tsx', 'AboutMe.tsx', 'Projects.tsx'];
+const links = [
+  { title: 'Home.tsx', path: '/home' },
+  { title: 'AboutMe.tsx', path: '/about' },
+  { title: 'Projects.tsx', path: '/projects' }
+];
 
 const Header: React.FC = () => {
   const [isSmallerThan480, isSmallerThan992] = useMediaQuery([
     '(max-width: 480px)',
     '(max-width: 992px)'
   ]);
+
+  const navigate = useNavigate();
 
   if (isSmallerThan992) {
     return (
@@ -51,7 +55,9 @@ const Header: React.FC = () => {
                 w={isSmallerThan480 ? '100dvw' : '100%'}
               >
                 {links.map((link, i) => (
-                  <MenuItem key={i}>{link}</MenuItem>
+                  <MenuItem key={i} onClick={() => navigate(link.path)}>
+                    {link.title}
+                  </MenuItem>
                 ))}
               </MenuList>
             </>
@@ -62,17 +68,28 @@ const Header: React.FC = () => {
   } else {
     return (
       <Container variant='header'>
-        <Panel content={<Text>cj-fritz</Text>} variant='left' width='320px' />
+        <Panel
+          content={<Text>cj-fritz</Text>}
+          variant='left'
+          width='190px'
+          styles={{ _hover: { bgColor: 'Primary.dkSlate' }, cursor: 'auto' }}
+        />
         <Flex h='100%' grow={1}>
           <Tabs>
             <TabList>
               {links.map((link, i) => (
-                <Tab key={i}>{link}</Tab>
+                <Tab key={i} onClick={() => navigate(link.path)}>
+                  {link.title}
+                </Tab>
               ))}
             </TabList>
           </Tabs>
         </Flex>
-        <Panel content={<Text>ContactMe.tsx</Text>} variant='right' />
+        <Panel
+          content={<Text>ContactMe.tsx</Text>}
+          variant='right'
+          clickHandler={() => navigate('/contact')}
+        />
       </Container>
     );
   }
