@@ -6,7 +6,7 @@ import React, {
   useRef,
   useState
 } from 'react';
-import { Flex, Text, Input, Box, Badge, keyframes } from '@chakra-ui/react';
+import { Flex, Text, Input, Badge, keyframes } from '@chakra-ui/react';
 
 import Suggestions from './Suggestions';
 import {

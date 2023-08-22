@@ -1,6 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import { fetchCodleWord, fetchPlayerData, postPlayerData } from './requests';
+import {
+  fetchCodleWord,
+  fetchPlayerData,
+  postPlayerData,
+  updatePlayerData
+} from './requests';
 import { CodlePlayerData, StyleMap } from '../@types/codle';
 import {
   getStoragePlayerId,
@@ -23,13 +28,21 @@ const useCodle = () => {
   const getDailyBoard = useCallback(async () => {
     if (playerId) {
       const fetchedData = (await fetchPlayerData(playerId)) as CodlePlayerData;
-      setStartingBoard(
-        new GameBoard(
-          fetchedData?.didWin ?? false,
-          fetchedData?.guesses ?? [],
-          (JSON.parse(fetchedData?.guessMap) as StyleMap[]) ?? []
-        )
-      );
+      if (hasPlayedToday(new Date(fetchedData.updatedAt))) {
+        setStartingBoard(
+          new GameBoard(
+            fetchedData?.didWin ?? false,
+            fetchedData?.guesses ?? [],
+            (JSON.parse(fetchedData?.guessMap) as StyleMap[]) ?? []
+          )
+        );
+      } else {
+        await updatePlayerData(playerId, {
+          guesses: [],
+          guessMap: '',
+          didWin: false
+        });
+      }
     } else {
       const fetchedData = await postPlayerData();
       setStoragePlayerId(fetchedData.id);

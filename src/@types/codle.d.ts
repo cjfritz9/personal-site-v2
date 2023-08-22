@@ -9,7 +9,7 @@ export interface CodlePlayerData {
 }
 
 export interface UpdatedPlayerData {
-  guesses: string[];
+  guesses: string[] | [];
   guessMap: string;
   didWin: boolean;
 }
