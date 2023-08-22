@@ -1,4 +1,10 @@
+import React from 'react';
 import { GameBoard } from '../models/Codle';
+
+export interface SiteInterface {
+  isUsingTerminal: boolean;
+  setIsUsingTerminal: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
 export interface CodleInterface {
   playerId: string;

@@ -41,6 +41,26 @@ const page = defineStyle({
   alignItems: 'center'
 });
 
+const suggestions = defineStyle({
+  pos: 'fixed',
+  bottom: '48px',
+  h: 'fit-content',
+  w: [
+    '100%',
+    '100%',
+    'calc(100% - 340px)',
+    'calc(100% - 340px)',
+    'calc(100% - 360px)'
+  ],
+  maxW: '100dvw',
+  m: 0,
+  px: '.5rem',
+  ml: ['-90px', '-204px', '-24px'],
+  bg: 'Primary.black',
+  color: 'Secondary.slate',
+  zIndex: 2
+});
+
 const containerConfig = defineStyleConfig({
   baseStyle,
   defaultProps: {
@@ -49,7 +69,8 @@ const containerConfig = defineStyleConfig({
   variants: {
     footer,
     header,
-    page
+    page,
+    suggestions
   }
 });
 

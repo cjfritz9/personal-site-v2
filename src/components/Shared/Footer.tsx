@@ -3,7 +3,7 @@ import { Container, Flex, Icon, Text, useMediaQuery } from '@chakra-ui/react';
 import { RiLinkedinBoxLine, RiGithubLine } from 'react-icons/ri';
 
 import Panel from './Panel';
-import Terminal from './Terminal';
+import Terminal from '../Terminal/Terminal';
 
 const Footer: React.FC = () => {
   const [isLargerThan480] = useMediaQuery('(min-width: 480px)');

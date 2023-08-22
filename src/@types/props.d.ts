@@ -27,3 +27,30 @@ export interface CodleInputRowProps {
 export interface ContextProps {
   children: React.ReactNode;
 }
+
+// Terminal Types and Interfaces
+
+export interface AutoCompletionResult {
+  type: string;
+  description: string;
+}
+
+export interface SearchResult {
+  directory: string;
+  name: string;
+  handle: string;
+}
+
+export interface CDResult {
+  dirname: string;
+  handle: string;
+}
+
+export type TerminalModes = 'auto-complete' | 'search' | 'cd';
+
+export interface SuggestionsProps {
+  mode: TerminalModes;
+  autoCompleteResults?: AutoCompletionResult[];
+  searchResults?: SearchResult[];
+  cdResults?: CDResult[];
+}

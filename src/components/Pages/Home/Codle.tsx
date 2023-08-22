@@ -3,11 +3,12 @@ import { Box, Flex, Heading, Input, Stack, Text } from '@chakra-ui/react';
 
 import { CodleContext } from '../../../context/CodleContext';
 import { BoltProps, CodleInputRowProps } from '../../../@types/props';
-import { CodleInterface } from '../../../@types/context';
+import { CodleInterface, SiteInterface } from '../../../@types/context';
 import { getStyleMap, handleUpdateBoard } from '../../../utils/codle';
 import { updatePlayerData } from '../../../hooks/requests';
 import { GameBoard } from '../../../models/Codle';
 import { StyleMap } from '../../../@types/codle';
+import { SiteContext } from '../../../context/SiteContext';
 
 const Codle: React.FC = () => {
   const { solution, gameWon, gameLost } = useContext(
@@ -94,13 +95,14 @@ const CodleInputRow: React.FC<CodleInputRowProps> = ({
 }) => {
   const { playerId, solution, startingBoard, isLoading, setGameWon } =
     useContext(CodleContext) as CodleInterface;
+  const { isUsingTerminal } = useContext(SiteContext) as SiteInterface;
 
   const [currentBoard, setCurrentBoard] =
     React.useState<GameBoard>(startingBoard);
   const [guess, setGuess] = useState('');
   const [styleMap, setStyleMap] = useState<StyleMap>(getStyleMap(index === 0));
 
-  const firstInputRef = useRef(null);
+  const firstInputRef = useRef<HTMLInputElement>(null);
 
   const handleRowSubmission = () => {
     const { wonGame, map } = handleUpdateBoard(guess, solution);
@@ -144,20 +146,16 @@ const CodleInputRow: React.FC<CodleInputRowProps> = ({
   };
 
   useEffect(() => {
-    if (isActive && firstInputRef && firstInputRef.current) {
-      const firstInput: HTMLInputElement = firstInputRef.current;
-      firstInput.focus();
+    if (isActive && !isUsingTerminal) {
+      firstInputRef.current?.focus();
     }
     setStyleMap(currentBoard.boardStyle[index] ?? getStyleMap(isActive));
   }, [isActive]);
 
   useEffect(() => {
-    console.log(isActive);
-    console.log(currentBoard.currentRow);
     setCurrentBoard(startingBoard);
     setStyleMap(startingBoard.boardStyle[index] ?? getStyleMap(isActive));
     setActiveRow(startingBoard.currentRow);
-    console.log('re-render');
   }, [startingBoard]);
 
   return (

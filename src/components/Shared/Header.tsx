@@ -30,7 +30,11 @@ const Header: React.FC = () => {
   if (isSmallerThan992) {
     return (
       <Container variant='header'>
-        <Panel content={<Text fontSize='16px'>cj-fritz</Text>} variant='mobile' width='100%' />
+        <Panel
+          content={<Text fontSize='16px'>cj-fritz</Text>}
+          variant='mobile'
+          width='100%'
+        />
         <Menu
           placement='bottom-end'
           offset={[0, 18]}
@@ -46,8 +50,8 @@ const Header: React.FC = () => {
                 h={isSmallerThan480 ? 'calc(100dvh - 52px)' : '100%'}
                 w={isSmallerThan480 ? '100dvw' : '100%'}
               >
-                {links.map((link) => (
-                  <MenuItem>{link}</MenuItem>
+                {links.map((link, i) => (
+                  <MenuItem key={i}>{link}</MenuItem>
                 ))}
               </MenuList>
             </>
@@ -62,8 +66,8 @@ const Header: React.FC = () => {
         <Flex h='100%' grow={1}>
           <Tabs>
             <TabList>
-              {links.map((link) => (
-                <Tab>{link}</Tab>
+              {links.map((link, i) => (
+                <Tab key={i}>{link}</Tab>
               ))}
             </TabList>
           </Tabs>

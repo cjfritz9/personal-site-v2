@@ -16,6 +16,18 @@ const snippet = defineStyle({
   fontSize: ['12px', '12px', '12px', '12px', '14px']
 });
 
+const terminalPrimary = defineStyle({
+  w: ['128px','128px'],
+  pr: '.5rem',
+  color: 'Accent.rose !important'
+});
+
+const terminalSearch = defineStyle({
+  w: ['128px','128px'],
+  pr: '.5rem',
+  color: 'Accent.emerald !important'
+});
+
 const textConfig = defineStyleConfig({
   baseStyle,
   defaultProps: {
@@ -23,7 +35,9 @@ const textConfig = defineStyleConfig({
   },
   variants: {
     label,
-    snippet
+    snippet,
+    terminalPrimary,
+    terminalSearch
   }
 });
 
