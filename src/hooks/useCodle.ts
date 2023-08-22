@@ -39,7 +39,7 @@ const useCodle = () => {
       } else {
         await updatePlayerData(playerId, {
           guesses: [],
-          guessMap: '',
+          guessMap: '[]',
           didWin: false
         });
       }

@@ -56,7 +56,7 @@ export const setStoragePlayerId = (playerId: string) => {
 };
 
 export const hasPlayedToday = (playersDate: Date) => {
-  if (playersDate.getDate() > new Date().getDate()) {
+  if (playersDate.getDate() < new Date().getDate()) {
     return false;
   }
   return true;
