@@ -13,8 +13,8 @@ const baseStyle = defineStyle({
 const footer = defineStyle({
   h: '48px',
   minW: '100%',
-  p: 0,
   px: '1.5rem',
+  py: 0,
   display: 'flex',
   alignItems: 'center',
   borderTop: '1px solid',
@@ -24,8 +24,8 @@ const footer = defineStyle({
 const header = defineStyle({
   h: '56px',
   minW: '100%',
-  p: 0,
   px: '1.5rem',
+  py: 0,
   display: 'flex',
   alignItems: 'center',
   borderBottom: '1px solid',

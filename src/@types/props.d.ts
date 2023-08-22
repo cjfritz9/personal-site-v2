@@ -4,8 +4,9 @@ import { GameBoard } from '../models/Codle';
 
 export interface PanelProps {
   content: any;
-  variant: 'left' | 'right';
+  variant: 'left' | 'right' | 'center' | 'mobile';
   width?: string;
+  styles?: any;
 }
 
 export interface BoltProps {

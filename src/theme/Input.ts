@@ -13,7 +13,7 @@ const baseStyle = definePartsStyle({
       fontWeight: 'bold'
     },
     caretColor: 'transparent',
-    px: '8px',
+    px: ['4px', null, '8px'],
     border: 'none !important',
     borderWidth: '0 !important',
     color: 'Accent.purple'
@@ -22,11 +22,11 @@ const baseStyle = definePartsStyle({
 
 const codle = definePartsStyle({
   field: {
-    w: '56px',
-    h: '56px',
+    w: ['48px', null, '56px'],
+    h: ['48px', null, '56px'],
     py: '8px',
     color: 'Secondary.white',
-    fontSize: '48px',
+    fontSize: ['40px', null, '48px'],
     textAlign: 'center',
     bgColor: 'Primary.dkGray'
   }

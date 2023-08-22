@@ -6,6 +6,7 @@ import headingConfig from './Heading';
 import inputConfig from './Input';
 import tabsConfig from './Tabs';
 import textConfig from './Text';
+import menuConfig from './Menu';
 
 const theme = extendTheme({
   colors,
@@ -13,6 +14,7 @@ const theme = extendTheme({
     Container: containerConfig,
     Heading: headingConfig,
     Input: inputConfig,
+    Menu: menuConfig,
     Tabs: tabsConfig,
     Text: textConfig
   },

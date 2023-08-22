@@ -16,7 +16,8 @@ const Codle: React.FC = () => {
 
   return (
     <Box
-      w='512px'
+      display={['none', 'none', 'none', 'block']}
+      w={[null, null, null, '424px', '512px']}
       p='2rem'
       pt='1rem'
       border='1px solid'
@@ -91,9 +92,8 @@ const CodleInputRow: React.FC<CodleInputRowProps> = ({
   setActiveRow,
   index
 }) => {
-  const { playerId, solution, startingBoard, isLoading, setGameWon } = useContext(
-    CodleContext
-  ) as CodleInterface;
+  const { playerId, solution, startingBoard, isLoading, setGameWon } =
+    useContext(CodleContext) as CodleInterface;
 
   const [currentBoard, setCurrentBoard] =
     React.useState<GameBoard>(startingBoard);
