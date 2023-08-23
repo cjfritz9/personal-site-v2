@@ -17,7 +17,7 @@ const Footer: React.FC = () => {
         />
       )}
       <Panel
-        content={<Icon as={RiLinkedinBoxLine} fontSize='24px' />}
+        content={<Icon as={RiLinkedinBoxLine} />}
         variant='left'
         clickHandler={() =>
           window.open('https://linkedin.com/in/cj-fritz', '_blank')
@@ -31,7 +31,7 @@ const Footer: React.FC = () => {
         content={
           <>
             {isLargerThan480 && <Text>@cjfritz9</Text>}
-            <Icon as={RiGithubLine} fontSize='20px' />
+            <Icon as={RiGithubLine} />
           </>
         }
         variant='right'

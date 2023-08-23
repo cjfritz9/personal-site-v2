@@ -1,22 +1,26 @@
 import { extendTheme } from '@chakra-ui/react';
 
 import colors from './BrandColors';
-import containerConfig from './Container';
-import headingConfig from './Heading';
-import inputConfig from './Input';
-import tabsConfig from './Tabs';
-import textConfig from './Text';
-import menuConfig from './Menu';
+import containerConfig from './components/Container';
+import headingConfig from './components/Heading';
+import inputConfig from './components/Input';
+import menuConfig from './components/Menu';
+import tabsConfig from './components/Tabs';
+import textConfig from './components/Text';
+import iconConfig from './components/Icon';
+import tooltipConfig from './components/Tooltip';
 
 const theme = extendTheme({
   colors,
   components: {
     Container: containerConfig,
     Heading: headingConfig,
+    Icon: iconConfig,
     Input: inputConfig,
     Menu: menuConfig,
     Tabs: tabsConfig,
-    Text: textConfig
+    Text: textConfig,
+    Tooltip: tooltipConfig
   },
   config: {
     initialColorMode: 'dark',

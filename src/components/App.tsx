@@ -4,6 +4,7 @@ import Header from './Shared/Header';
 import HomePage from './Pages/Home/_Home.page';
 import Footer from './Shared/Footer';
 import _404Page from './Pages/404/_404.page';
+import AboutMePage from './Pages/About/_AboutMe.page';
 
 const App: React.FC = () => {
   return (
@@ -18,6 +19,7 @@ const App: React.FC = () => {
         {['/', '/home'].map((path, i) => (
           <Route key={i} path={path} element={<HomePage />} />
         ))}
+        <Route path='/about' element={<AboutMePage />} />
         <Route path='/*' element={<_404Page />} />
       </Routes>
       <Footer />

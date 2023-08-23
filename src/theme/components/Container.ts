@@ -1,4 +1,4 @@
-import { defineStyle, defineStyleConfig } from '@chakra-ui/react';
+import { Stack, defineStyle, defineStyleConfig } from '@chakra-ui/react';
 
 const baseStyle = defineStyle({
   m: 0,
@@ -61,15 +61,39 @@ const suggestions = defineStyle({
   zIndex: 2
 });
 
+const slimNav = defineStyle({
+  h: '100%',
+  w: '72px',
+  m: 0,
+  p: 0,
+  py: '1rem',
+  gap: '2rem',
+  alignItems: 'center',
+  borderRight: '1px solid',
+  borderRightColor: 'Lines'
+});
+
+const directory = defineStyle({
+  h: '100%',
+  w: '16rem',
+  m: 0,
+  p: '1rem',
+  alignItems: 'flex-start',
+  borderRight: '1px solid',
+  borderRightColor: 'Lines'
+});
+
 const containerConfig = defineStyleConfig({
   baseStyle,
   defaultProps: {
     size: ''
   },
   variants: {
+    directory,
     footer,
     header,
     page,
+    slimNav,
     suggestions
   }
 });
