@@ -11,7 +11,7 @@ const Folder: React.FC<FolderProps> = ({
   return (
     <Stack>
       <Flex>
-        <Icon as={RiFolder3Fill} color={folderColor} />
+        <Icon as={RiFolder3Fill} style={{ color: folderColor }} />
         <Text variant='label'>{folderName}</Text>
       </Flex>
       {children.map((child, i) => (
