@@ -32,7 +32,7 @@ const Snippets: React.FC = () => {
           w='100%'
           m={0}
           p='.5rem'
-          mt='-1px'
+          mt='1px'
           borderBottom='1px solid'
           borderRight='1px solid'
           borderColor='Lines'
@@ -40,7 +40,13 @@ const Snippets: React.FC = () => {
         >
           <Text variant='label'>// Code Snippets</Text>
         </Flex>
-        <Stack mt='-1px' mb='-1px' p='1rem' overflowY='auto' css={scrollbarStyles}>
+        <Stack
+          mt='-1px'
+          mb='-1px'
+          p='1rem'
+          overflowY='auto'
+          css={scrollbarStyles}
+        >
           {gists &&
             gists[0] &&
             gists.map((gist: any, i) => {

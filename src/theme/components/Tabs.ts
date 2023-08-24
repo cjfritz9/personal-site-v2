@@ -16,7 +16,7 @@ const baseStyle = definePartsStyle({
     _selected: {
       mb: '-1px',
       color: 'Secondary.white',
-      borderBottom: '2px solid !important',
+      borderBottom: '3px solid !important',
       borderBottomColor: 'Accent.orange !important'
     },
     borderBottomWidth: '0px !important',

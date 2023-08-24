@@ -29,7 +29,7 @@ const Display: React.FC = () => {
           w='fit-content'
           m={0}
           p='.5rem'
-          mt='-1.5px'
+          // mt='-1.5px'
           borderRight='1px solid'
           borderColor='Lines'
           alignItems='center'

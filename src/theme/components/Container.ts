@@ -76,7 +76,7 @@ const slimNav = defineStyle({
 
 const directory = defineStyle({
   h: '100%',
-  w: '16.5rem',
+  w: '20rem',
   m: 0,
   p: 0,
   alignItems: 'flex-start',
@@ -86,7 +86,7 @@ const directory = defineStyle({
 
 const section = defineStyle({
   display: 'flex',
-  h: '40px',
+  h: '42px',
   w: '100%',
   m: 0,
   p: '.5rem',
