@@ -4,37 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "react-scripts build",
-    "start": "react-scripts start",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "theme": "chakra-cli tokens src/theme/ChakraTheme.ts",
-    "theme:watch": "chakra-cli tokens src/theme/ChakraTheme.ts --watch"
+    "dev:client": "npm start --prefix client",
+    "dev:server": "npm run dev:start --prefix server",
+    "client-build": "npm run build --prefix client",
+    "server-start": "npm start --prefix server",
+    "deploy": "npm start --prefix server",
+    "install:full": "npm install && npm install --prefix client && npm install --prefix server",
+    "install:deploy": "npm install --omit=dev && npm install --prefix server"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "@chakra-ui/react": "^2.8.0",
-    "axios": "^1.4.0",
-    "framer-motion": "^10.16.0",
-    "octokit": "^3.1.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-icons": "^4.10.1",
-    "react-router": "^6.15.0",
-    "react-router-dom": "^6.15.0",
-    "react-scripts": "^5.0.1"
-  },
   "devDependencies": {
-    "@chakra-ui/cli": "^2.4.1",
-    "@types/react": "^18.2.20",
-    "@types/react-dom": "^18.2.7",
-    "@types/react-router": "^5.1.20",
-    "@types/react-router-dom": "^5.3.3",
-    "typescript": "^5.1.6"
-  },
-  "overrides": {
-    "typescript": "^5.1.6"
+    "typescript": "^5.2.2"
   },
   "browserslist": {
     "production": [
