@@ -14,7 +14,7 @@ export const CodleProvider: React.FC<ContextProps> = ({ children }) => {
   useEffect(() => {
     setGameWon(startingBoard.isWon);
     setGameLost(startingBoard.isLost);
-  }, [startingBoard]);
+  }, [startingBoard.isWon, startingBoard.isLost]);
 
   return (
     <CodleContext.Provider

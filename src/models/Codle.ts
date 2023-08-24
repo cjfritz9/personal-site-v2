@@ -36,7 +36,7 @@ export class GameBoard {
     this.isLost = guesses.length >= 6;
     this.guesses = guesses;
     this.boardStyle = boardStyle;
-    this.currentRow = guesses.length;
+    this.currentRow = this.isWon ? guesses.length - 1 : guesses.length;
   }
 
   public addGuess(guess: string) {
@@ -47,12 +47,13 @@ export class GameBoard {
   }
 
   private nextRow() {
+    if (this.isWon) return;
     if (this.currentRow < 5) {
       this.currentRow++;
     } else {
       this.setGameLost();
     }
-    return this;
+    return;
   }
 
   public addRowStyle(styleMap: StyleMap) {

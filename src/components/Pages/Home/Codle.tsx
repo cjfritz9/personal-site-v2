@@ -155,14 +155,12 @@ const CodleInputRow: React.FC<CodleInputRowProps> = ({
     if (isActive && !isUsingTerminal) {
       firstInputRef.current?.focus();
     }
-    setStyleMap(currentBoard.boardStyle[index] ?? getStyleMap(isActive));
-  }, [isActive]);
-
-  useEffect(() => {
-    setCurrentBoard(startingBoard);
+    if (startingBoard) {
+      setCurrentBoard(startingBoard);
+      setActiveRow(startingBoard.currentRow);
+    }
     setStyleMap(startingBoard.boardStyle[index] ?? getStyleMap(isActive));
-    setActiveRow(startingBoard.currentRow);
-  }, [startingBoard]);
+  }, [isActive, startingBoard.boardStyle]);
 
   return (
     <Flex
