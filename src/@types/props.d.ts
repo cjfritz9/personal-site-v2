@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleMap } from './context';
 import { GameBoard } from '../models/Codle';
 import { IconType } from 'react-icons';
+import { Directories } from './about';
 
 export interface PanelProps {
   content: any;
@@ -31,6 +32,7 @@ export interface ContextProps {
 }
 
 // Terminal Types and Interfaces
+export type TerminalModes = 'auto-complete' | 'search' | 'cd' | 'sudo';
 
 export interface AutoCompletionResult {
   type: string;
@@ -48,8 +50,6 @@ export interface CDResult {
   handle: string;
 }
 
-export type TerminalModes = 'auto-complete' | 'search' | 'cd' | 'sudo';
-
 export interface SuggestionsProps {
   mode: TerminalModes;
   autoCompleteResults?: AutoCompletionResult[];
@@ -63,15 +63,23 @@ export interface NavIconProps {
   baseIcon: IconType;
   hoveredIcon: IconType;
   tooltip: string;
+  isActive: boolean;
+  onClick: () => void;
 }
 
 export interface FolderProps {
   folderColor: string;
   folderName: string;
-  children: string[];
+  items: ItemProps[];
 }
 
 export interface SectionProps {
   title: string;
-  isFirst?: boolean;
+  folders: FolderProps[];
+}
+
+export interface ItemProps {
+  icon: IconType;
+  iconColor: string;
+  name: string;
 }

@@ -3,7 +3,7 @@ import { Container, Flex, Stack } from '@chakra-ui/react';
 import Intro from './Intro';
 import Codle from './Codle';
 import Backsplash from '../../Shared/Backsplash';
-import { CodleProvider } from '../../../context/CodleContext';
+import { CodleProvider } from '../../../context/Codle.context';
 
 const HomePage: React.FC = () => {
   return (

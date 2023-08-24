@@ -1,22 +1,42 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Container } from '@chakra-ui/react';
 import Section from './Section';
-import Folder from './Folder';
+import {
+  careerSections,
+  hobbySections,
+  personalInfoSections
+} from './data/sections';
+import { SiteContext } from '../../../context/Site.context';
+import { SiteInterface } from '../../../@types/context';
 
 const Directory: React.FC = () => {
-  return (
-    <Container variant='directory'>
-      <Section title={'personal-info'} isFirst />
-      <Folder folderColor='orange' folderName='bio' children={[]} />
-      <Folder folderColor='teal' folderName='interests' children={[]} />
-      <Folder
-        folderColor='blue'
-        folderName='education'
-        children={['high-school', 'college']}
-      />
-      <Section title={'contacts'} />
-    </Container>
-  );
+  const { currentDirectory } = useContext(SiteContext) as SiteInterface;
+
+  if (currentDirectory === 'career') {
+    return (
+      <Container variant='directory'>
+        {careerSections.map((section, i) => (
+          <Section key={i} title={section.title} folders={section.folders} />
+        ))}
+      </Container>
+    );
+  } else if (currentDirectory === 'personal') {
+    return (
+      <Container variant='directory'>
+        {personalInfoSections.map((section, i) => (
+          <Section key={i} title={section.title} folders={section.folders} />
+        ))}
+      </Container>
+    );
+  } else {
+    return (
+      <Container variant='directory'>
+        {hobbySections.map((section, i) => (
+          <Section key={i} title={section.title} folders={section.folders} />
+        ))}
+      </Container>
+    );
+  }
 };
 
 export default Directory;

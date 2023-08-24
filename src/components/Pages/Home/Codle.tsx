@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Box, Flex, Heading, Input, Stack, Text } from '@chakra-ui/react';
 
-import { CodleContext } from '../../../context/CodleContext';
+import { CodleContext } from '../../../context/Codle.context';
 import { BoltProps, CodleInputRowProps } from '../../../@types/props';
 import { CodleInterface, SiteInterface } from '../../../@types/context';
 import { getStyleMap, handleUpdateBoard } from '../../../utils/codle';
 import { updatePlayerData } from '../../../hooks/requests';
 import { GameBoard } from '../../../models/Codle';
 import { StyleMap } from '../../../@types/codle';
-import { SiteContext } from '../../../context/SiteContext';
+import { SiteContext } from '../../../context/Site.context';
 
 const Codle: React.FC = () => {
   const { solution, gameWon, gameLost } = useContext(
@@ -73,7 +73,13 @@ const CodleBoard: React.FC = () => {
   }, [activeRow]);
 
   return (
-    <Stack w='100%' h='100%' py='1rem' justifyContent='center' alignItems='center'>
+    <Stack
+      w='100%'
+      h='100%'
+      py='1rem'
+      justifyContent='center'
+      alignItems='center'
+    >
       {Array.from(new Array(6)).map((_, i) => {
         return (
           <CodleInputRow

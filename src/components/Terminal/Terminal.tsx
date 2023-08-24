@@ -21,7 +21,7 @@ import {
   terminalSuggestions
 } from '../../utils/terminal';
 import { useNavigate } from 'react-router';
-import { SiteContext } from '../../context/SiteContext';
+import { SiteContext } from '../../context/Site.context';
 import { SiteInterface } from '../../@types/context';
 
 const blink = keyframes`
