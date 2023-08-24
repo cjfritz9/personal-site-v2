@@ -1,6 +1,8 @@
 import { Stack, defineStyle, defineStyleConfig } from '@chakra-ui/react';
 
 const baseStyle = defineStyle({
+  minW: 0,
+  maxW: ' 100dvw',
   m: 0,
   p: '1rem',
   color: 'Primary.black',
