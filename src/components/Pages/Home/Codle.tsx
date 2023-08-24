@@ -63,14 +63,35 @@ const Codle: React.FC = () => {
 };
 
 const CodleBoard: React.FC = () => {
-  const { setGameLost } = useContext(CodleContext) as CodleInterface;
+  const { startingBoard, playerId, setGameWon, setGameLost } = useContext(
+    CodleContext
+  ) as CodleInterface;
   const [activeRow, setActiveRow] = useState(0);
+  const [currentBoard, setCurrentBoard] =
+    React.useState<GameBoard>(startingBoard);
+
+  const updateBoard = (gameBoard: GameBoard) => {
+    setCurrentBoard(gameBoard);
+    setActiveRow(gameBoard.currentRow);
+    setGameWon(gameBoard.isWon);
+    setGameLost(gameBoard.isLost);
+    (async () => {
+      await updatePlayerData(playerId, {
+        didWin: gameBoard.isWon,
+        guesses: gameBoard.guesses,
+        guessMap: JSON.stringify(gameBoard.boardStyle)
+      });
+    })();
+  };
 
   useEffect(() => {
-    if (activeRow >= 6) {
-      setGameLost(true);
+    if (startingBoard) {
+      setCurrentBoard(startingBoard);
+      setActiveRow(startingBoard.currentRow);
+      setGameWon(startingBoard.isWon);
+      setGameLost(startingBoard.isLost);
     }
-  }, [activeRow]);
+  }, [startingBoard.currentRow]);
 
   return (
     <Stack
@@ -85,7 +106,8 @@ const CodleBoard: React.FC = () => {
           <CodleInputRow
             key={i}
             isActive={activeRow === i}
-            setActiveRow={setActiveRow}
+            currentBoard={currentBoard}
+            onUpdateBoard={updateBoard}
             index={i}
           />
         );
@@ -96,15 +118,12 @@ const CodleBoard: React.FC = () => {
 
 const CodleInputRow: React.FC<CodleInputRowProps> = ({
   isActive,
-  setActiveRow,
+  currentBoard,
+  onUpdateBoard,
   index
 }) => {
-  const { playerId, solution, startingBoard, isLoading, setGameWon } =
-    useContext(CodleContext) as CodleInterface;
+  const { solution, isLoading } = useContext(CodleContext) as CodleInterface;
   const { isUsingTerminal } = useContext(SiteContext) as SiteInterface;
-
-  const [currentBoard, setCurrentBoard] =
-    React.useState<GameBoard>(startingBoard);
   const [guess, setGuess] = useState('');
   const [styleMap, setStyleMap] = useState<StyleMap>(getStyleMap(index === 0));
 
@@ -114,21 +133,11 @@ const CodleInputRow: React.FC<CodleInputRowProps> = ({
     const { wonGame, map } = handleUpdateBoard(guess, solution);
     if (wonGame) {
       currentBoard.setGameWon();
-      setGameWon(wonGame);
-    } else {
-      setActiveRow((prev) => prev + 1);
     }
     currentBoard.addGuess(guess);
     currentBoard.addRowStyle(map);
     setStyleMap(map);
-    setCurrentBoard(currentBoard);
-    (async () => {
-      await updatePlayerData(playerId, {
-        didWin: wonGame,
-        guesses: currentBoard.guesses,
-        guessMap: JSON.stringify(currentBoard.boardStyle)
-      });
-    })();
+    onUpdateBoard(currentBoard);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -155,12 +164,8 @@ const CodleInputRow: React.FC<CodleInputRowProps> = ({
     if (isActive && !isUsingTerminal) {
       firstInputRef.current?.focus();
     }
-    if (startingBoard) {
-      setCurrentBoard(startingBoard);
-      setActiveRow(startingBoard.currentRow);
-    }
-    setStyleMap(startingBoard.boardStyle[index] ?? getStyleMap(isActive));
-  }, [isActive, startingBoard.boardStyle]);
+    setStyleMap(currentBoard.boardStyle[index] ?? getStyleMap(isActive));
+  }, [isActive]);
 
   return (
     <Flex

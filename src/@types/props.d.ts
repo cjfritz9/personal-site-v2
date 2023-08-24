@@ -17,13 +17,9 @@ export interface BoltProps {
 }
 
 export interface CodleInputRowProps {
-  // isActive: boolean;
-  // dailyGuess: string | undefined;
-  // dailyMap: StyleMap | undefined;
-  // currentBoard: GameBoard;
-  // setCurrentBoard: React.Dispatch<React.SetStateAction<GameBoard>>;
   isActive: boolean;
-  setActiveRow: React.Dispatch<React.SetStateAction<number>>;
+  currentBoard: GameBoard;
+  onUpdateBoard: (gameBoard: GameBoard) => void;
   index: number;
 }
 
@@ -58,7 +54,6 @@ export interface SuggestionsProps {
 }
 
 // AboutMe Props
-
 export interface NavIconProps {
   baseIcon: IconType;
   hoveredIcon: IconType;
