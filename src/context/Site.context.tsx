@@ -8,7 +8,7 @@ export const SiteContext = React.createContext<SiteInterface | null>(null);
 export const SiteProvider: React.FC<ContextProps> = ({ children }) => {
   const [isUsingTerminal, setIsUsingTerminal] = useState(false);
   const [currentDirectory, setCurrentDirectory] =
-    useState<Directories>('career');
+    useState<Directories>('personal');
   const [currentDisplayContent, setCurrentDisplayContent] =
     useState<string>('testing-data');
 

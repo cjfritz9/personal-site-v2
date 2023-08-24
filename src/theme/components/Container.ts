@@ -44,14 +44,14 @@ const page = defineStyle({
 
 const suggestions = defineStyle({
   pos: 'fixed',
-  bottom: '48px',
+  bottom: '47px',
   h: 'fit-content',
   w: [
     '100%',
     '100%',
     'calc(100% - 340px)',
     'calc(100% - 340px)',
-    'calc(100% - 360px)'
+    'calc(100% - 363px)'
   ],
   maxW: '100dvw',
   m: 0,
@@ -126,10 +126,20 @@ const display = defineStyle({
   display: 'flex',
   h: '100%',
   w: '100%',
+  maxW: '700px',
   m: 0,
   p: 0,
   borderRight: '1px solid',
   borderColor: 'Lines'
+});
+
+const snippets = defineStyle({
+  display: 'flex',
+  h: '100%',
+  w: '47%',
+  maxW: '100%',
+  m: 0,
+  p: 0
 });
 
 const containerConfig = defineStyleConfig({
@@ -147,6 +157,7 @@ const containerConfig = defineStyleConfig({
     page,
     section,
     slimNav,
+    snippets,
     suggestions
   }
 });

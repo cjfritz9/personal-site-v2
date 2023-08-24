@@ -19,4 +19,19 @@ const colors = {
   Lines: '#1E2D3D'
 };
 
+export const scrollbarStyles = {
+  '&::-webkit-scrollbar': {
+    width: '12px'
+  },
+  '&::-webkit-scrollbar-track': {
+    marginTop: '-1px',
+    background: '#011627',
+    border: '1px solid',
+    borderColor: '#1E2D3D'
+  },
+  '&::-webkit-scrollbar-thumb': {
+    background: '#607B96'
+  }
+};
+
 export default colors;

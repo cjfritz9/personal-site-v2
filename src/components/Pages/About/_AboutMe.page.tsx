@@ -3,6 +3,7 @@ import { Container, HStack } from '@chakra-ui/react';
 import SlimNav from './SlimNav';
 import Directory from './Directory';
 import Display from './Display';
+import Snippets from './Snippets';
 
 const AboutMePage: React.FC = () => {
 
@@ -12,6 +13,7 @@ const AboutMePage: React.FC = () => {
         <SlimNav />
         <Directory />
         <Display />
+        <Snippets />
       </HStack>
     </Container>
   );
