@@ -1,4 +1,4 @@
-import { Stack, defineStyle, defineStyleConfig } from '@chakra-ui/react';
+import { defineStyle, defineStyleConfig } from '@chakra-ui/react';
 
 const baseStyle = defineStyle({
   minW: 0,
@@ -78,7 +78,7 @@ const slimNav = defineStyle({
 
 const directory = defineStyle({
   h: '100%',
-  w: '20rem',
+  w: '17.5rem',
   m: 0,
   p: 0,
   alignItems: 'flex-start',
