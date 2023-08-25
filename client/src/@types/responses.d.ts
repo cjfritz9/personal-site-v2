@@ -1,20 +1,22 @@
 export interface SnippetResponse {
-  id: string;
-  files: {
-    'my-site-gist.ts': {
-      filename: string;
-      type: string;
-      language: string;
-      raw_url: string;
-    };
-  };
-  created_at: string;
-  description: string;
   owner: {
     login: string;
-    avatar_url: string;
+    avatarUrl: string;
     url: string;
   };
+  url: string;
+  createdAt: string;
+  description: string;
+  stargazerCount: number;
+  files: Array<{
+    name: string;
+    text: string;
+    language: {
+      color: string;
+      id: string;
+      name: 'TypeScript' | 'JavaScript';
+    };
+  }>;
 }
 
-export type SnippetResponses = Array<SnippetResponse>
+export type SnippetResponses = Array<SnippetResponse>;

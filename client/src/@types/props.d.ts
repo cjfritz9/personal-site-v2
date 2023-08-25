@@ -81,10 +81,14 @@ export interface ItemProps {
 
 interface SnippetProps {
   author: string;
-  createdAt: string;
-  profileUrl: string;
   avatarUrl: string;
+  profileUrl: string;
+  url: string;
+  createdAt: string;
   description: string;
-  language: string;
-  rawData: string;
+  stargazerCount: number;
+  fileName: string;
+  fileText: string;
+  languageName: 'TypeScript' | 'JavaScript';
+  languageColor: string;
 }

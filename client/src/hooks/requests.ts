@@ -15,7 +15,7 @@ export const fetchSnippets = async () => {
       return res.data;
     })
     .catch((err) => {
-      console.error(err);
+      console.warn(err);
       return [];
     });
 };

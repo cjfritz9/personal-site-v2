@@ -38,12 +38,16 @@ const Snippets: React.FC = () => {
                 <Snippet
                   key={i}
                   author={snippet.owner.login}
-                  createdAt={snippet.created_at}
+                  avatarUrl={snippet.owner.avatarUrl}
                   profileUrl={snippet.owner.url}
-                  avatarUrl={snippet.owner.avatar_url}
+                  url={snippet.url}
                   description={snippet.description}
-                  language={snippet.files['my-site-gist.ts'].language}
-                  rawData={snippet.files['my-site-gist.ts'].raw_data}
+                  createdAt={snippet.createdAt}
+                  fileName={snippet.files[0].name}
+                  fileText={snippet.files[0].text}
+                  languageName={snippet.files[0].language.name}
+                  languageColor={snippet.files[0].language.color}
+                  stargazerCount={snippet.stargazerCount}
                 />
               );
             })}

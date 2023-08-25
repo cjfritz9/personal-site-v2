@@ -8,15 +8,19 @@ import { RiChat3Line, RiStarLine } from 'react-icons/ri';
 import { snippetScrollbar } from '../../../theme/BrandColors';
 
 const Snippet: React.FC<SnippetProps> = ({
-  author,
-  createdAt,
-  avatarUrl,
-  // language,
-  // profileUrl,
-  // description,
-  rawData
+author,
+avatarUrl,
+// profileUrl,
+// url,
+// description,
+createdAt,
+// fileName,
+fileText,
+// languageName,
+// languageColor,
+stargazerCount
 }) => {
-  console.log(rawData)
+
   return (
     <Stack w='100%' gap='12px'>
       <Flex w='100%' justifyContent='space-between'>
@@ -40,7 +44,7 @@ const Snippet: React.FC<SnippetProps> = ({
           </Flex>
           <Flex gap='8px'>
             <Icon as={RiStarLine} fontSize={16} />
-            <Text variant='snippet'>0 stars</Text>
+            <Text variant='snippet'>{`${stargazerCount} stars`}</Text>
           </Flex>
         </Flex>
       </Flex>
@@ -57,7 +61,7 @@ const Snippet: React.FC<SnippetProps> = ({
       >
         {/* <Text variant='snippet'>{description}</Text> */}
         <Text variant='snippet' whiteSpace='pre-wrap'>
-          {rawData}
+          {fileText}
         </Text>
       </Box>
     </Stack>

@@ -8,33 +8,25 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import axios from 'axios';
+import dotenv from 'dotenv';
+dotenv.config();
+const githubApi = axios.create({
+    baseURL: 'https://api.github.com',
+    headers: {
+        Authorization: `Bearer ${process.env.GITHUB_AUTH_TOKEN}`,
+        'Content-Type': 'application/json'
+    }
+});
 export const getAllSnippets = (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const snippetsQueryString = 'query { viewer { gists(first: 10) { nodes { owner { login avatarUrl url } url createdAt description stargazerCount files { name text language { color id name } } } } } }';
     try {
-        const result = yield axios.get('https://api.github.com/users/cjfritz9/gists', {
-            headers: {
-                'X-GitHub-Api-Version': '2022-11-28'
-            }
+        const result = yield githubApi.post('/graphql', {
+            query: snippetsQueryString
         });
-        if (result.status === 200) {
-            const snippets = result.data;
-            return res.status(200).send(snippets);
-        }
-        return res.status(500).send(result.data.message);
+        return res.status(200).send(result.data.data.viewer.gists.nodes);
     }
     catch (error) {
         console.error(error);
-        return res.status(500).send({
-            error: 'Uncaught service exception'
-        });
+        return res.status(500).send({ error: 'Malformed request' });
     }
-});
-export const getRawFileData = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { rawUrl } = req.query;
-    if (!rawUrl)
-        return;
-    const result = yield axios.get(rawUrl);
-    if (result.status === 200) {
-        return res.status(200).send(result.data);
-    }
-    return res.status(500).send({ error: 'Uncaught service exception' });
 });
