@@ -43,7 +43,7 @@ const Snippets: React.FC = () => {
                   avatarUrl={snippet.owner.avatar_url}
                   description={snippet.description}
                   language={snippet.files['my-site-gist.ts'].language}
-                  raw_url={snippet.files['my-site-gist.ts'].raw_url}
+                  rawData={snippet.files['my-site-gist.ts'].raw_data}
                 />
               );
             })}

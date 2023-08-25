@@ -2,31 +2,27 @@ import { Request, Response } from 'express';
 import axios from 'axios';
 
 export const getAllSnippets = async (_req: Request, res: Response) => {
-  const result = await axios.get(
-    'https://api.github.com/users/cjfritz9/gists',
-    {
-      headers: {
-        'X-GitHub-Api-Version': '2022-11-28'
+  try {
+    const result = await axios.get(
+      'https://api.github.com/users/cjfritz9/gists',
+      {
+        headers: {
+          'X-GitHub-Api-Version': '2022-11-28'
+        }
       }
+    );
+    if (result.status === 200) {
+      const snippets = result.data;
+      return res.status(200).send(snippets);
     }
-  );
-  if (result.status === 200) {
-    const snippets = result.data;
-    return res.status(200).send(snippets);
+
+    return res.status(500).send(result.data.message);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send({
+      error: 'Uncaught service exception'
+    });
   }
-
-  if (result.status === 422) {
-    return result;
-  }
-
-  console.log(result)
-  // if () {
-  //   return res.status(403).send({ error: 'API rate limit exceeded' });
-  // }
-
-  return res.status(500).send({
-    error: 'Uncaught service exception'
-  });
 };
 
 export const getRawFileData = async (req: Request, res: Response) => {

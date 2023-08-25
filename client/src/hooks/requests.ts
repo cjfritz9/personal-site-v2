@@ -9,18 +9,26 @@ const apiRequest = axios.create({
 });
 
 export const fetchSnippets = async () => {
-  const result = await apiRequest.get('/v1/snippets');
-  if (result.status !== 200) return;
-
-  return result.data;
+  return apiRequest
+    .get('/v1/snippets')
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => {
+      console.error(err);
+      return [];
+    });
 };
 
 export const fetchRawSnippet = async (rawUrl: string) => {
-  // const result = await axios.get(rawUrl);
-  const result = await apiRequest.get(`/v1/snippets/file?rawUrl=${rawUrl}`);
-  if (result.status !== 200) return;
-
-  return result.data;
+  return apiRequest
+    .get(`/v1/snippets/file?rawUrl=${rawUrl}`)
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 };
 
 // EXTERNAL CODLE GAME API
@@ -66,4 +74,3 @@ export const updatePlayerData = async (
 
   return result.data;
 };
-

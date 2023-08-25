@@ -1,4 +1,4 @@
-interface SnippetResponse {
+export interface SnippetResponse {
   id: string;
   files: {
     'my-site-gist.ts': {
@@ -17,4 +17,4 @@ interface SnippetResponse {
   };
 }
 
-export type SnippetResponses = Array<SnippetResponse>;
+export type SnippetResponses = Array<SnippetResponse>

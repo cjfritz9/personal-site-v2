@@ -14,17 +14,9 @@ const Snippet: React.FC<SnippetProps> = ({
   // language,
   // profileUrl,
   // description,
-  raw_url
+  rawData
 }) => {
-  const [snippet, setSnippet] = useState<any>();
-
-  useEffect(() => {
-    (async () => {
-      const snippet = await fetchRawSnippet(raw_url);
-      setSnippet(snippet);
-    })();
-  }, [raw_url]);
-
+  console.log(rawData)
   return (
     <Stack w='100%' gap='12px'>
       <Flex w='100%' justifyContent='space-between'>
@@ -65,7 +57,7 @@ const Snippet: React.FC<SnippetProps> = ({
       >
         {/* <Text variant='snippet'>{description}</Text> */}
         <Text variant='snippet' whiteSpace='pre-wrap'>
-          {snippet}
+          {rawData}
         </Text>
       </Box>
     </Stack>

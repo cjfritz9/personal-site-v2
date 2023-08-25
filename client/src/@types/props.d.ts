@@ -86,5 +86,5 @@ interface SnippetProps {
   avatarUrl: string;
   description: string;
   language: string;
-  raw_url: string;
+  rawData: string;
 }

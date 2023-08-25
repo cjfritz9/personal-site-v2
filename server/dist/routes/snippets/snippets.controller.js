@@ -9,25 +9,24 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import axios from 'axios';
 export const getAllSnippets = (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield axios.get('https://api.github.com/users/cjfritz9/gists', {
-        headers: {
-            'X-GitHub-Api-Version': '2022-11-28'
+    try {
+        const result = yield axios.get('https://api.github.com/users/cjfritz9/gists', {
+            headers: {
+                'X-GitHub-Api-Version': '2022-11-28'
+            }
+        });
+        if (result.status === 200) {
+            const snippets = result.data;
+            return res.status(200).send(snippets);
         }
-    });
-    if (result.status === 200) {
-        const snippets = result.data;
-        return res.status(200).send(snippets);
+        return res.status(500).send(result.data.message);
     }
-    if (result.status === 422) {
-        return result;
+    catch (error) {
+        console.error(error);
+        return res.status(500).send({
+            error: 'Uncaught service exception'
+        });
     }
-    console.log(result);
-    // if () {
-    //   return res.status(403).send({ error: 'API rate limit exceeded' });
-    // }
-    return res.status(500).send({
-        error: 'Uncaught service exception'
-    });
 });
 export const getRawFileData = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { rawUrl } = req.query;
