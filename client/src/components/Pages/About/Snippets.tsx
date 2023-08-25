@@ -6,7 +6,7 @@ import useSnippets from '../../../hooks/useSnippets';
 
 const Snippets: React.FC = () => {
   const { snippets } = useSnippets();
-  
+
   return (
     <Container variant='snippets'>
       <Stack gap='1px' w='100%'>
@@ -28,6 +28,7 @@ const Snippets: React.FC = () => {
           mt='-1px'
           mb='-1px'
           p='2.5rem'
+          gap='2.5rem'
           overflowY='auto'
           css={scrollbarStyles}
         >

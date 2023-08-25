@@ -66,3 +66,4 @@ export const updatePlayerData = async (
 
   return result.data;
 };
+
