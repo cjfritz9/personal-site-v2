@@ -27,11 +27,11 @@ const Intro: React.FC = () => {
       <Stack>
         {isLargerThan992 ? (
           <>
-            <Text>// complete the "Codle" to continue</Text>
+            <Text>// see if you can guess today's Codle</Text>
             <Text>// view the source code on my Github</Text>
           </>
         ) : (
-          <Text>// follow me on Github: </Text>
+          <Text>// connect with me on Github </Text>
         )}
         <Flex gap='8px'>
           <Text color='Secondary.indigo !important'>const</Text>
