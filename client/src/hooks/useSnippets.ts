@@ -16,6 +16,7 @@ const useSnippets = () => {
       stargazerCount: 1,
       files: [
         {
+          name: 'snippet.ts',
           text: `const rot13 = (str: string) => {
             const alphabet = 'abcdefghijklmnopqrstuvwxyz';
             const rot13Alphabet = 'nopqrstuvwxyzabcdefghijklm';
@@ -42,6 +43,35 @@ const useSnippets = () => {
           
             return output;
           };`,
+          language: {
+            color: '#3178c6',
+            id: 'MDg6TGFuZ3VhZ2UyODc=',
+            name: 'TypeScript'
+          }
+        },
+        {
+          name: 'description.ts',
+          text: `
+          // ROT13 Algorithm 
+
+// ROT13 ("rotate by 13 places", sometimes hyphenated ROT-13) is 
+// a simple letter substitution cipher that replaces a letter
+// with the 13th letter after it in the latin alphabet. ROT13 is
+// a special case of the Caesar cipher which was developed in 
+// ancient Rome.
+
+// Step 1: Define the alphabet and the ROT13 alphabet
+// Step 2: Initialize an empty string
+// Step 3: Loop through the input string
+// Step 4: Check if the character at the current index is uppercase
+//   or lowercase
+// Step 5: Find the character's position in the defined alphabet in
+//   either case
+// Step 6: Add the lowercase or uppercase character to the output 
+//   string
+// Step 7: If the character is not in the alphabet (special 
+//   character or whitespace) add it to the output
+// Step 7: Loop until finished`,
           language: {
             color: '#3178c6',
             id: 'MDg6TGFuZ3VhZ2UyODc=',

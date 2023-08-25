@@ -14,7 +14,7 @@ const githubApi = axios.create({
 
 export const getAllSnippets = async (_req: Request, res: Response) => {
   const snippetsQueryString =
-    'query { viewer { gists(first: 10) { nodes { owner { login avatarUrl url } url createdAt description stargazerCount files { text language { color id name } } } } } }';
+    'query { viewer { gists(first: 10) { nodes { owner { login avatarUrl url } url createdAt description stargazerCount files { name text language { color id name } } } } } }';
 
   try {
     const result = await githubApi.post('/graphql', {

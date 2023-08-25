@@ -6,6 +6,7 @@ import useSnippets from '../../../hooks/useSnippets';
 
 const Snippets: React.FC = () => {
   const { snippets } = useSnippets();
+  console.log(snippets);
 
   return (
     <Container variant='snippets'>
@@ -41,9 +42,17 @@ const Snippets: React.FC = () => {
                   avatarUrl={snippet.owner.avatarUrl}
                   profileUrl={snippet.owner.url}
                   url={snippet.url}
-                  description={snippet.description}
                   createdAt={snippet.createdAt}
-                  fileText={snippet.files[0].text}
+                  snippetText={
+                    snippet.files[0].name === 'snippet.ts'
+                      ? snippet.files[0].text
+                      : snippet.files[1].text
+                  }
+                  descriptionText={
+                    snippet.files[0].name === 'description.ts'
+                      ? snippet.files[0].text
+                      : snippet.files[1].text
+                  }
                   languageName={snippet.files[0].language.name}
                   languageColor={snippet.files[0].language.color}
                   stargazerCount={snippet.stargazerCount}

@@ -85,9 +85,9 @@ interface SnippetProps {
   profileUrl: string;
   url: string;
   createdAt: string;
-  description: string;
+  descriptionText: string;
   stargazerCount: number;
-  fileText: string;
+  snippetText: string;
   languageName: 'TypeScript' | 'JavaScript';
   languageColor: string;
 }

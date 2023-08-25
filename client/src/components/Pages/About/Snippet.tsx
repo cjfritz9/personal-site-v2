@@ -20,9 +20,9 @@ const Snippet: React.FC<SnippetProps> = ({
   avatarUrl,
   profileUrl,
   url,
-  description,
+  descriptionText,
   createdAt,
-  fileText,
+  snippetText,
   languageName,
   languageColor,
   stargazerCount
@@ -58,16 +58,19 @@ const Snippet: React.FC<SnippetProps> = ({
             <Text variant='snippet'>{timeAgo(createdAt)}</Text>
           </Stack>
         </Flex>
-        <Flex gap='1.5rem'>
-          <Flex
-            gap='8px'
-            cursor='pointer'
-            onClick={() => setShowDetails((prev) => !prev)}
-          >
-            <Icon as={showDetails ? RiChat3Fill : RiChat3Line} fontSize={16} />
-            <Text variant='snippet'>details</Text>
-          </Flex>
-          <Stack>
+        <Stack>
+          <Flex gap='1.5rem'>
+            <Flex
+              gap='8px'
+              cursor='pointer'
+              onClick={() => setShowDetails((prev) => !prev)}
+            >
+              <Icon
+                as={showDetails ? RiChat3Fill : RiChat3Line}
+                fontSize={16}
+              />
+              <Text variant='snippet'>details</Text>
+            </Flex>
             <Flex
               gap='8px'
               cursor='pointer'
@@ -78,14 +81,16 @@ const Snippet: React.FC<SnippetProps> = ({
                 stargazerCount === 1 ? '1 star' : `${stargazerCount} stars`
               }`}</Text>
             </Flex>
+          </Flex>
+          <Flex w='100%' justifyContent='flex-end'>
             <Badge cursor='default' bg={languageColor} textAlign='center'>
               {languageName}
             </Badge>
-          </Stack>
-        </Flex>
+          </Flex>
+        </Stack>
       </Flex>
       <Box
-        maxH='424px'
+        maxH='372px'
         bg='Primary.black'
         border='1px solid'
         borderColor='Lines'
@@ -95,9 +100,8 @@ const Snippet: React.FC<SnippetProps> = ({
         overflowY='scroll'
         css={snippetScrollbar}
       >
-        {/* <Text variant='snippet'>{description}</Text> */}
         <Text variant='snippet' whiteSpace='pre-wrap'>
-          {showDetails ? description : fileText}
+          {showDetails ? descriptionText : snippetText}
         </Text>
       </Box>
     </Stack>

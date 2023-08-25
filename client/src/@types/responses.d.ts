@@ -9,6 +9,7 @@ export interface SnippetResponse {
   description: string;
   stargazerCount: number;
   files: Array<{
+    name: 'snippet.ts' | 'description.ts';
     text: string;
     language: {
       color: string;
