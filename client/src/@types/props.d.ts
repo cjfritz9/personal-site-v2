@@ -78,3 +78,13 @@ export interface ItemProps {
   iconColor: string;
   name: string;
 }
+
+interface SnippetProps {
+  author: string;
+  createdAt: string;
+  profileUrl: string;
+  avatarUrl: string;
+  description: string;
+  language: string;
+  raw_url: string;
+}

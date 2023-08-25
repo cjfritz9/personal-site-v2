@@ -2,10 +2,7 @@ import { StyleMap } from '../@types/codle';
 
 const storageName = 'codle-id';
 
-export const handleUpdateBoard = (
-  guess: string,
-  solution: string
-) => {
+export const handleUpdateBoard = (guess: string, solution: string) => {
   let matches = '';
   let wonGame = false;
   const map = [

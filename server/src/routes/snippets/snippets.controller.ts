@@ -23,3 +23,15 @@ export const getAllSnippets = async (_req: Request, res: Response) => {
     error: 'Uncaught service exception'
   });
 };
+
+export const getRawFileData = async (req: Request, res: Response) => {
+  const { rawUrl } = req.query as { rawUrl: string };
+  if (!rawUrl) return;
+
+  const result = await axios.get(rawUrl);
+
+  if (result.status === 200) {
+    return res.status(200).send(result.data);
+  }
+  return res.status(500).send({ error: 'Uncaught service exception' });
+};

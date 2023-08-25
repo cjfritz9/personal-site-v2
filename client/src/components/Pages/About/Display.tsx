@@ -13,8 +13,6 @@ const Display: React.FC = () => {
   const [lineCount, setLineCount] = useState<number>(0);
   const textWrapRef = useRef<HTMLDivElement>(null);
 
-  console.log(textWrapRef.current?.clientHeight);
-
   useLayoutEffect(() => {
     if (textWrapRef && textWrapRef.current && currentDisplayContent) {
       setLineCount(Math.round(textWrapRef.current.clientHeight / 22.95));

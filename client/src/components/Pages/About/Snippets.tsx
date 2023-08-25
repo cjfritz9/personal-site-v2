@@ -1,13 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { Octokit } from 'octokit';
+import React from 'react';
 import { Container, Flex, Stack, Text } from '@chakra-ui/react';
 import Snippet from './Snippet';
 import { scrollbarStyles } from '../../../theme/BrandColors';
 import useSnippets from '../../../hooks/useSnippets';
-
-const octokit = new Octokit({
-  auth: process.env.REACT_APP_GITHUB_AUTH_TOKEN
-});
 
 const Snippets: React.FC = () => {
   const { snippets } = useSnippets();
@@ -19,7 +14,8 @@ const Snippets: React.FC = () => {
           h='40px'
           w='100%'
           m={0}
-          p='.5rem'
+          py='.5rem'
+          px='2.5rem'
           mt='1px'
           borderBottom='1px solid'
           borderRight='1px solid'
@@ -31,19 +27,23 @@ const Snippets: React.FC = () => {
         <Stack
           mt='-1px'
           mb='-1px'
-          p='1rem'
+          p='2.5rem'
           overflowY='auto'
           css={scrollbarStyles}
         >
           {snippets &&
             snippets[0] &&
-            snippets.map((snippet: any, i) => {
+            snippets.map((snippet, i) => {
               return (
                 <Snippet
                   key={i}
+                  author={snippet.owner.login}
+                  createdAt={snippet.created_at}
+                  profileUrl={snippet.owner.url}
+                  avatarUrl={snippet.owner.avatar_url}
                   description={snippet.description}
-                  //@ts-ignore
-                  raw_url={Object.values(snippet.files)[0].raw_url}
+                  language={snippet.files['my-site-gist.ts'].language}
+                  raw_url={snippet.files['my-site-gist.ts'].raw_url}
                 />
               );
             })}

@@ -1,7 +1,7 @@
 interface SnippetResponse {
   id: string;
   files: {
-    [key: string]: {
+    'my-site-gist.ts': {
       filename: string;
       type: string;
       language: string;

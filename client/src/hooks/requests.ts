@@ -5,7 +5,6 @@ import { setStoragePlayerId } from '../utils/codle';
 // INTERNAL CLIENT API
 
 const apiRequest = axios.create({
-  baseURL: process.env.REACT_APP_NODE_ENV === 'dev' ? 'http://localhost:4000' : undefined,
   timeout: 5000
 });
 
@@ -16,10 +15,18 @@ export const fetchSnippets = async () => {
   return result.data;
 };
 
+export const fetchRawSnippet = async (rawUrl: string) => {
+  const result = await axios.get(rawUrl);
+  // const result = await apiRequest.get(`/v1/snippets/file?rawUrl=${rawUrl}`);
+  if (result.status !== 200) return;
+
+  return result.data;
+};
+
 // EXTERNAL CODLE GAME API
 
 const codleRequest = axios.create({
-  baseURL: 'https://codle-api-xbai7z5q3q-uc.a.run.app',
+  baseURL: 'https://games.cjfritz.dev',
   timeout: 5000
 });
 
