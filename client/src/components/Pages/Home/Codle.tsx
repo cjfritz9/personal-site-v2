@@ -165,7 +165,7 @@ const CodleInputRow: React.FC<CodleInputRowProps> = ({
       firstInputRef.current?.focus();
     }
     setStyleMap(currentBoard.boardStyle[index] ?? getStyleMap(isActive));
-  }, [isActive]);
+  }, [isActive, currentBoard.boardStyle]);
 
   return (
     <Flex
