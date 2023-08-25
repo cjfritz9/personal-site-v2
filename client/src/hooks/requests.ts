@@ -16,8 +16,8 @@ export const fetchSnippets = async () => {
 };
 
 export const fetchRawSnippet = async (rawUrl: string) => {
-  const result = await axios.get(rawUrl);
-  // const result = await apiRequest.get(`/v1/snippets/file?rawUrl=${rawUrl}`);
+  // const result = await axios.get(rawUrl);
+  const result = await apiRequest.get(`/v1/snippets/file?rawUrl=${rawUrl}`);
   if (result.status !== 200) return;
 
   return result.data;

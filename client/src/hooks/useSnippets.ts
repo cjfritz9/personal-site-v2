@@ -16,7 +16,7 @@ const useSnippets = () => {
         }
       },
       created_at: '2010-04-14T02:15:15Z',
-      description: 'ayo',
+      description: 'some code snippet',
       owner: {
         login: 'cjfritz9',
         avatar_url: 'https://avatars.githubusercontent.com/u/110115371?v=4',
@@ -27,8 +27,8 @@ const useSnippets = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const getSnippets = useCallback(async () => {
-    // const fetchedSnippets = await fetchSnippets();
-    // setSnippets(fetchedSnippets);
+    const fetchedSnippets = await fetchSnippets();
+    setSnippets(fetchedSnippets);
     setIsLoading(false);
   }, []);
 
