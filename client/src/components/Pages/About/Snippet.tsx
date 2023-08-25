@@ -5,6 +5,7 @@ import { ago as timeAgo } from 'time-ago';
 import { fetchRawSnippet } from '../../../hooks/requests';
 import { SnippetProps } from '../../../@types/props';
 import { RiChat3Line, RiStarLine } from 'react-icons/ri';
+import { snippetScrollbar } from '../../../theme/BrandColors';
 
 const Snippet: React.FC<SnippetProps> = ({
   author,
@@ -22,7 +23,7 @@ const Snippet: React.FC<SnippetProps> = ({
       const snippet = await fetchRawSnippet(raw_url);
       setSnippet(snippet);
     })();
-  }, []);
+  }, [raw_url]);
 
   return (
     <Stack w='100%' gap='12px'>
@@ -52,12 +53,15 @@ const Snippet: React.FC<SnippetProps> = ({
         </Flex>
       </Flex>
       <Box
+        maxH='424px'
         bg='Primary.black'
         border='1px solid'
         borderColor='Lines'
         borderRadius='15px'
         px='30px'
         py='1.5rem'
+        overflowY='scroll'
+        css={snippetScrollbar}
       >
         {/* <Text variant='snippet'>{description}</Text> */}
         <Text variant='snippet' whiteSpace='pre-wrap'>

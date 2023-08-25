@@ -34,4 +34,20 @@ export const scrollbarStyles = {
   }
 };
 
+export const snippetScrollbar = {
+  '&::-webkit-scrollbar': {
+    borderRadius: '15px',
+    width: '8px'
+  },
+  '&::-webkit-scrollbar-track': {
+    marginTop: '12px',
+    marginBottom: '12px',
+    background: '#01080E',
+  },
+  '&::-webkit-scrollbar-thumb': {
+    borderRadius: '15px',
+    background: '#1E2D3D'
+  }
+};
+
 export default colors;

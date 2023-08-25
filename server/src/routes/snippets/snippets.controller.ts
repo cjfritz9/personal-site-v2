@@ -19,6 +19,11 @@ export const getAllSnippets = async (_req: Request, res: Response) => {
     return result;
   }
 
+  console.log(result)
+  // if () {
+  //   return res.status(403).send({ error: 'API rate limit exceeded' });
+  // }
+
   return res.status(500).send({
     error: 'Uncaught service exception'
   });

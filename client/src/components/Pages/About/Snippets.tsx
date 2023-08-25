@@ -32,8 +32,7 @@ const Snippets: React.FC = () => {
           overflowY='auto'
           css={scrollbarStyles}
         >
-          {snippets &&
-            snippets[0] &&
+          {snippets.length > 0 &&
             snippets.map((snippet, i) => {
               return (
                 <Snippet
