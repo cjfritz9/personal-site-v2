@@ -18,7 +18,7 @@ const Display: React.FC = () => {
       setLineCount(Math.round(textWrapRef.current.clientHeight / 22.95));
     }
   }, [textWrapRef.current, currentDisplayContent]);
-
+  console.log('i')
   return (
     <Container variant='display'>
       <Stack gap='1px'>
