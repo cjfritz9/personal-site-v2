@@ -66,6 +66,7 @@ const suggestions = defineStyle({
 
 const slimNav = defineStyle({
   h: '100%',
+  minW: '72px',
   w: '72px',
   m: 0,
   p: 0,
@@ -78,7 +79,8 @@ const slimNav = defineStyle({
 
 const directory = defineStyle({
   h: '100%',
-  w: '17.5rem',
+  w: '16.5rem',
+  minW: '16.5rem',
   m: 0,
   p: 0,
   alignItems: 'flex-start',
@@ -128,7 +130,7 @@ const display = defineStyle({
   display: 'flex',
   h: '100%',
   w: '100%',
-  maxW: '700px',
+  maxW: '',
   m: 0,
   p: 0,
   borderRight: '1px solid',
@@ -138,8 +140,9 @@ const display = defineStyle({
 const snippets = defineStyle({
   display: 'flex',
   h: '100%',
-  w: '47%',
-  maxW: '100%',
+  flexGrow: 1,
+  // w: '100%',
+  maxW: '764px',
   m: 0,
   p: 0
 });

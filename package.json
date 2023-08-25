@@ -9,6 +9,7 @@
     "client-build": "npm run build --prefix client",
     "server-start": "npm start --prefix server",
     "deploy": "npm start --prefix server",
+    "deploy:update": "node -e \"const msg = process.argv[1]; require('child_process').execSync('npm run client-build && git add . && git commit -m \\\"' + msg + '\\\"', { stdio:[0, 1, 2] })\"",
     "install:full": "npm install && npm install --prefix client && npm install --prefix server",
     "install:deploy": "npm install --omit=dev && npm install --prefix server"
   },
