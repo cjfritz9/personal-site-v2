@@ -9,7 +9,6 @@ export interface SnippetResponse {
   description: string;
   stargazerCount: number;
   files: Array<{
-    name: string;
     text: string;
     language: {
       color: string;

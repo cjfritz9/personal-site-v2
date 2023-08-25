@@ -43,7 +43,6 @@ const Snippets: React.FC = () => {
                   url={snippet.url}
                   description={snippet.description}
                   createdAt={snippet.createdAt}
-                  fileName={snippet.files[0].name}
                   fileText={snippet.files[0].text}
                   languageName={snippet.files[0].language.name}
                   languageColor={snippet.files[0].language.color}

@@ -16,7 +16,6 @@ const useSnippets = () => {
       stargazerCount: 1,
       files: [
         {
-          name: 'my-site-gist.ts',
           text: `const rot13 = (str: string) => {
             const alphabet = 'abcdefghijklmnopqrstuvwxyz';
             const rot13Alphabet = 'nopqrstuvwxyzabcdefghijklm';

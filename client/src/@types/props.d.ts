@@ -87,7 +87,6 @@ interface SnippetProps {
   createdAt: string;
   description: string;
   stargazerCount: number;
-  fileName: string;
   fileText: string;
   languageName: 'TypeScript' | 'JavaScript';
   languageColor: string;
