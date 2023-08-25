@@ -6,7 +6,7 @@ import useSnippets from '../../../hooks/useSnippets';
 
 const Snippets: React.FC = () => {
   const { snippets } = useSnippets();
-
+  
   return (
     <Container variant='snippets'>
       <Stack gap='1px' w='100%'>

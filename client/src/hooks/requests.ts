@@ -9,7 +9,9 @@ const apiRequest = axios.create({
 });
 
 export const fetchSnippets = async () => {
+  console.log('in fetch snippets');
   const result = await apiRequest.get('/v1/snippets');
+  console.log('fetch snippets result: ', result?.data);
   if (result.status !== 200) return;
 
   return result.data;
