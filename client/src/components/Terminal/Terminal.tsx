@@ -23,6 +23,7 @@ import {
 import { useNavigate } from 'react-router';
 import { SiteContext } from '../../context/Site.context';
 import { SiteInterface } from '../../@types/context';
+import { useLocation } from 'react-router-dom';
 
 const blink = keyframes`
   0% { opacity: 0; }
@@ -32,7 +33,7 @@ const blink = keyframes`
 const blinkAnimation = `${blink} infinite 1s linear`;
 
 const Terminal: React.FC = () => {
-  const { isUsingTerminal, setIsUsingTerminal } = useContext(
+  const { isUsingTerminal, location, setIsUsingTerminal } = useContext(
     SiteContext
   ) as SiteInterface;
   const [terminalInput, setTerminalInput] = useState('');
@@ -115,7 +116,7 @@ const Terminal: React.FC = () => {
       setMode('search');
       setTerminalInput((prev) => prev.slice(7));
     }
-    if (comparisonValue.includes('cd:')) {
+    if (comparisonValue.includes('cd:') || comparisonValue.includes('cd ')) {
       setMode('cd');
       setTerminalInput((prev) => prev.slice(3));
     }
@@ -190,9 +191,9 @@ const Terminal: React.FC = () => {
   };
 
   useEffect(() => {
-    setCdResults(getCdList(window.location.pathname));
+    setCdResults(getCdList(location.pathname));
     setTerminalInput('');
-  }, [window.location.pathname]);
+  }, [location.pathname]);
 
   return (
     <Flex

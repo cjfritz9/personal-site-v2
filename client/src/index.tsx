@@ -14,12 +14,12 @@ const root = ReactDOM.createRoot(
 root.render(
   <ChakraProvider theme={theme}>
     <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-    <SiteProvider>
-      <React.StrictMode>
-        <Router>
+    <React.StrictMode>
+      <Router>
+        <SiteProvider>
           <App />
-        </Router>
-      </React.StrictMode>
-    </SiteProvider>
+        </SiteProvider>
+      </Router>
+    </React.StrictMode>
   </ChakraProvider>
 );

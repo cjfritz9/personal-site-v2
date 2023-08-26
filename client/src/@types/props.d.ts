@@ -1,8 +1,12 @@
 import React from 'react';
-import { StyleMap } from './context';
+import { Pages, StyleMap } from './context';
 import { GameBoard } from '../models/Codle';
 import { IconType } from 'react-icons';
 import { Directories } from './about';
+
+export interface TabProps {
+  activeTab: Pages;
+}
 
 export interface PanelProps {
   content: any;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
   Flex,
   Container,
@@ -10,12 +10,15 @@ import {
   Menu,
   MenuButton,
   MenuList,
-  MenuItem
+  MenuItem,
+  TabPanel
 } from '@chakra-ui/react';
 import { RiCloseLine, RiMenuLine } from 'react-icons/ri';
 
 import Panel from '../Shared/Panel';
 import { useNavigate } from 'react-router';
+import { SiteContext } from '../../context/Site.context';
+import { Pages, SiteInterface } from '../../@types/context';
 
 const links = [
   { title: 'Home.tsx', path: '/home' },
@@ -24,12 +27,28 @@ const links = [
 ];
 
 const Header: React.FC = () => {
+  const { location } = useContext(SiteContext) as SiteInterface;
+  const [activeTab, setActiveTab] = useState<Pages>('home');
   const [isSmallerThan480, isSmallerThan992] = useMediaQuery([
     '(max-width: 480px)',
     '(max-width: 992px)'
   ]);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (location.pathname.includes('/about')) {
+      setActiveTab('about');
+    }
+
+    if (location.pathname.includes('/home') || location.pathname === '/') {
+      setActiveTab('home');
+    }
+
+    if (location.pathname.includes('/projects')) {
+      setActiveTab('projects');
+    }
+  }, [location.pathname]);
 
   if (isSmallerThan992) {
     return (
@@ -75,7 +94,10 @@ const Header: React.FC = () => {
           styles={{ _hover: { bgColor: 'Primary.dkSlate' }, cursor: 'auto' }}
         />
         <Flex h='100%' grow={1}>
-          <Tabs>
+          <Tabs
+            defaultIndex={0}
+            index={activeTab === 'home' ? 0 : activeTab === 'about' ? 1 : 2}
+          >
             <TabList>
               {links.map((link, i) => (
                 <Tab key={i} onClick={() => navigate(link.path)}>

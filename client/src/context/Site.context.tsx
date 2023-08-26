@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ContextProps } from '../@types/props';
 import { SiteInterface } from '../@types/context';
 import { Directories } from '../@types/about';
+import { useLocation } from 'react-router';
 
 export const SiteContext = React.createContext<SiteInterface | null>(null);
 
@@ -11,6 +12,8 @@ export const SiteProvider: React.FC<ContextProps> = ({ children }) => {
     useState<Directories>('personal');
   const [currentDisplayContent, setCurrentDisplayContent] =
     useState<string>('testing-data');
+  
+  const location = useLocation();
 
   return (
     <SiteContext.Provider
@@ -18,6 +21,7 @@ export const SiteProvider: React.FC<ContextProps> = ({ children }) => {
         isUsingTerminal,
         currentDirectory,
         currentDisplayContent,
+        location,
         setIsUsingTerminal,
         setCurrentDirectory,
         setCurrentDisplayContent
