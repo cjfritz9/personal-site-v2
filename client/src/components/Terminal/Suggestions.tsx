@@ -22,12 +22,15 @@ const Suggestions: React.FC<SuggestionsProps> = ({
       </Container>
     );
   } else if (mode === 'cd') {
+    console.log(cdResults);
     return (
       <Container variant='suggestions'>
         <Flex w='100%'>
           {cdResults?.map((result, i) => (
             <Text key={i} pr='2rem'>
-              {result.dirname}/
+              {`${result.dirname}${
+                result.dirname === 'return to parent directory' ? '' : '/'
+              }`}
             </Text>
           ))}
         </Flex>

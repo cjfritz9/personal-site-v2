@@ -1,5 +1,4 @@
 import { StyleMap } from '../@types/codle';
-import { getStyleMap } from '../utils/codle';
 
 export class PlayerData {
   public updatedAt: string;

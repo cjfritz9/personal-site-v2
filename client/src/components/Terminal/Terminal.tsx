@@ -44,7 +44,7 @@ const Terminal: React.FC = () => {
     terminalSearchResults
   );
   const [cdResults, setCdResults] = useState<CDResult[]>(
-    getCdList(window.location.pathname)
+    getCdList(location.pathname)
   );
   const [showSuggestions, setShowSuggestions] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -59,19 +59,19 @@ const Terminal: React.FC = () => {
     }
 
     if (mode === 'cd') {
-      const results = getCdList(window.location.pathname).filter((result) =>
+      const results = getCdList(location.pathname).filter((result) =>
         result.dirname.includes(comparisonValue)
       );
       if (!results[0]) {
         setCdResults([
           {
             dirname: `no matches for ${comparisonValue}`,
-            handle: window.location.pathname
+            handle: location.pathname
           }
         ]);
       } else {
         setCdResults(
-          getCdList(window.location.pathname).filter((result) =>
+          getCdList(location.pathname).filter((result) =>
             result.dirname.includes(comparisonValue)
           )
         );
@@ -129,7 +129,11 @@ const Terminal: React.FC = () => {
   const handleKeyUp = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Tab') {
       if (mode === 'cd') {
-        if (cdResults[0] && !cdResults[0].dirname.includes('no matches')) {
+        if (
+          cdResults[0] &&
+          !cdResults[0].dirname.includes('no matches') &&
+          !cdResults[0].dirname.includes('parent dir')
+        ) {
           setTerminalInput(cdResults[0].dirname);
           setCdResults([cdResults[0]]);
         }
@@ -158,6 +162,9 @@ const Terminal: React.FC = () => {
         if (!terminalInput.length) {
           setMode('auto-complete');
           setSuggestionResults(terminalSuggestions);
+          navigate('/');
+        }
+        if (terminalInput === '..') {
           navigate(-1);
         }
         const result = cdResults.filter(
@@ -171,6 +178,17 @@ const Terminal: React.FC = () => {
           setSuggestionResults(terminalSuggestions);
           navigate('/');
         }
+      }
+    }
+    console.log(e.target);
+    if (e.key === '.') {
+      if (terminalInput === '..') {
+        setCdResults([
+          {
+            dirname: 'return to parent directory',
+            handle: location.pathname
+          }
+        ]);
       }
     }
   };

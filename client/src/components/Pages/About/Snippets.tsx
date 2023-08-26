@@ -44,12 +44,12 @@ const Snippets: React.FC = () => {
                   url={snippet.url}
                   createdAt={snippet.createdAt}
                   snippetText={
-                    snippet.files[0].name === 'snippet.ts'
+                    snippet.files[0].name.includes('snippet')
                       ? snippet.files[0].text
                       : snippet.files[1].text
                   }
                   descriptionText={
-                    snippet.files[0].name === 'description.ts'
+                    snippet.files[0].name.includes('description')
                       ? snippet.files[0].text
                       : snippet.files[1].text
                   }

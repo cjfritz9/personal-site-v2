@@ -1,3 +1,5 @@
+type Filenames = 'snippet.ts' | 'description.ts' | 'snippet.js' | 'description.js';
+
 export interface SnippetResponse {
   owner: {
     login: string;
@@ -9,7 +11,7 @@ export interface SnippetResponse {
   description: string;
   stargazerCount: number;
   files: Array<{
-    name: 'snippet.ts' | 'description.ts';
+    name: Filenames;
     text: string;
     language: {
       color: string;

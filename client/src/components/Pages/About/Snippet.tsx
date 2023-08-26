@@ -83,7 +83,16 @@ const Snippet: React.FC<SnippetProps> = ({
             </Flex>
           </Flex>
           <Flex w='100%' justifyContent='flex-end'>
-            <Badge cursor='default' bg={languageColor} textAlign='center'>
+            <Badge
+              cursor='default'
+              color={
+                languageName === 'JavaScript'
+                  ? 'blackAlpha.900'
+                  : 'whiteAlpha.900'
+              }
+              bg={languageColor}
+              textAlign='center'
+            >
               {languageName}
             </Badge>
           </Flex>

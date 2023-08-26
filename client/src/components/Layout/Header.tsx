@@ -95,7 +95,6 @@ const Header: React.FC = () => {
         />
         <Flex h='100%' grow={1}>
           <Tabs
-            defaultIndex={0}
             index={activeTab === 'home' ? 0 : activeTab === 'about' ? 1 : 2}
           >
             <TabList>
