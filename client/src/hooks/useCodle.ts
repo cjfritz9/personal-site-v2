@@ -36,7 +36,6 @@ const useCodle = () => {
             (JSON.parse(fetchedData?.guessMap) as StyleMap[]) ?? []
           )
         );
-        console.log(fetchedData?.guessMap)
       } else {
         await updatePlayerData(playerId, {
           guesses: [],

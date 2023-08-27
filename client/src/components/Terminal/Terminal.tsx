@@ -180,7 +180,7 @@ const Terminal: React.FC = () => {
         }
       }
     }
-    console.log(e.target);
+    
     if (e.key === '.') {
       if (terminalInput === '..') {
         setCdResults([

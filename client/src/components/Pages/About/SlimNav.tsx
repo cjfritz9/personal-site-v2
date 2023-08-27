@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Container, Icon, Stack, Tooltip } from '@chakra-ui/react';
 import { NavIconProps } from '../../../@types/props';
 import navItems from './data/directories';
@@ -7,7 +7,9 @@ import { SiteInterface } from '../../../@types/context';
 import { Directories } from '../../../@types/about';
 
 const SlimNav: React.FC = () => {
-  const { setCurrentDirectory } = useContext(SiteContext) as SiteInterface;
+  const { location, setCurrentDirectory } = useContext(
+    SiteContext
+  ) as SiteInterface;
   const [activeIndex, setActiveIndex] = useState(0);
 
   const clickHandler = (index: number) => {
@@ -15,6 +17,16 @@ const SlimNav: React.FC = () => {
     setActiveIndex(index);
     setCurrentDirectory(directories[index]);
   };
+
+  useEffect(() => {
+    const tabIndex = location.search.includes('career')
+      ? 0
+      : location.search.includes('personal')
+      ? 1
+      : 2;
+    setActiveIndex(tabIndex);
+    setCurrentDirectory(location.search.slice(2) as Directories);
+  }, [location.search]);
 
   return (
     <Container variant='slimNav' as={Stack}>

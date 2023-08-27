@@ -41,10 +41,9 @@ export const getCdList = (currentDirectory: string): CDResult[] => {
   switch (currentDirectory) {
     case '/about':
       return [
-        { dirname: 'personal-info', handle: '/about?=personal-info' },
-        { dirname: 'professional-info', handle: '/about?=professional-info' },
+        { dirname: 'personal', handle: '/about?=personal' },
+        { dirname: 'professional', handle: '/about?=career' },
         { dirname: 'hobbies', handle: '/about?=hobbies' },
-        { dirname: 'contacts', handle: '/about?=contacts' }
       ];
     case '/projects':
       return [

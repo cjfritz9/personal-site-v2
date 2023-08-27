@@ -22,7 +22,6 @@ const Suggestions: React.FC<SuggestionsProps> = ({
       </Container>
     );
   } else if (mode === 'cd') {
-    console.log(cdResults);
     return (
       <Container variant='suggestions'>
         <Flex w='100%'>
