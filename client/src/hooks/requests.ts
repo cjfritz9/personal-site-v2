@@ -39,7 +39,9 @@ const codleRequest = axios.create({
 });
 
 export const fetchCodleWord = async () => {
-  const result = await codleRequest.get('/codle/word');
+  const result = await codleRequest.get(
+    `/codle/word?timezoneOffset=${new Date().getTimezoneOffset()}`
+  );
   if (result.status !== 200) return;
 
   const { codleWord } = result.data;

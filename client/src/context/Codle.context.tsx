@@ -11,12 +11,12 @@ export const CodleProvider: React.FC<ContextProps> = ({ children }) => {
   const [gameWon, setGameWon] = useState(false);
   const [gameLost, setGameLost] = useState(false);
 
-  const { isWon: isWonStarting, isLost: isLostStarting } = startingBoard;
+  const { isWon: isWonDaily, isLost: isLostDaily } = startingBoard;
 
   useEffect(() => {
-    setGameWon(startingBoard.isWon);
-    setGameLost(startingBoard.isLost);
-  }, [isWonStarting, isLostStarting]);
+    setGameWon(isWonDaily);
+    setGameLost(isLostDaily);
+  }, [isWonDaily, isLostDaily]);
 
   return (
     <CodleContext.Provider
