@@ -70,11 +70,6 @@ export class GameBoard {
     return this;
   }
 
-  public updateBoard(stateSetter: React.Dispatch<React.SetStateAction<this>>) {
-    console.log('updating board', this, stateSetter);
-    stateSetter(this);
-  }
-
   public resetGame() {
     this.isWon = false;
     this.isLost = false;

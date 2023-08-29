@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ContextProps } from '../@types/props';
 import { SiteInterface } from '../@types/context';
 import { Directories } from '../@types/about';
@@ -14,6 +14,12 @@ export const SiteProvider: React.FC<ContextProps> = ({ children }) => {
     useState<string>('testing-data');
   
   const location = useLocation();
+
+  useEffect(() => {
+    if (!location.pathname.includes('about')) {
+      setCurrentDirectory('career')
+    }
+  }, [location.pathname])
 
   return (
     <SiteContext.Provider

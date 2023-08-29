@@ -19,13 +19,17 @@ const SlimNav: React.FC = () => {
   };
 
   useEffect(() => {
-    const tabIndex = location.search.includes('career')
-      ? 0
-      : location.search.includes('personal')
-      ? 1
-      : 2;
-    setActiveIndex(tabIndex);
-    setCurrentDirectory(location.search.slice(2) as Directories);
+    if (location.search.length < 1) {
+      setActiveIndex(0);
+    } else {
+      const tabIndex = location.search.includes('career')
+        ? 0
+        : location.search.includes('personal')
+        ? 1
+        : 2;
+      setActiveIndex(tabIndex);
+      setCurrentDirectory(location.search.slice(2) as Directories);
+    }
   }, [location.search]);
 
   return (

@@ -17,32 +17,34 @@ const useSnippets = () => {
       files: [
         {
           name: 'snippet.ts',
-          text: `const rot13 = (str: string) => {
-            const alphabet = 'abcdefghijklmnopqrstuvwxyz';
-            const rot13Alphabet = 'nopqrstuvwxyzabcdefghijklm';
-            let output = '';
-          
-            for (let i = 0; i < str.length; i++) {
-              const isUppercase = str[i] === str[i].toUpperCase();
-              let idx = alphabet.indexOf(str[i]);
-          
-              if (isUppercase) {
-                idx = alphabet.toUpperCase().indexOf(str[i]);
-              }
-          
-              if (idx !== -1) {
-                if (isUppercase) {
-                  output += rot13Alphabet.toUpperCase().charAt(idx);
-                } else {
-                  output += rot13Alphabet.charAt(idx);
-                }
-              } else {
-                output += str.charAt(i);
-              }
-            }
-          
-            return output;
-          };`,
+          text: `
+const rot13 = (str: string) => {
+  const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+  const rot13Alphabet = 'nopqrstuvwxyzabcdefghijklm';
+  let output = '';
+
+  for (let i = 0; i < str.length; i++) {
+    const isUppercase = str[i] === str[i].toUpperCase();
+    let idx = alphabet.indexOf(str[i]);
+
+    if (isUppercase) {
+      idx = alphabet.toUpperCase().indexOf(str[i]);
+    }
+
+    if (idx !== -1) {
+      if (isUppercase) {
+        output += rot13Alphabet.toUpperCase().charAt(idx);
+      } else {
+        output += rot13Alphabet.charAt(idx);
+      }
+    } else {
+      output += str.charAt(i);
+    }
+  }
+
+  return output;
+};
+          `,
           language: {
             color: '#3178c6',
             id: 'MDg6TGFuZ3VhZ2UyODc=',
@@ -52,7 +54,7 @@ const useSnippets = () => {
         {
           name: 'description.ts',
           text: `
-          // ROT13 Algorithm 
+// ROT13 Algorithm 
 
 // ROT13 ("rotate by 13 places", sometimes hyphenated ROT-13) is 
 // a simple letter substitution cipher that replaces a letter
@@ -81,7 +83,7 @@ const useSnippets = () => {
       ]
     }
   ]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const getSnippets = useCallback(async () => {
     const fetchedSnippets: SnippetResponses = await fetchSnippets();
