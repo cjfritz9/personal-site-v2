@@ -21,15 +21,17 @@ const baseStyle = definePartsStyle({
 });
 
 const codle = definePartsStyle({
-  field: {
+  field:{
     w: ['48px', null, '56px'],
     h: ['48px', null, '56px'],
     py: '8px',
     color: 'Secondary.white',
     fontSize: ['40px', null, '48px'],
     textAlign: 'center',
-    bgColor: 'Primary.dkGray'
-  }
+    bgColor: 'Primary.dkGray',
+    transition: 'all .75s ease',
+    _readOnly: true
+ }
 });
 
 const inputConfig = defineMultiStyleConfig({ baseStyle, variants: { codle } });

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Flex, Stack } from '@chakra-ui/react';
 import Intro from './Intro';
-import Codle from './Codle';
+import Codle from './Codle/Codle';
 import Backsplash from '../../Shared/Backsplash';
 import { CodleProvider } from '../../../context/Codle.context';
 
