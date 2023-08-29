@@ -25,13 +25,15 @@ const Suggestions: React.FC<SuggestionsProps> = ({
     return (
       <Container variant='suggestions'>
         <Flex w='100%'>
-          {cdResults?.map((result, i) => (
-            <Text key={i} pr='2rem'>
-              {`${result.dirname}${
-                result.dirname === 'return to parent directory' ? '' : '/'
-              }`}
-            </Text>
-          ))}
+          {cdResults
+            ?.filter((result) => result.dirname !== 'PARENT')
+            .map((result, i) => (
+              <Text key={i} pr='2rem'>
+                {`${result.dirname}${
+                  result.dirname === 'return to parent directory' ? '' : '/'
+                }`}
+              </Text>
+            ))}
         </Flex>
       </Container>
     );

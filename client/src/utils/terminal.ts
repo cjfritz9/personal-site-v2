@@ -21,9 +21,9 @@ export const terminalSuggestions: AutoCompletionResult[] = [
 
 export const terminalSearchResults: SearchResult[] = [
   {
-    directory: 'misc',
-    name: 'Codle',
-    handle: '/misc/codle'
+    directory: 'about',
+    name: 'Personal Info',
+    handle: '/about?=personal'
   },
   {
     directory: 'projects',
@@ -41,22 +41,25 @@ export const getCdList = (currentDirectory: string): CDResult[] => {
   switch (currentDirectory) {
     case '/about':
       return [
+        { dirname: 'PARENT', handle: '/' },
         { dirname: 'personal', handle: '/about?=personal' },
         { dirname: 'professional', handle: '/about?=career' },
-        { dirname: 'hobbies', handle: '/about?=hobbies' },
+        { dirname: 'hobbies', handle: '/about?=hobbies' }
       ];
     case '/projects':
       return [
+        { dirname: 'PARENT', handle: '/' },
         { dirname: 'astra-skincare', handle: 'astra-skincare' },
         { dirname: 'space-launch-sim', handle: '/space-launch-sim' }
       ];
-    case '/misc':
+    case '/contact':
       return [
-        { dirname: 'codle', handle: '/codle' },
-        { dirname: 'space-launch-sim', handle: '/space-launch-sim' }
+        { dirname: 'PARENT', handle: '/' },
+        { dirname: 'contact-form', handle: '/contact' }
       ];
     default:
       return [
+        { dirname: 'PARENT', handle: '/' },
         { dirname: 'about', handle: '/about' },
         { dirname: 'projects', handle: '/projects' },
         { dirname: 'misc', handle: '/misc' }

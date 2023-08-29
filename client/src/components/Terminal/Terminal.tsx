@@ -23,7 +23,6 @@ import {
 import { useNavigate } from 'react-router';
 import { SiteContext } from '../../context/Site.context';
 import { SiteInterface } from '../../@types/context';
-import { useLocation } from 'react-router-dom';
 
 const blink = keyframes`
   0% { opacity: 0; }
@@ -71,8 +70,10 @@ const Terminal: React.FC = () => {
         ]);
       } else {
         setCdResults(
-          getCdList(location.pathname).filter((result) =>
-            result.dirname.includes(comparisonValue)
+          getCdList(location.pathname).filter(
+            (result) =>
+              result.dirname !== 'PARENT' &&
+              result.dirname.includes(comparisonValue)
           )
         );
       }
@@ -165,7 +166,10 @@ const Terminal: React.FC = () => {
           navigate('/');
         }
         if (terminalInput === '..') {
-          navigate(-1);
+          const parentDir = getCdList(location.pathname).find(
+            (result) => result.dirname === 'PARENT'
+          ) as CDResult;
+          navigate(parentDir.handle);
         }
         const result = cdResults.filter(
           (result) => result.dirname === terminalInput
@@ -180,7 +184,7 @@ const Terminal: React.FC = () => {
         }
       }
     }
-    
+
     if (e.key === '.') {
       if (terminalInput === '..') {
         setCdResults([
