@@ -1,4 +1,11 @@
-const display = {
+interface DisplayData {
+  [key: string]: {
+    title: string;
+    paragraphs: string[];
+  };
+}
+
+const display: DisplayData = {
   'testing-data': {
     title: 'Testing Data',
     paragraphs: [
@@ -28,7 +35,11 @@ const display = {
   },
   github: {
     title: 'GitHub Contributions',
-    paragraphs: []
+    paragraphs: [
+      '',
+      'OpenAI: Resolved a TypeScript bug in the OpenAI Node.js library related to the instantiation method for new client configuration. Added a default parameter of "new Configuration()" to prevent fallback cases that methods did not exist on. This also led to the removal of dozen of conditional checks which overall improved performance. The library authors were working on a v4 version for months and when they released version 4, I received thanks for my "thoughtful and thorough" fix, and the issue was fixed by them in version 4. I also responded to several issues in cases where the issue was not related to library issues or there were known workarounds.',
+      'Others: '
+    ]
   },
   'chakra-ui': {
     title: 'Chakra UI V3',
@@ -36,7 +47,98 @@ const display = {
       'At the time of writing this, I have not yet heard a response to my request to help with Chakra UI version 3. As an avid user and fan of Chakra UI I am hopeful that I will hear back and be able to start contributing soon!',
       'I have been using Chakra UI for almost a year and have fallen in love with the configuration and simplicity of creating custom components. Since it was developed specifically for React it comes with many base components and states that make it very quick and easy to create attractive front-ends.'
     ]
+  },
+  'early-life': {
+    title: 'Early Life',
+    paragraphs: [
+      'Full Stack Academy',
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+    ]
+  },
+  'adult-life': {
+    title: 'Adult Life',
+    paragraphs: [
+      'Full Stack Academy',
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+    ]
+  },
+  programming: {
+    title: 'Programming',
+    paragraphs: [
+      'Full Stack Academy',
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+    ]
+  },
+  environment: {
+    title: 'Environment',
+    paragraphs: [
+      'Full Stack Academy',
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+    ]
+  },
+  animals: {
+    title: 'Animals',
+    paragraphs: [
+      'Full Stack Academy',
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+    ]
+  },
+  'high-school': {
+    title: 'High School',
+    paragraphs: [
+      'Perry-Lecompton High School',
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+    ]
+  },
+  college: {
+    title: 'Colorado State University',
+    paragraphs: [
+      'Full Stack Academy',
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+    ]
+  },
+  'pc-games': {
+    title: 'PC Games',
+    paragraphs: [
+      'Perry-Lecompton High School',
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+    ]
+  },
+  'board-games': {
+    title: 'Board Games',
+    paragraphs: [
+      'Full Stack Academy',
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+    ]
+  },
+  community: {
+    title: 'Modding Communities',
+    paragraphs: [
+      'Perry-Lecompton High School',
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+    ]
+  },
+  plugins: {
+    title: 'Game Plugins',
+    paragraphs: [
+      'Full Stack Academy',
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+    ]
+  },
+  travel: {
+    title: 'Modding Communities',
+    paragraphs: [
+      'Perry-Lecompton High School',
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+    ]
+  },
+  campsites: {
+    title: 'Game Plugins',
+    paragraphs: [
+      'Full Stack Academy',
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+    ]
   }
-} as any;
+};
 
 export default display;

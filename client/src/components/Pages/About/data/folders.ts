@@ -1,4 +1,4 @@
-import { contactItems, contributionsItems, educationItems, freelanceItems } from "./items";
+import { bioItems, campingItems, contactItems, contributionsItems, educationItems, freelanceItems, gamingItems, interestsItems, moddingItems } from "./items";
 
 export const professionalInfoFolders = [
   {
@@ -25,16 +25,34 @@ export const personalInfoFolders = [
   {
     folderName: 'bio',
     folderColor: '#FEA55F',
-    items: []
+    items: bioItems
   },
   {
     folderName: 'interests',
     folderColor: '#43D9AD',
-    items: []
+    items: interestsItems
   },
   {
     folderName: 'education',
     folderColor: '#4D5BCE',
     items: educationItems
+  }
+]
+
+export const hobbiesFolders = [
+  {
+    folderName: 'gaming',
+    folderColor: '#FEA55F',
+    items: gamingItems
+  },
+  {
+    folderName: 'modding',
+    folderColor: '#43D9AD',
+    items: moddingItems
+  },
+  {
+    folderName: 'camping',
+    folderColor: '#4D5BCE',
+    items: campingItems
   }
 ]
