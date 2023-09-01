@@ -1,4 +1,17 @@
-import { contactItems, educationItems } from "./items";
+import { contactItems, contributionsItems, educationItems, freelanceItems } from "./items";
+
+export const professionalInfoFolders = [
+  {
+    folderName: 'freelance',
+    folderColor: '#FEA55F',
+    items: freelanceItems
+  },
+  {
+    folderName: 'contributions',
+    folderColor: '#43D9AD',
+    items: contributionsItems
+  }
+]
 
 export const contactInfoFolders = [
   {

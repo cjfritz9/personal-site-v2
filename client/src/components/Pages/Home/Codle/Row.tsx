@@ -69,6 +69,7 @@ const CodleInputRow: React.FC<CodleInputRowProps> = ({
       {Array.from(new Array(5)).map((_, i) => {
         return (
           <Input
+            key={i}
             bgColor={isLoading ? 'gray.600' : styleMap[i].bgColor}
             ref={i === 0 ? firstInputRef : undefined}
             variant='codle'
@@ -80,6 +81,7 @@ const CodleInputRow: React.FC<CodleInputRowProps> = ({
               guess[i] ||
               ''
             }
+            readOnly
           />
         );
       })}

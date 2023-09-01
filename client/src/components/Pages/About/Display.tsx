@@ -15,10 +15,14 @@ const Display: React.FC = () => {
 
   useLayoutEffect(() => {
     if (textWrapRef && textWrapRef.current && currentDisplayContent) {
-      setLineCount(Math.round(textWrapRef.current.clientHeight / 22.95));
+      if (textWrapRef.current.clientHeight > 700) {
+        setLineCount(Math.round(textWrapRef.current.clientHeight / 23.5));
+      } else {
+        setLineCount(Math.round(textWrapRef.current.clientHeight / 22.5));
+      }
     }
   }, [textWrapRef.current, currentDisplayContent]);
-  
+
   return (
     <Container variant='display'>
       <Stack gap='1px'>

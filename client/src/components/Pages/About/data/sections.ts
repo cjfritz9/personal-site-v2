@@ -1,9 +1,9 @@
-import { contactInfoFolders, personalInfoFolders } from "./folders";
+import { contactInfoFolders, personalInfoFolders, professionalInfoFolders } from "./folders";
 
 export const careerSections = [
   {
     title: 'professional-info',
-    folders: []
+    folders: professionalInfoFolders
   }
 ];
 

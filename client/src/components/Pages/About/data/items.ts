@@ -1,6 +1,40 @@
-import { RiGraduationCapFill, RiMailFill, RiPhoneFill } from 'react-icons/ri';
+import {
+  RiFileChartFill,
+  RiGraduationCapFill,
+  RiHandCoinFill,
+  RiHandHeartFill,
+  RiMailFill,
+  RiPhoneFill,
+  RiServerFill
+} from 'react-icons/ri';
 
 const eggshell = '#D1D2D5';
+
+export const freelanceItems = [
+  {
+    icon: RiFileChartFill,
+    iconColor: eggshell,
+    name: 'statistics'
+  },
+  {
+    icon: RiServerFill,
+    iconColor: eggshell,
+    name: 'software'
+  }
+];
+
+export const contributionsItems = [
+  {
+    icon: RiHandHeartFill,
+    iconColor: eggshell,
+    name: 'github'
+  },
+  {
+    icon: RiHandCoinFill,
+    iconColor: eggshell,
+    name: 'chakra-ui'
+  }
+];
 
 export const contactItems = [
   {
