@@ -1,5 +1,12 @@
-import React, { useContext } from 'react';
-import { Box, Container, Icon, Text, useToast } from '@chakra-ui/react';
+import React, { useContext, useState } from 'react';
+import {
+  Box,
+  Container,
+  Icon,
+  Text,
+  ToastId,
+  useToast
+} from '@chakra-ui/react';
 import { ItemProps } from '../../../@types/props';
 import { SiteContext } from '../../../context/Site.context';
 import { SiteInterface } from '../../../@types/context';
@@ -12,16 +19,17 @@ const Item: React.FC<ItemProps> = ({ icon, iconColor, name }) => {
     if (name === 'dev.cjfritz@gmail.com' || name === '(785) 217-7125') {
       navigator.clipboard.writeText(name);
       if (!toast.isActive(name)) {
+        toast.closeAll();
         toast({
           id: name,
           title: 'Copied to clipboard',
           description: name,
           position: 'bottom-left',
-          duration: 5000,
+          duration: 5000
         });
+      } else {
+        setCurrentDisplayContent(name);
       }
-    } else {
-      setCurrentDisplayContent(name);
     }
   };
   return (
