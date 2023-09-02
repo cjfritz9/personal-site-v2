@@ -17,7 +17,7 @@ const Item: React.FC<ItemProps> = ({ icon, iconColor, name }) => {
           title: 'Copied to clipboard',
           description: name,
           position: 'bottom-left',
-          duration: 5000
+          duration: 5000,
         });
       }
     } else {
