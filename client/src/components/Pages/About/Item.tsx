@@ -18,6 +18,7 @@ const Item: React.FC<ItemProps> = ({ icon, iconColor, name }) => {
   const handleClick = (name: string) => {
     if (name === 'dev.cjfritz@gmail.com' || name === '(785) 217-7125') {
       navigator.clipboard.writeText(name);
+      console.log(name, toast.isActive(name));
       if (!toast.isActive(name)) {
         toast.closeAll();
         toast({
@@ -27,9 +28,9 @@ const Item: React.FC<ItemProps> = ({ icon, iconColor, name }) => {
           position: 'bottom-left',
           duration: 5000
         });
-      } else {
-        setCurrentDisplayContent(name);
       }
+    } else {
+      setCurrentDisplayContent(name);
     }
   };
   return (
