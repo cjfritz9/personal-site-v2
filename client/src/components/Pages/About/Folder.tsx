@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Container, Flex, Icon, Stack, Text } from '@chakra-ui/react';
 import { FolderProps } from '../../../@types/props';
 import {
@@ -7,9 +7,16 @@ import {
   RiGraduationCapFill
 } from 'react-icons/ri';
 import Item from './Item';
+import { SiteContext } from '../../../context/Site.context';
+import { SiteInterface } from '../../../@types/context';
 
 const Folder: React.FC<FolderProps> = ({ folderColor, folderName, items }) => {
+  const { currentDirectory } = useContext(SiteContext) as SiteInterface;
   const [isOpen, setIsOpen] = React.useState(false);
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [currentDirectory]);
 
   return (
     <Stack px='1rem'>
