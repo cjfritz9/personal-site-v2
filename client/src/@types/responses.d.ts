@@ -1,4 +1,8 @@
-type Filenames = 'snippet.ts' | 'description.ts' | 'snippet.js' | 'description.js';
+type Filenames =
+  | 'snippet.ts'
+  | 'description.ts'
+  | 'snippet.js'
+  | 'description.js';
 
 export interface SnippetResponse {
   owner: {
@@ -22,3 +26,16 @@ export interface SnippetResponse {
 }
 
 export type SnippetResponses = Array<SnippetResponse>;
+
+export interface JobAppResponse {
+  id: string;
+  companyName: string;
+  dateSubmitted: string;
+  isActive: boolean;
+  status: {
+    name: 'submitted' | 'stale' | 'interviewing' | 'offer';
+    weight: number;
+  };
+}
+
+export type JobAppResponses = Array<JobAppResponse>;

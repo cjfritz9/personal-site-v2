@@ -31,6 +31,17 @@ export const fetchRawSnippet = async (rawUrl: string) => {
     });
 };
 
+export const fetchJobApps = async () => {
+  return apiRequest
+    .get('https://tracking.cjfritz.dev/v1/job-apps')
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};
+
 // EXTERNAL CODLE GAME API
 
 const codleRequest = axios.create({

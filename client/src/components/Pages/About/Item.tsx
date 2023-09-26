@@ -3,6 +3,7 @@ import {
   Box,
   Container,
   Icon,
+  Stack,
   Text,
   ToastId,
   useToast
@@ -10,6 +11,7 @@ import {
 import { ItemProps } from '../../../@types/props';
 import { SiteContext } from '../../../context/Site.context';
 import { SiteInterface } from '../../../@types/context';
+import { RiClipboardLine } from 'react-icons/ri';
 
 const Item: React.FC<ItemProps> = ({ icon, iconColor, name }) => {
   const { setCurrentDisplayContent } = useContext(SiteContext) as SiteInterface;
@@ -24,9 +26,11 @@ const Item: React.FC<ItemProps> = ({ icon, iconColor, name }) => {
         toast({
           id: name,
           title: 'Copied to clipboard',
+          icon: <RiClipboardLine size='24px' />,
           description: name,
+          // status: 'success',
           position: 'bottom-left',
-          duration: 5000
+          duration: 4000
         });
       }
     } else {

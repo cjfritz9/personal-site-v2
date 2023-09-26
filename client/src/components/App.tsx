@@ -5,6 +5,7 @@ import HomePage from './Pages/Home/_Home.page';
 import Footer from './Layout/Footer';
 import _404Page from './Pages/404/_404.page';
 import AboutMePage from './Pages/About/_AboutMe.page';
+import SudoPage from './Pages/Sudo/_SudoPage';
 
 const App: React.FC = () => {
   return (
@@ -20,6 +21,7 @@ const App: React.FC = () => {
           <Route key={i} path={path} element={<HomePage />} />
         ))}
         <Route path='/about' element={<AboutMePage />} />
+        <Route path='/sudo' element={<SudoPage />} />
         <Route path='/*' element={<_404Page />} />
       </Routes>
       <Footer />

@@ -3,7 +3,7 @@ import { Box } from '@chakra-ui/react';
 
 const Backsplash: React.FC = () => {
   return (
-    <Box pos='relative' zIndex={0} right='0%'>
+    <Box pos='relative' zIndex={0} right='0%' pointerEvents='none'>
       <Box pos='absolute' bottom='10rem' left='-10dvw'>
         <svg
           xmlns='http://www.w3.org/2000/svg'

@@ -27,7 +27,7 @@ const links = [
 ];
 
 const Header: React.FC = () => {
-  const { location } = useContext(SiteContext) as SiteInterface;
+  const { location, isSudoUser } = useContext(SiteContext) as SiteInterface;
   const [activeTab, setActiveTab] = useState<Pages>('home');
   const [isSmallerThan480, isSmallerThan992] = useMediaQuery([
     '(max-width: 480px)',
@@ -35,6 +35,10 @@ const Header: React.FC = () => {
   ]);
 
   const navigate = useNavigate();
+
+  if (isSudoUser && !links[3]) {
+    links.push({ title: 'Sudo.tsx', path: '/sudo' });
+  }
 
   useEffect(() => {
     if (location.pathname.includes('/about')) {
@@ -47,6 +51,10 @@ const Header: React.FC = () => {
 
     if (location.pathname.includes('/projects')) {
       setActiveTab('projects');
+    }
+
+    if (location.pathname.includes('/sudo')) {
+      setActiveTab('sudo');
     }
   }, [location.pathname]);
 
@@ -95,7 +103,7 @@ const Header: React.FC = () => {
         />
         <Flex h='100%' grow={1}>
           <Tabs
-            index={activeTab === 'home' ? 0 : activeTab === 'about' ? 1 : 2}
+            index={activeTab === 'home' ? 0 : activeTab === 'about' ? 1 : activeTab === 'projects' ? 2 : 3}
           >
             <TabList>
               {links.map((link, i) => (

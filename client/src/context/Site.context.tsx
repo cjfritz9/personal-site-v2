@@ -12,6 +12,7 @@ export const SiteProvider: React.FC<ContextProps> = ({ children }) => {
     useState<Directories>('personal');
   const [currentDisplayContent, setCurrentDisplayContent] =
     useState<string>('testing-data');
+  const [isSudoUser, setIsSudoUser] = useState<boolean>(false);
   
   const location = useLocation();
 
@@ -27,10 +28,12 @@ export const SiteProvider: React.FC<ContextProps> = ({ children }) => {
         isUsingTerminal,
         currentDirectory,
         currentDisplayContent,
+        isSudoUser,
         location,
         setIsUsingTerminal,
         setCurrentDirectory,
-        setCurrentDisplayContent
+        setCurrentDisplayContent,
+        setIsSudoUser
       }}
     >
       {children}

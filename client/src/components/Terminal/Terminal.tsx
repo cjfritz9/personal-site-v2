@@ -32,9 +32,13 @@ const blink = keyframes`
 const blinkAnimation = `${blink} infinite 1s linear`;
 
 const Terminal: React.FC = () => {
-  const { isUsingTerminal, location, setIsUsingTerminal } = useContext(
-    SiteContext
-  ) as SiteInterface;
+  const {
+    isUsingTerminal,
+    isSudoUser,
+    location,
+    setIsUsingTerminal,
+    setIsSudoUser
+  } = useContext(SiteContext) as SiteInterface;
   const [terminalInput, setTerminalInput] = useState('');
   const [mode, setMode] = useState<TerminalModes>('auto-complete');
   const [suggestionResults, setSuggestionResults] =
@@ -181,6 +185,31 @@ const Terminal: React.FC = () => {
         if (terminalInput.includes('home')) {
           setSuggestionResults(terminalSuggestions);
           navigate('/');
+        }
+      }
+
+      if (mode === 'sudo') {
+        if (terminalInput === 'cjfritz9') {
+          setIsSudoUser(true);
+          setSuggestionResults([
+            { type: 'success', description: 'welcome back, cjfritz9' }
+          ]);
+          setTimeout(() => {
+            setMode('auto-complete');
+            setTerminalInput('');
+            setSuggestionResults(terminalSuggestions);
+          }, 2000);
+        } else {
+          setSuggestionResults([
+            {
+              type: 'error',
+              description: `${terminalInput} is not a valid credential`
+            }
+          ]);
+          setTimeout(() => {
+            setTerminalInput('');
+            setSuggestionResults([{type: 'sudo', description: 'sign in as superuser'}]);
+          }, 2000);
         }
       }
     }

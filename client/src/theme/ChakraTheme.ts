@@ -9,10 +9,12 @@ import tabsConfig from './components/Tabs';
 import textConfig from './components/Text';
 import iconConfig from './components/Icon';
 import tooltipConfig from './components/Tooltip';
+import buttonConfig from './components/Button';
 
 const theme = extendTheme({
   colors,
   components: {
+    Button: buttonConfig,
     Container: containerConfig,
     Heading: headingConfig,
     Icon: iconConfig,

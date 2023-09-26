@@ -7,10 +7,12 @@ export interface SiteInterface {
   isUsingTerminal: boolean;
   currentDirectory: Directories;
   currentDisplayContent: string;
+  isSudoUser: boolean;
   location: Location;
   setIsUsingTerminal: React.Dispatch<React.SetStateAction<boolean>>;
   setCurrentDirectory: React.Dispatch<React.SetStateAction<Directories>>;
   setCurrentDisplayContent: React.Dispatch<React.SetStateAction<string>>;
+  setIsSudoUser: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface CodleInterface {
@@ -24,4 +26,4 @@ export interface CodleInterface {
   setGameLost: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export type Pages = 'home' | 'about' | 'projects';
+export type Pages = 'home' | 'about' | 'projects' | 'sudo';

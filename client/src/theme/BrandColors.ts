@@ -42,7 +42,7 @@ export const snippetScrollbar = {
   '&::-webkit-scrollbar-track': {
     marginTop: '12px',
     marginBottom: '12px',
-    background: '#01080E',
+    background: '#01080E'
   },
   '&::-webkit-scrollbar-thumb': {
     borderRadius: '15px',
