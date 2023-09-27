@@ -27,8 +27,7 @@ export interface SnippetResponse {
 
 export type SnippetResponses = Array<SnippetResponse>;
 
-export interface JobAppResponse {
-  id: string;
+export interface JobAppData {
   companyName: string;
   positionTitle: string;
   postLink: string;
@@ -40,16 +39,8 @@ export interface JobAppResponse {
   };
 }
 
-export interface JobAppData {
-  companyName: string;
-  positionTitle: string;
-  postLink: string;
-  dateSubmitted: string;
-  isActive: boolean;
-  status: {
-    name: 'submitted' | 'stale' | 'interviewing' | 'offer';
-    weight: 1 | 2 | 3 | 4;
-  };
+export interface JobAppResponse extends JobAppData {
+  id: string;
 }
 
 export type JobAppResponses = Array<JobAppResponse>;

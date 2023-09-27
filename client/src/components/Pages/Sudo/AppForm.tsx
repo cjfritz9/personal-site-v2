@@ -13,7 +13,6 @@ import {
 import React, { useEffect, useReducer, useState } from 'react';
 import { formReducer, validateForm } from '../../../utils/sudo';
 import useJobApps from '../../../hooks/useJobApps';
-import { updateJobApp } from '../../../hooks/requests';
 import { JobAppResponse } from '../../../@types/responses';
 
 interface FormProps {
@@ -21,9 +20,14 @@ interface FormProps {
   setEditingData: React.Dispatch<
     React.SetStateAction<JobAppResponse | undefined>
   >;
+  setRefreshList: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const AppForm: React.FC<FormProps> = ({ editingData, setEditingData }) => {
+const AppForm: React.FC<FormProps> = ({
+  editingData,
+  setEditingData,
+  setRefreshList
+}) => {
   const [formState, dispatchFormAction] = useReducer(formReducer, {
     companyName: '',
     dateSubmitted: '',
@@ -39,7 +43,7 @@ const AppForm: React.FC<FormProps> = ({ editingData, setEditingData }) => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
 
-  const { createJobApp, getJobApps } = useJobApps();
+  const { createJobApp, updateJobApp } = useJobApps();
 
   const handleSubmit = async () => {
     setIsSubmitting(true);
@@ -57,7 +61,7 @@ const AppForm: React.FC<FormProps> = ({ editingData, setEditingData }) => {
         result = await updateJobApp(formState);
         setEditingData(undefined);
       }
-      getJobApps();
+      setRefreshList((prev) => !prev);
       if (result?.success) {
         setSuccess(true);
         resetForm();
@@ -77,7 +81,7 @@ const AppForm: React.FC<FormProps> = ({ editingData, setEditingData }) => {
   const handleCancel = () => {
     setEditingData(undefined);
     resetForm();
-  }
+  };
 
   const resetForm = () => {
     dispatchFormAction({ type: 'RESET' });

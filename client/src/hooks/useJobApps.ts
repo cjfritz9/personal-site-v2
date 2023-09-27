@@ -1,34 +1,40 @@
 import { useCallback, useEffect, useState } from 'react';
-import { JobAppData, JobAppResponses } from '../@types/responses';
-import { fetchJobApps, postJobApp} from './requests';
+import { JobAppData, JobAppResponse, JobAppResponses } from '../@types/responses';
+import { fetchJobApps, patchJobApp, postJobApp } from './requests';
 
 const useJobApps = () => {
   const [jobApps, setJobApps] = useState<JobAppResponses>([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  const createJobApp = useCallback(async (data: JobAppData) => {
-    const response = await postJobApp(data);
-
-    return response;
-  }, []);
+  const [isFirstLoad, setIsFirstLoad] = useState(true);
 
   const getJobApps = useCallback(async () => {
     const fetchedJobApps: JobAppResponses = await fetchJobApps();
 
+    setIsFirstLoad(false);
     setJobApps(fetchedJobApps);
-    setIsLoading(false);
-  }, [createJobApp]);
+  }, []);
 
+  const createJobApp = useCallback(async (data: JobAppData) => {
+    const response = await postJobApp(data);
+    await getJobApps();
+    return response;
+  }, []);
+
+  const updateJobApp = useCallback(async (data: JobAppResponse) => {
+    const response = await patchJobApp(data);
+    await getJobApps();
+    return response;
+  }, []);
 
   useEffect(() => {
     getJobApps();
   }, [getJobApps]);
 
   return {
-    createJobApp,
     getJobApps,
+    createJobApp,
+    updateJobApp,
     jobApps,
-    isLoading
+    isFirstLoad
   };
 };
 

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { UpdatedPlayerData } from '../@types/codle';
 import { setStoragePlayerId } from '../utils/codle';
-import { JobAppData } from '../@types/responses';
+import { JobAppData, JobAppResponse } from '../@types/responses';
 
 // INTERNAL CLIENT API
 
@@ -36,7 +36,7 @@ export const fetchRawSnippet = async (rawUrl: string) => {
 
 const trackingRequest = axios.create({
   baseURL: 'https://tracking.cjfritz.dev/v1',
-  timeout: 5000
+  timeout: 10000
 });
 
 export const fetchJobApps = async () => {
@@ -61,9 +61,13 @@ export const postJobApp = async (appData: JobAppData) => {
     });
 };
 
-export const updateJobApp = async (appData: JobAppData) => {
+export const patchJobApp = async ({
+  id,
+  ...appData
+}: JobAppResponse) => {
+  console.log(id, appData)
   return trackingRequest
-    .patch('/job-apps', appData)
+    .patch(`/job-apps/${id}`, appData)
     .then((res) => {
       return res.data;
     })

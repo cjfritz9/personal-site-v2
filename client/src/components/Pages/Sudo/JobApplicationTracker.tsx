@@ -1,4 +1,4 @@
-import React, { Dispatch, useEffect, useState } from 'react';
+import React, { Dispatch, useContext, useEffect, useState } from 'react';
 import {
   Avatar,
   Badge,
@@ -14,40 +14,57 @@ import {
   ListItem,
   MenuList,
   MenuItem,
-  IconButton
+  IconButton,
+  Spinner
 } from '@chakra-ui/react';
 import useJobApps from '../../../hooks/useJobApps';
-import { JobAppResponse } from '../../../@types/responses';
+import { JobAppData, JobAppResponse } from '../../../@types/responses';
 import { IoEllipsisVerticalSharp, IoTrashBin } from 'react-icons/io5';
 import { RiEdit2Line, RiExternalLinkLine } from 'react-icons/ri';
-import { updateJobApp } from '../../../hooks/requests';
+import { SiteContext } from '../../../context/Site.context';
+import { SiteInterface } from '../../../@types/context';
 
 interface Props {
   setEditingData: React.Dispatch<
     React.SetStateAction<JobAppResponse | undefined>
   >;
+  refreshList: boolean;
 }
 
-const JobApplicationTracker: React.FC<Props> = ({ setEditingData }) => {
-  const { jobApps, isLoading } = useJobApps();
-  const [order, setOrder] = useState(() => jobApps.map((app) => app.id));
+const JobApplicationTracker: React.FC<Props> = ({
+  setEditingData,
+  refreshList
+}) => {
+  const { jobApps, isFirstLoad, getJobApps } = useJobApps();
 
   useEffect(() => {
-    setOrder(() => jobApps.map((app) => app.id));
-  }, [jobApps]);
+    (async () => {
+      await getJobApps();
+    })();
+  }, [refreshList]);
+
+  console.log({ refreshList });
 
   return (
     <Center maxW='sm' mx='auto' py={{ base: '4', md: '8' }}>
       <Stack spacing='5' flex='1'>
+        {isFirstLoad && (
+          <Center>
+            <Spinner
+              size='xl'
+              speed='0.6s'
+              thickness='3px'
+              color='Accent.purple'
+            />
+          </Center>
+        )}
         <List listStyleType='none'>
           <Stack spacing='3' width='full' minW='320px'>
-            {order
-              .map((item) => jobApps.find((app) => app.id === item))
-              .map((app) =>
-                app && app.isActive ? (
-                  <AppCard data={app} setEditingData={setEditingData} />
-                ) : null
-              )}
+            {jobApps.map((app) =>
+              app && app.isActive ? (
+                <AppCard data={app} setEditingData={setEditingData} />
+              ) : null
+            )}
           </Stack>
         </List>
       </Stack>
@@ -63,6 +80,7 @@ interface CardProps {
 }
 
 const AppCard: React.FC<CardProps> = ({ data, setEditingData }) => {
+  const { updateJobApp } = useJobApps();
   const handleNav = (url: string) => {
     window.open(url, '_blank');
   };
