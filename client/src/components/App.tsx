@@ -6,8 +6,19 @@ import Footer from './Layout/Footer';
 import _404Page from './Pages/404/_404.page';
 import AboutMePage from './Pages/About/_AboutMe.page';
 import SudoPage from './Pages/Sudo/_SudoPage';
+import { useContext, useEffect } from 'react';
+import { SiteContext } from '../context/Site.context';
+import { SiteInterface } from '../@types/context';
 
 const App: React.FC = () => {
+  const { isSudoUser, setIsSudoUser } = useContext(SiteContext) as SiteInterface;
+
+  useEffect(() => {
+    const sudoUser = window.localStorage.getItem('sudo-user');
+    if (sudoUser === 'cjfritz9') {
+      setIsSudoUser(true);
+    }
+  }, [isSudoUser])
   return (
     <Box
       maxH='100dvh'

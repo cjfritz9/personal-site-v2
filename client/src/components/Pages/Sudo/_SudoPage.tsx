@@ -36,7 +36,7 @@ const SudoPage: React.FC = () => {
   }
 
   return (
-    <Container variant='page' overflowY='scroll'>
+    <Container variant='page'>
       <HStack alignItems='flex-start' gap='4rem'>
         <AppForm
           editingData={editingData}

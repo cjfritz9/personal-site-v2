@@ -15,7 +15,8 @@ import {
   MenuList,
   MenuItem,
   IconButton,
-  Spinner
+  Spinner,
+  Heading
 } from '@chakra-ui/react';
 import useJobApps from '../../../hooks/useJobApps';
 import { JobAppData, JobAppResponse } from '../../../@types/responses';
@@ -43,11 +44,27 @@ const JobApplicationTracker: React.FC<Props> = ({
     })();
   }, [refreshList]);
 
-  console.log({ refreshList });
-
   return (
-    <Center maxW='sm' mx='auto' py={{ base: '4', md: '8' }}>
-      <Stack spacing='5' flex='1'>
+    <HStack
+      spacing='1rem'
+      alignItems='flex-start'
+      mt='5rem'
+      px='3rem'
+      maxH='80.4dvh'
+      overflowX='hidden'
+      overflowY='scroll'
+    >
+      <Stack spacing='5' flex='1' alignItems='center'>
+        <Text
+          px='2rem'
+          py='1rem'
+          pos='absolute'
+          top='4rem'
+          borderRadius='8px'
+          color='Accent.purple !important'
+          bg='Primary.dkSlate'
+          zIndex={2}
+        >{`Active (${jobApps.filter((item) => item.isActive).length})`}</Text>
         {isFirstLoad && (
           <Center>
             <Spinner
@@ -68,7 +85,40 @@ const JobApplicationTracker: React.FC<Props> = ({
           </Stack>
         </List>
       </Stack>
-    </Center>
+      <Stack spacing='5' flex='1' alignItems='center'>
+        <Text
+          px='2rem'
+          py='1rem'
+          pos='absolute'
+          top='4rem'
+          borderRadius='8px'
+          color='Accent.purple !important'
+          bg='Primary.dkSlate'
+          zIndex={2}
+        >{`Inactive (${
+          jobApps && jobApps.filter((item) => !item.isActive).length
+        })`}</Text>
+        {isFirstLoad && (
+          <Center>
+            <Spinner
+              size='xl'
+              speed='0.6s'
+              thickness='3px'
+              color='Accent.purple'
+            />
+          </Center>
+        )}
+        <List listStyleType='none'>
+          <Stack spacing='3' width='full' minW='320px'>
+            {jobApps.map((app) =>
+              app && !app.isActive ? (
+                <AppCard data={app} setEditingData={setEditingData} />
+              ) : null
+            )}
+          </Stack>
+        </List>
+      </Stack>
+    </HStack>
   );
 };
 
@@ -150,15 +200,17 @@ const AppCard: React.FC<CardProps> = ({ data, setEditingData }) => {
                   >
                     Edit
                   </MenuItem>
-                  <MenuItem
-                    _hover={{ color: 'white' }}
-                    icon={<IoTrashBin />}
-                    py='4px'
-                    color='Secondary.slate'
-                    onClick={handleDelete}
-                  >
-                    Delete
-                  </MenuItem>
+                  {data.isActive && (
+                    <MenuItem
+                      _hover={{ color: 'white' }}
+                      icon={<IoTrashBin />}
+                      py='4px'
+                      color='Secondary.slate'
+                      onClick={handleDelete}
+                    >
+                      Delete
+                    </MenuItem>
+                  )}
                 </MenuList>
               </Menu>
             </HStack>
@@ -170,17 +222,17 @@ const AppCard: React.FC<CardProps> = ({ data, setEditingData }) => {
         <HStack justify='space-between'>
           <Badge
             colorScheme={
-              data.status.name === 'submitted'
+              data.status.name === 'stale' || !data.isActive
+                ? 'red'
+                : data.status.name === 'submitted'
                 ? 'cyan'
                 : data.status.name === 'interviewing'
                 ? 'yellow'
-                : data.status.name === 'stale'
-                ? 'red'
                 : 'green'
             }
             size='sm'
           >
-            {data.status.name}
+            {data.isActive ? data.status.name : 'Inactive'}
           </Badge>
           <Text fontSize='14px'>{data.dateSubmitted}</Text>
         </HStack>

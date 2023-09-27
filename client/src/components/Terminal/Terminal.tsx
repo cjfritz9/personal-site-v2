@@ -191,6 +191,7 @@ const Terminal: React.FC = () => {
       if (mode === 'sudo') {
         if (terminalInput === 'cjfritz9') {
           setIsSudoUser(true);
+          window.localStorage.setItem('sudo-user', 'cjfritz9');
           setSuggestionResults([
             { type: 'success', description: 'welcome back, cjfritz9' }
           ]);
