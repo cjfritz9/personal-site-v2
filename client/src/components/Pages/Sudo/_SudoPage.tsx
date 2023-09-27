@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
   Container,
   HStack,
@@ -11,9 +11,11 @@ import JobApplicationTracker from './JobApplicationTracker';
 import { SiteContext } from '../../../context/Site.context';
 import { SiteInterface } from '../../../@types/context';
 import { useNavigate } from 'react-router';
-import NewAppForm from './NewAppForm';
+import AppForm from './AppForm';
+import { JobAppResponse } from '../../../@types/responses';
 
 const SudoPage: React.FC = () => {
+  const [editingData, setEditingData] = useState<JobAppResponse | undefined>();
   // const { isSudoUser } = useContext(SiteContext) as SiteInterface;
 
   // const navigate = useNavigate();
@@ -35,8 +37,8 @@ const SudoPage: React.FC = () => {
   return (
     <Container variant='page' overflowY='scroll'>
       <HStack alignItems='flex-start' gap='4rem'>
-        <NewAppForm />
-        <JobApplicationTracker />
+        <AppForm editingData={editingData} setEditingData={setEditingData} />
+        <JobApplicationTracker setEditingData={setEditingData} />
       </HStack>
     </Container>
   );

@@ -30,11 +30,25 @@ export type SnippetResponses = Array<SnippetResponse>;
 export interface JobAppResponse {
   id: string;
   companyName: string;
+  positionTitle: string;
+  postLink: string;
   dateSubmitted: string;
   isActive: boolean;
   status: {
     name: 'submitted' | 'stale' | 'interviewing' | 'offer';
-    weight: number;
+    weight: 1 | 2 | 3 | 4;
+  };
+}
+
+export interface JobAppData {
+  companyName: string;
+  positionTitle: string;
+  postLink: string;
+  dateSubmitted: string;
+  isActive: boolean;
+  status: {
+    name: 'submitted' | 'stale' | 'interviewing' | 'offer';
+    weight: 1 | 2 | 3 | 4;
   };
 }
 
