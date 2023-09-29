@@ -20,7 +20,6 @@ import {
   terminalSearchResults,
   terminalSuggestions
 } from '../../utils/terminal';
-import { useNavigate } from 'react-router';
 import { SiteContext } from '../../context/Site.context';
 import { SiteInterface } from '../../@types/context';
 
@@ -34,8 +33,8 @@ const blinkAnimation = `${blink} infinite 1s linear`;
 const Terminal: React.FC = () => {
   const {
     isUsingTerminal,
-    isSudoUser,
     location,
+    navigate,
     setIsUsingTerminal,
     setIsSudoUser
   } = useContext(SiteContext) as SiteInterface;
@@ -51,7 +50,6 @@ const Terminal: React.FC = () => {
   );
   const [showSuggestions, setShowSuggestions] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
-  const navigate = useNavigate();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const comparisonValue = e.target.value.toLowerCase().trim();
@@ -62,8 +60,8 @@ const Terminal: React.FC = () => {
     }
 
     if (mode === 'cd') {
-      const results = getCdList(location.pathname).filter((result) =>
-        result.dirname.includes(comparisonValue)
+      const results = getCdList(location.pathname + location.search).filter(
+        (result) => result.dirname.includes(comparisonValue)
       );
       if (!results[0]) {
         setCdResults([
@@ -74,7 +72,7 @@ const Terminal: React.FC = () => {
         ]);
       } else {
         setCdResults(
-          getCdList(location.pathname).filter(
+          getCdList(location.pathname + location.search).filter(
             (result) =>
               result.dirname !== 'PARENT' &&
               result.dirname.includes(comparisonValue)
@@ -137,7 +135,7 @@ const Terminal: React.FC = () => {
         if (
           cdResults[0] &&
           !cdResults[0].dirname.includes('no matches') &&
-          !cdResults[0].dirname.includes('parent dir')
+          !cdResults[0].dirname.includes('PARENT')
         ) {
           setTerminalInput(cdResults[0].dirname);
           setCdResults([cdResults[0]]);
@@ -167,13 +165,13 @@ const Terminal: React.FC = () => {
         if (!terminalInput.length) {
           setMode('auto-complete');
           setSuggestionResults(terminalSuggestions);
-          navigate('/');
+          return navigate('/');
         }
         if (terminalInput === '..') {
-          const parentDir = getCdList(location.pathname).find(
+          const parentDir = getCdList(location.pathname + location.search).find(
             (result) => result.dirname === 'PARENT'
           ) as CDResult;
-          navigate(parentDir.handle);
+          return navigate(parentDir.handle);
         }
         const result = cdResults.filter(
           (result) => result.dirname === terminalInput
@@ -209,7 +207,9 @@ const Terminal: React.FC = () => {
           ]);
           setTimeout(() => {
             setTerminalInput('');
-            setSuggestionResults([{type: 'sudo', description: 'sign in as superuser'}]);
+            setSuggestionResults([
+              { type: 'sudo', description: 'sign in as superuser' }
+            ]);
           }, 2000);
         }
       }
@@ -243,9 +243,9 @@ const Terminal: React.FC = () => {
   };
 
   useEffect(() => {
-    setCdResults(getCdList(location.pathname));
+    setCdResults(getCdList(location.pathname + location.search));
     setTerminalInput('');
-  }, [location.pathname]);
+  }, [location]);
 
   return (
     <Flex

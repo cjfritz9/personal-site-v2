@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
   Box,
   Container,
@@ -14,13 +14,14 @@ import { SiteInterface } from '../../../@types/context';
 import { RiClipboardLine } from 'react-icons/ri';
 
 const Item: React.FC<ItemProps> = ({ icon, iconColor, name }) => {
-  const { setCurrentDisplayContent } = useContext(SiteContext) as SiteInterface;
+  const { location, navigate, setCurrentDisplayContent } = useContext(
+    SiteContext
+  ) as SiteInterface;
   const toast = useToast();
 
   const handleClick = (name: string) => {
     if (name === 'dev.cjfritz@gmail.com' || name === '(785) 217-7125') {
       navigator.clipboard.writeText(name);
-      console.log(name, toast.isActive(name));
       if (!toast.isActive(name)) {
         toast.closeAll();
         toast({
@@ -28,15 +29,25 @@ const Item: React.FC<ItemProps> = ({ icon, iconColor, name }) => {
           title: 'Copied to clipboard',
           icon: <RiClipboardLine size='24px' />,
           description: name,
-          // status: 'success',
           position: 'bottom-left',
           duration: 4000
         });
       }
     } else {
       setCurrentDisplayContent(name);
+      const folder = location.search.includes('.txt')
+        ? location.search.slice(0, location.search.lastIndexOf('&'))
+        : location.search;
+      navigate(`${location.pathname}${folder}&${name}.txt`);
     }
   };
+
+  useEffect(() => {
+    if (location.search.includes(name)) {
+      setCurrentDisplayContent(name);
+    }
+  }, [location.search]);
+
   return (
     <Container variant='item' onClick={() => handleClick(name)}>
       <Icon as={icon} style={{ fontSize: '16px', color: iconColor }} />

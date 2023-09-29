@@ -12,14 +12,11 @@ import AppForm from './AppForm';
 import { JobAppResponse } from '../../../@types/responses';
 import { SiteContext } from '../../../context/Site.context';
 import { SiteInterface } from '../../../@types/context';
-import { useNavigate } from 'react-router';
 
 const SudoPage: React.FC = () => {
   const [editingData, setEditingData] = useState<JobAppResponse | undefined>();
   const [refreshList, setRefreshList] = useState(false);
-  const { isSudoUser } = useContext(SiteContext) as SiteInterface;
-
-  const navigate = useNavigate();
+  const { isSudoUser, navigate } = useContext(SiteContext) as SiteInterface;
 
   if (!isSudoUser) {
     return (
@@ -37,7 +34,7 @@ const SudoPage: React.FC = () => {
 
   return (
     <Container variant='page'>
-      <HStack alignItems='flex-start' gap='4rem'>
+      <HStack alignItems='flex-start' gap='0'>
         <AppForm
           editingData={editingData}
           setEditingData={setEditingData}

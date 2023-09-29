@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ContextProps } from '../@types/props';
 import { SiteInterface } from '../@types/context';
 import { Directories } from '../@types/about';
-import { useLocation } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 
 export const SiteContext = React.createContext<SiteInterface | null>(null);
 
@@ -15,6 +15,7 @@ export const SiteProvider: React.FC<ContextProps> = ({ children }) => {
   const [isSudoUser, setIsSudoUser] = useState<boolean>(false);
   
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!location.pathname.includes('about')) {
@@ -30,6 +31,7 @@ export const SiteProvider: React.FC<ContextProps> = ({ children }) => {
         currentDisplayContent,
         isSudoUser,
         location,
+        navigate,
         setIsUsingTerminal,
         setCurrentDirectory,
         setCurrentDisplayContent,

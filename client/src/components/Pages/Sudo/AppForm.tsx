@@ -99,7 +99,14 @@ const AppForm: React.FC<FormProps> = ({
 
   if (editingData) {
     return (
-      <Box bg='Primary.dkGray' p='2.5rem' mt='2rem' pos='sticky' top='8.5rem'>
+      <Box
+        bg='Primary.dkGray'
+        p='2.5rem'
+        mt='2.5rem'
+        pos='sticky'
+        top='8.5rem'
+        borderRadius='8px'
+      >
         <Stack>
           <FormControl>
             <FormLabel htmlFor='position-title'>Position Title</FormLabel>
@@ -223,7 +230,15 @@ const AppForm: React.FC<FormProps> = ({
   }
 
   return (
-    <Box bg='Primary.dkGray' p='2.5rem' mt='2rem' pos='sticky' top='8.5rem'>
+    <Box
+      bg='Primary.dkGray'
+      p='2.5rem'
+      mt='2.5rem'
+      pos='sticky'
+      top='8.5rem'
+      borderRadius='8px'
+      boxShadow='dark-lg'
+    >
       <Stack>
         <FormControl>
           <FormLabel htmlFor='position-title'>Position Title</FormLabel>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { GameBoard } from '../models/Codle';
 import { Directories } from './about';
-import { Location } from 'react-router';
+import { Location, NavigateFunction } from 'react-router';
 
 export interface SiteInterface {
   isUsingTerminal: boolean;
@@ -9,6 +9,7 @@ export interface SiteInterface {
   currentDisplayContent: string;
   isSudoUser: boolean;
   location: Location;
+  navigate: NavigateFunction;
   setIsUsingTerminal: React.Dispatch<React.SetStateAction<boolean>>;
   setCurrentDirectory: React.Dispatch<React.SetStateAction<Directories>>;
   setCurrentDisplayContent: React.Dispatch<React.SetStateAction<string>>;

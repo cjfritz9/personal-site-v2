@@ -38,6 +38,9 @@ const JobApplicationTracker: React.FC<Props> = ({
 }) => {
   const { jobApps, isFirstLoad, getJobApps } = useJobApps();
 
+  let activeCount = -1;
+  let inactiveCount = -1;
+
   useEffect(() => {
     (async () => {
       await getJobApps();
@@ -45,15 +48,7 @@ const JobApplicationTracker: React.FC<Props> = ({
   }, [refreshList]);
 
   return (
-    <HStack
-      spacing='1rem'
-      alignItems='flex-start'
-      mt='5rem'
-      px='3rem'
-      maxH='80.4dvh'
-      overflowX='hidden'
-      overflowY='scroll'
-    >
+    <HStack spacing='1rem' alignItems='flex-start' mt='5rem' px='3rem'>
       <Stack spacing='5' flex='1' alignItems='center'>
         <Text
           px='2rem'
@@ -76,11 +71,34 @@ const JobApplicationTracker: React.FC<Props> = ({
           </Center>
         )}
         <List listStyleType='none'>
-          <Stack spacing='3' width='full' minW='320px'>
-            {jobApps.map((app) =>
-              app && app.isActive ? (
-                <AppCard data={app} setEditingData={setEditingData} />
-              ) : null
+          <Stack
+            p='8px'
+            spacing='4'
+            width='full'
+            maxH='78dvh'
+            minW='320px'
+            borderRadius='8px'
+            overflowX='hidden'
+            overflowY='scroll'
+            boxShadow='0 4px 10px #011221 inset'
+            css={{
+              msOverflowStyle: 'none',
+              scrollbarWidth: 'none',
+              '&::-webkit-scrollbar': {
+                display: 'none'
+              }
+            }}
+          >
+            {jobApps.map((app, i) => {
+              app?.isActive ? activeCount++ : null;
+              return app && app.isActive ? (
+                <AppCard
+                  key={i}
+                  data={app}
+                  count={activeCount}
+                  setEditingData={setEditingData}
+                />
+              ) : null}
             )}
           </Stack>
         </List>
@@ -109,11 +127,34 @@ const JobApplicationTracker: React.FC<Props> = ({
           </Center>
         )}
         <List listStyleType='none'>
-          <Stack spacing='3' width='full' minW='320px'>
-            {jobApps.map((app) =>
-              app && !app.isActive ? (
-                <AppCard data={app} setEditingData={setEditingData} />
-              ) : null
+          <Stack
+            p='8px'
+            spacing='4'
+            width='full'
+            maxH='78dvh'
+            minW='320px'
+            overflowX='hidden'
+            overflowY='scroll'
+            borderRadius='8px'
+            boxShadow='0 4px 10px #011221 inset'
+            css={{
+              msOverflowStyle: 'none',
+              scrollbarWidth: 'none',
+              '&::-webkit-scrollbar': {
+                display: 'none'
+              }
+            }}
+          >
+            {jobApps.map((app, i) => {
+              !app.isActive ? inactiveCount++ : null;
+              return app && !app.isActive ? (
+                <AppCard
+                  key={i}
+                  data={app}
+                  count={inactiveCount}
+                  setEditingData={setEditingData}
+                />
+              ) : null}
             )}
           </Stack>
         </List>
@@ -127,9 +168,10 @@ interface CardProps {
   setEditingData: React.Dispatch<
     React.SetStateAction<JobAppResponse | undefined>
   >;
+  count: number;
 }
 
-const AppCard: React.FC<CardProps> = ({ data, setEditingData }) => {
+const AppCard: React.FC<CardProps> = ({ data, count, setEditingData }) => {
   const { updateJobApp } = useJobApps();
   const handleNav = (url: string) => {
     window.open(url, '_blank');
@@ -144,12 +186,15 @@ const AppCard: React.FC<CardProps> = ({ data, setEditingData }) => {
     <ListItem
       key={data.id}
       value={data.id}
-      bg='Primary.dkGray'
+      bg='Primary.dkSlate'
       p='4'
       boxShadow='sm'
       position='relative'
       borderRadius='lg'
       minW='480px'
+      shadow='dark-lg'
+      pos='sticky'
+      top={count * 12 + 'px'}
     >
       <Stack shouldWrapChildren spacing='4'>
         <Stack spacing='0'>

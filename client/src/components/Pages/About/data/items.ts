@@ -69,11 +69,6 @@ export const interestsItems = [
     icon: RiLeafFill,
     iconColor: eggshell,
     name: 'environment'
-  },
-  {
-    icon: RiBaiduLine,
-    iconColor: eggshell,
-    name: 'animals'
   }
 ];
 

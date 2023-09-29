@@ -65,7 +65,6 @@ export const patchJobApp = async ({
   id,
   ...appData
 }: JobAppResponse) => {
-  console.log(id, appData)
   return trackingRequest
     .patch(`/job-apps/${id}`, appData)
     .then((res) => {

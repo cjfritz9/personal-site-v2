@@ -10,35 +10,29 @@ import {
   Menu,
   MenuButton,
   MenuList,
-  MenuItem,
-  TabPanel
+  MenuItem
 } from '@chakra-ui/react';
 import { RiCloseLine, RiMenuLine } from 'react-icons/ri';
 
 import Panel from '../Shared/Panel';
-import { useNavigate } from 'react-router';
 import { SiteContext } from '../../context/Site.context';
 import { Pages, SiteInterface } from '../../@types/context';
 
 const links = [
   { title: 'Home.tsx', path: '/home' },
-  { title: 'AboutMe.tsx', path: '/about' },
+  { title: 'AboutMe.tsx', path: '/about?=career' },
   { title: 'Projects.tsx', path: '/projects' }
 ];
 
 const Header: React.FC = () => {
-  const { location, isSudoUser } = useContext(SiteContext) as SiteInterface;
+  const { navigate, location, isSudoUser } = useContext(
+    SiteContext
+  ) as SiteInterface;
   const [activeTab, setActiveTab] = useState<Pages>('home');
   const [isSmallerThan480, isSmallerThan992] = useMediaQuery([
     '(max-width: 480px)',
     '(max-width: 992px)'
   ]);
-
-  const navigate = useNavigate();
-
-  if (isSudoUser && !links[3]) {
-    links.push({ title: 'Sudo.tsx', path: '/sudo' });
-  }
 
   useEffect(() => {
     if (location.pathname.includes('/about')) {
@@ -57,6 +51,12 @@ const Header: React.FC = () => {
       setActiveTab('sudo');
     }
   }, [location.pathname]);
+
+  useEffect(() => {
+    if (isSudoUser && !links[3]) {
+      links.push({ title: 'Sudo.tsx', path: '/sudo' });
+    }
+  }, [isSudoUser]);
 
   if (isSmallerThan992) {
     return (
@@ -103,7 +103,15 @@ const Header: React.FC = () => {
         />
         <Flex h='100%' grow={1}>
           <Tabs
-            index={activeTab === 'home' ? 0 : activeTab === 'about' ? 1 : activeTab === 'projects' ? 2 : 3}
+            index={
+              activeTab === 'home'
+                ? 0
+                : activeTab === 'about'
+                ? 1
+                : activeTab === 'projects'
+                ? 2
+                : 3
+            }
           >
             <TabList>
               {links.map((link, i) => (

@@ -16,26 +16,26 @@ import { RiChat3Fill, RiChat3Line, RiStarLine } from 'react-icons/ri';
 import { snippetScrollbar } from '../../../theme/BrandColors';
 
 const Snippet: React.FC<SnippetProps> = ({
-  author,
-  avatarUrl,
-  profileUrl,
-  url,
-  descriptionText,
-  createdAt,
-  snippetText,
-  languageName,
-  languageColor,
-  stargazerCount
+  // author,
+  // avatarUrl,
+  // profileUrl,
+  // url,
+  // descriptionText,
+  // createdAt,
+  // snippetText,
+  // languageName,
+  // languageColor,
+  // stargazerCount
 }) => {
-  const [showDetails, setShowDetails] = useState(false);
+  // const [showDetails, setShowDetails] = useState(false);
 
-  const handleClick = (type: 'gist' | 'profile') => {
-    window.open(type === 'gist' ? url : profileUrl, '_blank');
-  };
+  // const handleClick = (type: 'gist' | 'profile') => {
+  //   window.open(type === 'gist' ? url : profileUrl, '_blank');
+  // };
 
   return (
     <Stack w='100%' gap='12px'>
-      <Flex w='100%' justifyContent='space-between'>
+      {/* <Flex w='100%' justifyContent='space-between'>
         <Flex gap='12px'>
           <Image
             cursor='pointer'
@@ -112,7 +112,7 @@ const Snippet: React.FC<SnippetProps> = ({
         <Text variant='snippet' whiteSpace='pre-wrap'>
           {showDetails ? descriptionText : snippetText}
         </Text>
-      </Box>
+      </Box> */}
     </Stack>
   );
 };

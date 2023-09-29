@@ -15,11 +15,9 @@ const Display: React.FC = () => {
 
   useLayoutEffect(() => {
     if (textWrapRef && textWrapRef.current && currentDisplayContent) {
-      if (textWrapRef.current.clientHeight > 700) {
-        setLineCount(Math.round(textWrapRef.current.clientHeight / 23.5));
-      } else {
-        setLineCount(Math.round(textWrapRef.current.clientHeight / 22.5));
-      }
+      const offset = Math.floor(textWrapRef.current.clientWidth / 700);
+      const height = textWrapRef.current.clientHeight;
+      setLineCount(Math.ceil(height / (23.5 + offset)));
     }
   }, [textWrapRef.current, currentDisplayContent]);
 
@@ -31,7 +29,6 @@ const Display: React.FC = () => {
           w='fit-content'
           m={0}
           p='.5rem'
-          // mt='-1.5px'
           borderRight='1px solid'
           borderColor='Lines'
           alignItems='center'

@@ -7,15 +7,16 @@ import { SiteInterface } from '../../../@types/context';
 import { Directories } from '../../../@types/about';
 
 const SlimNav: React.FC = () => {
-  const { location, setCurrentDirectory } = useContext(
+  const { location, navigate, setCurrentDirectory } = useContext(
     SiteContext
   ) as SiteInterface;
   const [activeIndex, setActiveIndex] = useState(0);
+  const directories: Directories[] = ['career', 'personal', 'hobbies'];
 
   const clickHandler = (index: number) => {
-    const directories: Directories[] = ['career', 'personal', 'hobbies'];
     setActiveIndex(index);
     setCurrentDirectory(directories[index]);
+    navigate(`/about?=${directories[index]}`)
   };
 
   useEffect(() => {
@@ -28,7 +29,7 @@ const SlimNav: React.FC = () => {
         ? 1
         : 2;
       setActiveIndex(tabIndex);
-      setCurrentDirectory(location.search.slice(2) as Directories);
+      setCurrentDirectory(directories[tabIndex]);
     }
   }, [location.search]);
 

@@ -11,16 +11,38 @@ import { SiteContext } from '../../../context/Site.context';
 import { SiteInterface } from '../../../@types/context';
 
 const Folder: React.FC<FolderProps> = ({ folderColor, folderName, items }) => {
-  const { currentDirectory } = useContext(SiteContext) as SiteInterface;
+  const { location, currentDirectory, navigate } = useContext(
+    SiteContext
+  ) as SiteInterface;
   const [isOpen, setIsOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setIsOpen((prev) => !prev);
+    const folder = location.search.includes('&')
+      ? location.search.slice(0, location.search.indexOf('&'))
+      : location.search;
+    if (!isOpen) {
+      navigate(`${location.pathname}${folder}&${folderName}`);
+    } else {
+      navigate(`${location.pathname}${folder}`);
+    }
+  };
 
   useEffect(() => {
     setIsOpen(false);
   }, [currentDirectory]);
 
+  useEffect(() => {
+    if (location.search.includes(folderName)) {
+      setIsOpen(true);
+    } else {
+      setIsOpen(false);
+    }
+  }, [location.search]);
+
   return (
     <Stack px='1rem'>
-      <Container variant='folder' onClick={() => setIsOpen((prev) => !prev)}>
+      <Container variant='folder' onClick={handleClick}>
         <Icon
           as={isOpen ? RiFolderOpenFill : RiFolder3Fill}
           style={{ color: folderColor, fontSize: '20px' }}

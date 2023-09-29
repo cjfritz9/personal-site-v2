@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Container, Heading, Link, Stack, Text } from '@chakra-ui/react';
-import { useNavigate } from 'react-router';
+import { SiteContext } from '../../../context/Site.context';
+import { SiteInterface } from '../../../@types/context';
 
 const _404Page: React.FC = () => {
-  const navigate = useNavigate();
+  const { navigate } = useContext(SiteContext) as SiteInterface;
 
   return (
     <Container variant='page'>
