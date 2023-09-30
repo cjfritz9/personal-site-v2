@@ -3,10 +3,10 @@ import { ProjectItem, projectItems } from "../components/Pages/Projects/data/pro
 export const getFilteredProjects = (filters: string[]): ProjectItem[] => {
   return projectItems.filter((proj) => {
     for (let i = 0; i < filters.length; i++) {
-      if (proj.technologies.includes(filters[i])) {
-        return true;
+      if (!proj.technologies.includes(filters[i])) {
+        return false;
       }
     }
-    return false;
+    return true;
   })
 }

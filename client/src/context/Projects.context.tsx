@@ -11,16 +11,7 @@ export const ProjectsContext = React.createContext<ProjectsInterface | null>(
 
 export const ProjectsProvider: React.FC<ContextProps> = ({ children }) => {
   const [filteredProjects, setFilteredProjects] = useState(projectItems);
-  const [filters, setFilters] = useState([
-    'react',
-    'svelte',
-    'node',
-    'express',
-    'graphql',
-    'postgresql',
-    'firebase',
-    'mongodb'
-  ]);
+  const [filters, setFilters] = useState<string[]>([]);
 
   useEffect(() => {
     setFilteredProjects(getFilteredProjects(filters));

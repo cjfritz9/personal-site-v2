@@ -21,7 +21,7 @@ const ProjectsDisplay: React.FC = () => {
           alignItems='center'
         >
           <Text variant='label' px='1rem'>
-            {filters.length ? `${filters.join(' | ')}` : 'select a filter'}
+            {filters.length ? `${filters.join(' + ')} projects` : 'all projects'}
           </Text>
           <Icon as={RiCloseLine} fontSize='20px' onClick={() => setFilters([])} />
         </Flex>

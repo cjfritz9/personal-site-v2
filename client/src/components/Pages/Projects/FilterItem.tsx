@@ -5,7 +5,7 @@ import { projectItems } from './data/projectItems';
 import { ProjectsContext } from '../../../context/Projects.context';
 
 const FilterItem: React.FC<FilterItemProps> = ({ item }) => {
-  const [isSelected, setIsSelected] = useState(true);
+  const [isSelected, setIsSelected] = useState(false);
   const { filters, setFilters } = useContext(ProjectsContext)!;
   const { name, icon } = item;
 
