@@ -34,9 +34,9 @@ const Snippets: React.FC = () => {
         >
           {isLoading
             ? [
-                <LoadingSnippet index={0} />,
-                <LoadingSnippet index={1} />,
-                <LoadingSnippet index={2} />
+                <LoadingSnippet key={0} index={0} />,
+                <LoadingSnippet key={1} index={1} />,
+                <LoadingSnippet key={2} index={2} />
               ]
             : snippets.map((snippet, i) => {
                 return (

@@ -12,14 +12,15 @@ import { SiteInterface } from '../@types/context';
 import ProjectsPage from './Pages/Projects/_Projects.page';
 
 const App: React.FC = () => {
-  const { isSudoUser, setIsSudoUser } = useContext(SiteContext) as SiteInterface;
+  const { setIsSudoUser } = useContext(SiteContext) as SiteInterface;
 
   useEffect(() => {
     const sudoUser = window.localStorage.getItem('sudo-user');
     if (sudoUser === 'cjfritz9') {
       setIsSudoUser(true);
     }
-  }, [isSudoUser])
+  }, [])
+
   return (
     <Box
       maxH='100dvh'
