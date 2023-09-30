@@ -3,6 +3,7 @@ import {
   RiBracesFill,
   RiCaravanFill,
   RiCodeBoxFill,
+  RiExternalLinkFill,
   RiFileChartFill,
   RiGameFill,
   RiGraduationCapFill,
@@ -134,5 +135,18 @@ export const contactItems = [
     icon: RiPhoneFill,
     iconColor: eggshell,
     name: '(785) 217-7125'
+  }
+];
+
+export const linksItems = [
+  {
+    icon: RiExternalLinkFill,
+    iconColor: eggshell,
+    name: 'upwork'
+  },
+  {
+    icon: RiExternalLinkFill,
+    iconColor: eggshell,
+    name: 'leetcode'
   }
 ];

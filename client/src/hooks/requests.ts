@@ -120,3 +120,15 @@ export const updatePlayerData = async (
 
   return result.data;
 };
+
+// EXTERNAL EMAIL API 
+
+export const postContactForm = async (data: object) => {
+  const response = await axios.post('https://mail-server-379822.uc.r.appspot.com/personal/send', data);
+
+  if (response.data.success) {
+    return { success: 'Your Message Was Sent'}
+  } else {
+    return { error: 'Server Error'}
+  }
+};

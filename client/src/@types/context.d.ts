@@ -36,4 +36,11 @@ export interface ProjectsInterface {
   setIsUpdating: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export type Pages = 'home' | 'about' | 'projects' | 'sudo';
+export interface ContactInterface {
+  name: string;
+  email: string;
+  message: string;
+  dispatchFormAction: React.Dispatch<React.Reducer<ContactFormData>>;
+}
+
+export type Pages = 'home' | 'about' | 'projects' | 'sudo' | 'contact';

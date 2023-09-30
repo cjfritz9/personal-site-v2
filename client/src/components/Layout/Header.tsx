@@ -50,6 +50,10 @@ const Header: React.FC = () => {
     if (location.pathname.includes('/sudo')) {
       setActiveTab('sudo');
     }
+
+    if (location.pathname.includes('/contact')) {
+      setActiveTab('contact');
+    }
   }, [location.pathname]);
 
   useEffect(() => {
@@ -110,7 +114,9 @@ const Header: React.FC = () => {
                 ? 1
                 : activeTab === 'projects'
                 ? 2
-                : 3
+                : activeTab === 'sudo'
+                ? 3
+                : 4
             }
           >
             <TabList>

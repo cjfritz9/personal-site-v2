@@ -5,6 +5,8 @@ import { IconType } from 'react-icons';
 import { Directories } from './about';
 import { FilterItem } from '../components/Pages/Projects/data/filterItems';
 import { ProjectItem } from '../components/Pages/Projects/data/projectItems';
+import { contactItems } from '../components/Pages/About/data/items';
+import { ContactFormData } from '../utils/contact';
 
 export interface TabProps {
   activeTab: Pages;
@@ -110,4 +112,9 @@ interface ProjectItemProps {
 
 interface TechBadgeProps {
   name: string;
+}
+
+export interface ContactsSectionProps {
+  title: string;
+  listItems: typeof contactItems;
 }

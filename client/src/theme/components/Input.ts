@@ -21,7 +21,7 @@ const baseStyle = definePartsStyle({
 });
 
 const codle = definePartsStyle({
-  field:{
+  field: {
     w: ['48px', null, '56px'],
     h: ['48px', null, '56px'],
     py: '8px',
@@ -31,9 +31,28 @@ const codle = definePartsStyle({
     bgColor: 'Primary.dkGray',
     transition: 'all .75s ease',
     _readOnly: true
- }
+  }
 });
 
-const inputConfig = defineMultiStyleConfig({ baseStyle, variants: { codle } });
+const contactForm = definePartsStyle({
+  field: {
+    _focus: {
+      borderColor: 'Secondary.slate'
+    },
+    h: '42px',
+    w: '100%',
+    color: 'Secondary.white',
+    bgColor: 'Primary.dkGray',
+    border: '1px solid',
+    borderWidth: '1px !important',
+    borderColor: 'Lines',
+    borderRadius: '8px'
+  }
+});
+
+const inputConfig = defineMultiStyleConfig({
+  baseStyle,
+  variants: { codle, contactForm }
+});
 
 export default inputConfig;

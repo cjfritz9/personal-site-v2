@@ -10,6 +10,7 @@ import { useContext, useEffect } from 'react';
 import { SiteContext } from '../context/Site.context';
 import { SiteInterface } from '../@types/context';
 import ProjectsPage from './Pages/Projects/_Projects.page';
+import ContactMePage from './Pages/ContactMe/_ContactMe.page';
 
 const App: React.FC = () => {
   const { setIsSudoUser } = useContext(SiteContext) as SiteInterface;
@@ -19,7 +20,7 @@ const App: React.FC = () => {
     if (sudoUser === 'cjfritz9') {
       setIsSudoUser(true);
     }
-  }, [])
+  }, []);
 
   return (
     <Box
@@ -35,6 +36,7 @@ const App: React.FC = () => {
         ))}
         <Route path='/about' element={<AboutMePage />} />
         <Route path='/projects' element={<ProjectsPage />} />
+        <Route path='/contact' element={<ContactMePage />} />
         <Route path='/sudo' element={<SudoPage />} />
         <Route path='/*' element={<_404Page />} />
       </Routes>
