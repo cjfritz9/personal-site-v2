@@ -8,7 +8,9 @@ const Snippets: React.FC = () => {
   const { snippets, isLoading } = useSnippets();
 
   return (
-    <Container variant='snippets'>
+    <Container variant='snippets'
+    display={['none', 'none', 'none', 'block']}
+    >
       <Stack gap='1px' w='100%'>
         <Flex
           h='40px'

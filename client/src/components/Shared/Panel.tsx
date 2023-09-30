@@ -28,6 +28,8 @@ const Panel: React.FC<PanelProps> = ({
       borderColor='Lines'
       gap='.75rem'
       onClick={clickHandler}
+      bgColor='Primary.dkSlate'
+      zIndex={2}
       {...styles}
     >
       {content}

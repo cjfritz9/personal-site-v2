@@ -20,7 +20,8 @@ const footer = defineStyle({
   display: 'flex',
   alignItems: 'center',
   borderTop: '1px solid',
-  borderTopColor: 'Lines'
+  borderTopColor: 'Lines',
+  zIndex: 5
 });
 
 const header = defineStyle({
@@ -65,22 +66,23 @@ const suggestions = defineStyle({
 });
 
 const slimNav = defineStyle({
-  h: '100%',
+  h: ['fit-content', '100%'],
   minW: '72px',
-  w: '72px',
+  w: ['100%', '72px'],
   m: 0,
   p: 0,
   py: '1rem',
-  gap: '2rem',
+  gap: ['4rem', '2rem'],
+  justifyContent: ['center', 'start'],
   alignItems: 'center',
   borderRight: '1px solid',
   borderRightColor: 'Lines'
 });
 
 const directory = defineStyle({
-  h: '100%',
-  w: '16.5rem',
-  minW: '16.5rem',
+  h: ['fit-content', 'fit-content','100%'],
+  w: ['100%', '100%', '12.5rem', '16.5rem'],
+  minW: ['100%', '100%', '12.5rem', '16.5rem'],
   m: 0,
   p: 0,
   alignItems: 'flex-start',
@@ -130,6 +132,7 @@ const display = defineStyle({
   display: 'flex',
   h: '100%',
   w: '100%',
+  // minW: '100%',
   maxW: '',
   m: 0,
   p: 0,

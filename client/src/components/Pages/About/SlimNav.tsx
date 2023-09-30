@@ -34,7 +34,7 @@ const SlimNav: React.FC = () => {
   }, [location.search]);
 
   return (
-    <Container variant='slimNav' as={Stack}>
+    <Container variant='slimNav' as={Stack} flexDir={['row', 'column']}>
       {navItems.map((item, i) => (
         <NavIcon
           key={i}

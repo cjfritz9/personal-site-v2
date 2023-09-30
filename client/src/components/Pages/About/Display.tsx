@@ -28,7 +28,8 @@ const Display: React.FC = () => {
           h='40px'
           w='fit-content'
           m={0}
-          p='.5rem'
+          display={['none', 'none', 'flex']}
+          p='10px'
           borderRight='1px solid'
           borderColor='Lines'
           alignItems='center'
@@ -55,7 +56,7 @@ const Display: React.FC = () => {
           overflowY='auto'
           css={scrollbarStyles}
         >
-          <Stack pl='8px' pr='40px' gap='0px'>
+          <Stack display={['none', 'flex']} pl='8px' pr='40px' gap='0px'>
             {Array.from({ length: lineCount + 2 }, (_, i) => i + 1).map(
               (num: number, i: number) => {
                 return (
@@ -66,7 +67,7 @@ const Display: React.FC = () => {
               }
             )}
           </Stack>
-          <Stack pl='0' pr='8px' gap='0px' alignItems='center'>
+          <Stack  display={['none', 'flex']} pl='0' pr='8px' gap='0px' alignItems='center'>
             <Text variant='label' w='30px' textAlign='right'>
               /**
             </Text>
@@ -81,7 +82,7 @@ const Display: React.FC = () => {
               */
             </Text>
           </Stack>
-          <Stack pt='24px' gap={0}>
+          <Stack pt='24px' gap={0} w='100%'>
             <Text variant='label'>{display[currentDisplayContent].title}</Text>
             <Stack ref={textWrapRef} gap='24px'>
               {display[currentDisplayContent].paragraphs.map(
