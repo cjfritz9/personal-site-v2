@@ -10,8 +10,6 @@ const ProjectsDisplay: React.FC = () => {
   const { filteredProjects, filters, isUpdating, setFilters } =
     useContext(ProjectsContext)!;
 
-  console.log({ isUpdating });
-
   return (
     <Container variant='display'>
       <Stack gap='1px' w='100%'>
