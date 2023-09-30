@@ -48,6 +48,8 @@ const Display: React.FC = () => {
           mt='-1px'
           mb='-1px'
           mr='-1px'
+          w='100% !important'
+          grow={1}
           borderTop='1px solid'
           borderColor='Lines'
           overflowY='auto'

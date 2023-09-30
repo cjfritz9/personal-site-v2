@@ -13,9 +13,35 @@ const appStatus = defineStyle({
   borderColor: 'Primary.black'
 });
 
+const cardPrimary = defineStyle({
+  _active: {
+    transform: 'scale(.98)'
+  },
+  _hover: {
+    filter: 'brightness(1.1)'
+  },
+  fontWeight: 400,
+  color: 'Secondary.white',
+  bg: 'Secondary.slate'
+})
+
+const cardSecondary = defineStyle({
+  _active: {
+    transform: 'scale(.98)'
+  },
+  _hover: {
+    filter: 'brightness(1.1)'
+  },
+  fontWeight: 400,
+  color: 'Secondary.white',
+  bg: 'Lines'
+})
+
 const buttonConfig = defineStyleConfig({
   variants: {
-    appStatus
+    appStatus,
+    cardPrimary,
+    cardSecondary
   }
 });
 

@@ -9,6 +9,7 @@ import SudoPage from './Pages/Sudo/_SudoPage';
 import { useContext, useEffect } from 'react';
 import { SiteContext } from '../context/Site.context';
 import { SiteInterface } from '../@types/context';
+import ProjectsPage from './Pages/Projects/_Projects.page';
 
 const App: React.FC = () => {
   const { isSudoUser, setIsSudoUser } = useContext(SiteContext) as SiteInterface;
@@ -32,6 +33,7 @@ const App: React.FC = () => {
           <Route key={i} path={path} element={<HomePage />} />
         ))}
         <Route path='/about' element={<AboutMePage />} />
+        <Route path='/projects' element={<ProjectsPage />} />
         <Route path='/sudo' element={<SudoPage />} />
         <Route path='/*' element={<_404Page />} />
       </Routes>

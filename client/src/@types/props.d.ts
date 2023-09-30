@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { SetStateAction } from 'react';
 import { Pages, StyleMap } from './context';
 import { GameBoard } from '../models/Codle';
 import { IconType } from 'react-icons';
 import { Directories } from './about';
+import { FilterItem } from '../components/Pages/Projects/data/filterItems';
+import { ProjectItem } from '../components/Pages/Projects/data/projectItems';
 
 export interface TabProps {
   activeTab: Pages;
@@ -94,4 +96,17 @@ interface SnippetProps {
   snippetText: string;
   languageName: 'TypeScript' | 'JavaScript';
   languageColor: string;
+}
+
+interface FilterItemProps {
+  item: FilterItem;
+}
+
+interface ProjectItemProps {
+  projectNum: number;
+  project: ProjectItem;
+}
+
+interface TechBadgeProps {
+  name: string;
 }

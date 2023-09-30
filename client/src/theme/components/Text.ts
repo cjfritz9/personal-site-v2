@@ -28,6 +28,11 @@ const terminalSearch = defineStyle({
   color: 'Accent.emerald !important'
 });
 
+const cardHeading = defineStyle({
+  color: 'Secondary.indigo !important',
+  fontWeight: 'bold'
+})
+
 const textConfig = defineStyleConfig({
   baseStyle,
   defaultProps: {
@@ -37,7 +42,8 @@ const textConfig = defineStyleConfig({
     label,
     snippet,
     terminalPrimary,
-    terminalSearch
+    terminalSearch,
+    cardHeading
   }
 });
 

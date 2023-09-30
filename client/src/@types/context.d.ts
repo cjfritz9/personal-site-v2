@@ -2,6 +2,7 @@ import React from 'react';
 import { GameBoard } from '../models/Codle';
 import { Directories } from './about';
 import { Location, NavigateFunction } from 'react-router';
+import { ProjectItem } from '../components/Pages/Projects/data/projectItems';
 
 export interface SiteInterface {
   isUsingTerminal: boolean;
@@ -25,6 +26,12 @@ export interface CodleInterface {
   isLoading: boolean;
   setGameWon: React.Dispatch<React.SetStateAction<boolean>>;
   setGameLost: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export interface ProjectsInterface {
+  filteredProjects: ProjectItem[];
+  filters: string[];
+  setFilters: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 export type Pages = 'home' | 'about' | 'projects' | 'sudo';
