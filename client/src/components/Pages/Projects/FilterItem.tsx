@@ -6,10 +6,11 @@ import { ProjectsContext } from '../../../context/Projects.context';
 
 const FilterItem: React.FC<FilterItemProps> = ({ item }) => {
   const [isSelected, setIsSelected] = useState(false);
-  const { filters, setFilters } = useContext(ProjectsContext)!;
+  const { filters, setFilters, setIsUpdating } = useContext(ProjectsContext)!;
   const { name, icon } = item;
 
   const handleUpdateFilter = () => {
+    setIsUpdating(true);
     if (isSelected) {
       setFilters((prev) => prev.filter((tech) => tech !== name.toLowerCase()));
     } else {
@@ -21,6 +22,9 @@ const FilterItem: React.FC<FilterItemProps> = ({ item }) => {
   useEffect(() => {
     if (filters.length === 0) {
       setIsSelected(false);
+    }
+    if (filters.includes(name.toLowerCase())) {
+      setIsSelected(true);
     }
   }, [filters]);
 

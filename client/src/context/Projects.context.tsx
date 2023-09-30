@@ -12,9 +12,13 @@ export const ProjectsContext = React.createContext<ProjectsInterface | null>(
 export const ProjectsProvider: React.FC<ContextProps> = ({ children }) => {
   const [filteredProjects, setFilteredProjects] = useState(projectItems);
   const [filters, setFilters] = useState<string[]>([]);
+  const [isUpdating, setIsUpdating] = useState(false);
 
   useEffect(() => {
-    setFilteredProjects(getFilteredProjects(filters));
+    setTimeout(() => {
+      setFilteredProjects(getFilteredProjects(filters));
+      setIsUpdating(false);
+    }, 200);
   }, [filters]);
 
   return (
@@ -22,7 +26,9 @@ export const ProjectsProvider: React.FC<ContextProps> = ({ children }) => {
       value={{
         filteredProjects,
         filters,
-        setFilters
+        isUpdating,
+        setFilters,
+        setIsUpdating
       }}
     >
       {children}

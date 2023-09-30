@@ -6,7 +6,7 @@ import catGptThumbnail from '../../../../assets/cat-gpt-thumb.webp';
 export const projectItems = [
   {
     title: 'astra-skincare',
-    description: 'Astra Skincare is a custom mock Shopify concept',
+    description: 'Astra Skincare is a custom Shopify product concept',
     links: [
       'https://www.astra-skincare.com',
       'https://github.com/cjfritz9/astra-skincare'

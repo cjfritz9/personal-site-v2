@@ -1,12 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Container, Flex, Icon, Stack, Text } from '@chakra-ui/react';
+import { Container, Flex, HStack, Icon, Stack, Text } from '@chakra-ui/react';
 import { RiCloseLine } from 'react-icons/ri';
 import { scrollbarStyles } from '../../../theme/BrandColors';
 import ProjectCard from './ProjectCard';
 import { ProjectsContext } from '../../../context/Projects.context';
+import { getFilteredProjects } from '../../../utils/projects';
 
 const ProjectsDisplay: React.FC = () => {
-  const { filteredProjects, filters, setFilters } = useContext(ProjectsContext)!;
+  const { filteredProjects, filters, isUpdating, setFilters } =
+    useContext(ProjectsContext)!;
+
+  console.log({ isUpdating });
 
   return (
     <Container variant='display'>
@@ -21,9 +25,15 @@ const ProjectsDisplay: React.FC = () => {
           alignItems='center'
         >
           <Text variant='label' px='1rem'>
-            {filters.length ? `${filters.join(' + ')} projects` : 'all projects'}
+            {filters.length
+              ? `${filters.join(' + ')} projects`
+              : 'all projects'}
           </Text>
-          <Icon as={RiCloseLine} fontSize='20px' onClick={() => setFilters([])} />
+          <Icon
+            as={RiCloseLine}
+            fontSize='20px'
+            onClick={() => setFilters([])}
+          />
         </Flex>
         <Flex
           py='4rem'
@@ -38,9 +48,27 @@ const ProjectsDisplay: React.FC = () => {
           gap='2.5rem'
           flexWrap='wrap'
         >
-          {filteredProjects.map((project, i) => {
-            return <ProjectCard key={i} projectNum={i + 1} project={project} />;
-          })}
+          {filteredProjects.length || isUpdating ? (
+            filteredProjects.map((project, i) => {
+              const showCard = getFilteredProjects(filters).find(
+                (proj) => proj.title === project.title
+              );
+              return (
+                <ProjectCard
+                  key={i}
+                  showCard={showCard ? true : false}
+                  projectNum={i + 1}
+                  project={project}
+                />
+              );
+            })
+          ) : (
+            <HStack>
+              <Text>no</Text>
+              <Text color='Accent.rose !important'>{filters.join(' + ')}</Text>
+              <Text>projects were found</Text>
+            </HStack>
+          )}
         </Flex>
       </Stack>
     </Container>

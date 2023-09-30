@@ -31,7 +31,9 @@ export interface CodleInterface {
 export interface ProjectsInterface {
   filteredProjects: ProjectItem[];
   filters: string[];
+  isUpdating: boolean;
   setFilters: React.Dispatch<React.SetStateAction<string[]>>;
+  setIsUpdating: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export type Pages = 'home' | 'about' | 'projects' | 'sudo';

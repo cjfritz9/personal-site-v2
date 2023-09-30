@@ -103,6 +103,7 @@ interface FilterItemProps {
 }
 
 interface ProjectItemProps {
+  showCard: boolean;
   projectNum: number;
   project: ProjectItem;
 }
