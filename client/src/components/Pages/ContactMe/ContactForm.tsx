@@ -48,9 +48,19 @@ const ContactForm: React.FC = () => {
   }, [name, email, message]);
 
   return (
-    <Box h='100%' w='90%' borderRight='1px solid' borderRightColor='Lines'>
+    <Box
+      h='100%'
+      w={['100%', '100%', '100%', '100%', '90%']}
+      borderRight='1px solid'
+      borderRightColor='Lines'
+      overflowY='visible'
+    >
       <Center w='100%'>
-        <Stack mt='7rem' w='60%' gap='1.5rem'>
+        <Stack
+          my={['2rem', '4rem', '5rem', '7rem']}
+          w={['90%', '80%', '70%', '60%']}
+          gap='1.5rem'
+        >
           <FormControl>
             <FormLabel>name</FormLabel>
             <Input

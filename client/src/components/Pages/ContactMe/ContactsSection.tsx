@@ -13,7 +13,7 @@ const ContactsSection: React.FC<ContactsSectionProps> = ({
     <Stack>
       <Container
         variant='section'
-        w='335px'
+        w={['100%', '100%', '224px', '335px']}
         mt='-1px'
         pl='1rem'
         onClick={() => setIsExpanded((prev) => !prev)}

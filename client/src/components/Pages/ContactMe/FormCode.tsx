@@ -20,7 +20,12 @@ const FormCode: React.FC = () => {
   }, [codeElementRef.current, name, email, message]);
 
   return (
-    <Flex h='100%' w='100%' justifyContent='center'>
+    <Flex
+      display={['none', 'none', 'none', 'none', 'flex']}
+      h='100%'
+      w='100%'
+      justifyContent='center'
+    >
       <HStack mt='7rem' w='75%' alignItems='start' gap='40px'>
         <Stack gap='0px' alignItems='flex-end'>
           {Array.from({ length: lineCount + 2 }, (_, i) => i + 1).map(

@@ -6,21 +6,26 @@ import FormCode from './FormCode';
 import { RiCloseLine } from 'react-icons/ri';
 import { contactFormReducer } from '../../../utils/contact';
 import { ContactProvider } from '../../../context/Contact.context';
+import { scrollbarStyles } from '../../../theme/BrandColors';
 
 const ContactMePage: React.FC = () => {
   return (
     <Container variant='page'>
-      <HStack alignItems='flex-start' h='100%' w='100%' gap={0}>
+      <Stack flexDir={['column', 'column', 'row']} alignItems='flex-start' h='100%' w='100%' gap={0}
+      overflowY={['auto', 'auto', 'auto', 'hidden']}
+      css={scrollbarStyles}
+      >
         <ContactsPanel />
         <Stack h='100%' w='100%' gap={0}>
           <Flex
             h='40px'
             w='fit-content'
-            py='.5rem'
+            py='10px'
             px='1rem'
             alignItems='center'
             borderRight='1px solid'
             borderRightColor='Lines'
+            display={['none', 'none', 'flex']}
           >
             <Text variant='label' pr='2rem'>
               contact-form
@@ -39,7 +44,7 @@ const ContactMePage: React.FC = () => {
             </HStack>
           </ContactProvider>
         </Stack>
-      </HStack>
+      </Stack>
     </Container>
   );
 };
