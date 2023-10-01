@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.js": "/static/js/main.206d7d10.js",
+    "main.js": "/static/js/main.d8871679.js",
     "static/media/astra-thumbnail.webp": "/static/media/astra-thumbnail.df84d0a5fcdad1315846.webp",
     "static/media/launch-tracker-thumb.webp": "/static/media/launch-tracker-thumb.1d634dfc06c982ad7206.webp",
     "static/media/cat-gpt-thumb.webp": "/static/media/cat-gpt-thumb.a8352aeee4a7dbf7e30e.webp",
     "static/media/social-site-thumb.webp": "/static/media/social-site-thumb.500a099e0099fd97cbac.webp",
     "index.html": "/index.html",
-    "main.206d7d10.js.map": "/static/js/main.206d7d10.js.map"
+    "main.d8871679.js.map": "/static/js/main.d8871679.js.map"
   },
   "entrypoints": [
-    "static/js/main.206d7d10.js"
+    "static/js/main.d8871679.js"
   ]
 }

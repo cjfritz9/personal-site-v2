@@ -63,13 +63,16 @@ const Header: React.FC = () => {
   }, [isSudoUser]);
 
   if (isSmallerThan992) {
+    if (!links.find((link) => link.title === 'ContactMe.tsx')) {
+      links.push({ title: 'ContactMe.tsx', path: '/contact' });
+    }
     return (
       <Container variant='header'>
         <Panel
           content={<Text fontSize='16px'>cj-fritz</Text>}
           variant='mobile'
           width='100%'
-          styles={{bgColor: ''}}
+          styles={{ bgColor: '' }}
         />
         <Menu
           placement='bottom-end'
