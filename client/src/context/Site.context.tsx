@@ -11,7 +11,7 @@ export const SiteProvider: React.FC<ContextProps> = ({ children }) => {
   const [currentDirectory, setCurrentDirectory] =
     useState<Directories>('personal');
   const [currentDisplayContent, setCurrentDisplayContent] =
-    useState<string>('testing-data');
+    useState<string>('default');
   const [isSudoUser, setIsSudoUser] = useState<boolean>(false);
   
   const location = useLocation();

@@ -39,7 +39,7 @@ const Display: React.FC = () => {
           </Text>
           <Icon
             as={RiCloseLine}
-            onClick={() => setCurrentDisplayContent('')}
+            onClick={() => setCurrentDisplayContent('default')}
             fontSize='20px'
           />
         </Flex>
