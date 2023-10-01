@@ -11,7 +11,7 @@ const Filter: React.FC = () => {
   return (
     <Stack
       h='100%'
-      w={['100%', '100%', '335px']}
+      w={['100%', '100%', '409px']}
       borderRight='1px solid'
       borderColor='Lines'
     >

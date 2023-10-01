@@ -9,7 +9,7 @@ const ContactsPanel: React.FC = () => {
       pos='sticky'
       top={0}
       h='100%'
-      w={['100%', '100%', '224px', '335px']}
+      w={['100%', '100%', '224px', '336px']}
       borderRight='1px solid'
       borderColor='Lines'
       gap={0}

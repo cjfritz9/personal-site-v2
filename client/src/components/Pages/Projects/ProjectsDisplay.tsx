@@ -15,7 +15,7 @@ const ProjectsDisplay: React.FC = () => {
       <Stack gap='1px' h='100%' w='100%'>
         <Flex
           h='40px'
-          w='100%'
+          w={['100%', 'fit-content','fit-content']}
           m={0}
           display={['none', 'none', 'flex']}
           p='8.5px'
