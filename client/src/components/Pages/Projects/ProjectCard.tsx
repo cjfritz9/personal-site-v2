@@ -75,16 +75,18 @@ const ProjectCard: React.FC<ProjectItemProps> = ({
               {description}
             </Text>
             <HStack w='100%'>
-              <Button
-                variant='cardPrimary'
-                w='100%'
-                onClick={() => handleNav(links[0])}
-              >
-                deployment
-              </Button>
+              {links[0] !== null && (
+                <Button
+                  variant='cardPrimary'
+                  w='140%'
+                  onClick={() => handleNav(links[0]!)}
+                >
+                  deployment
+                </Button>
+              )}
               <Button
                 variant='cardSecondary'
-                w='60%'
+                w='100%'
                 onClick={() => handleNav(links[1])}
               >
                 repo
