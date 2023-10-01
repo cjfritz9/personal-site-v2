@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Container, Icon, Stack, Text } from '@chakra-ui/react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
+import { Container, Icon, Stack, Text, useMediaQuery } from '@chakra-ui/react';
 import { RiArrowDownSFill, RiArrowRightSFill } from 'react-icons/ri';
 import { ContactsSectionProps } from '../../../@types/props';
 import Item from '../About/Item';
@@ -8,7 +8,15 @@ const ContactsSection: React.FC<ContactsSectionProps> = ({
   title,
   listItems
 }) => {
+  const [isSmallerThan992] = useMediaQuery(['(max-width: 992px)']);
   const [isExpanded, setIsExpanded] = useState(true);
+
+  useLayoutEffect(() => {
+    if (isSmallerThan992) {
+      setIsExpanded(false);
+    }
+  }, [isSmallerThan992]);
+  
   return (
     <Stack>
       <Container

@@ -1,12 +1,19 @@
-import React, { useState } from 'react';
-import { Container, Icon, Stack, Text } from '@chakra-ui/react';
+import React, { useLayoutEffect, useState } from 'react';
+import { Container, Icon, Stack, Text, useMediaQuery } from '@chakra-ui/react';
 import { filterItems } from './data/filterItems';
 import FilterItem from './FilterItem';
 import { scrollbarStyles } from '../../../theme/BrandColors';
 import { RiArrowDownSFill, RiArrowRightSFill } from 'react-icons/ri';
 
 const Filter: React.FC = () => {
+  const [isSmallerThan992] = useMediaQuery(['(max-width: 992px)']);
   const [isExpanded, setIsExpanded] = useState(true);
+
+  useLayoutEffect(() => {
+    if (isSmallerThan992) {
+      setIsExpanded(false);
+    }
+  }, [isSmallerThan992]);
 
   return (
     <Stack
