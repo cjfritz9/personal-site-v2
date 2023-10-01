@@ -12,7 +12,7 @@ const baseStyle = definePartsStyle({
     // _active: { bgColor: '' },
     color: 'Secondary.slate',
     fontSize: '24px',
-    zIndex: 1
+    zIndex: 15
   },
   list: {
     py: 0,
@@ -21,7 +21,8 @@ const baseStyle = definePartsStyle({
     bg: 'Primary.dkSlate'
   },
   item: {
-    px: '1.5rem',
+    pl: '1.5rem',
+    pr: '3rem',
     py: '1rem',
     color: 'Secondary.white',
     borderBottom: '1px solid',

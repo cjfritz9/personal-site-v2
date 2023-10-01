@@ -2,8 +2,8 @@ import { defineStyle, defineStyleConfig } from '@chakra-ui/react';
 
 const appStatus = defineStyle({
   _hover: {
-    background: 'Secondary.slate',
-    borderColor: 'Secondary.slate',
+    background: [null, 'Secondary.slate'],
+    borderColor: [null, 'Secondary.slate'],
     color: 'Primary.dkSlate'
   },
   fontWeight: 400,

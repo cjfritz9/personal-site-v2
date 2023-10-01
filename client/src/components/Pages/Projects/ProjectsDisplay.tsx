@@ -38,7 +38,7 @@ const ProjectsDisplay: React.FC = () => {
           h='100%'
           // grow={1}
           py={['2rem','2rem','2rem','2rem','4rem','4rem']}
-          px={['1rem', '2rem', '4rem', '4rem', '4rem', '8rem']}
+          px={['1rem', '1rem', '4rem', '4rem', '4rem', '8rem']}
           mt='-1px'
           mb='-1px'
           mr='-1px'

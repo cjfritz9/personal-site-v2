@@ -4,18 +4,17 @@ import { Box, Heading, Stack, Text } from '@chakra-ui/react';
 import { CodleContext } from '../../../../context/Codle.context';
 import CodleBoard from './Board';
 
-import { BoltProps } from '../../../../@types/props';
+import { BoltProps, CodleProps } from '../../../../@types/props';
 import { CodleInterface } from '../../../../@types/context';
 
 
-const Codle: React.FC = () => {
+const Codle: React.FC<CodleProps> = ({ styles }) => {
   const { solution, gameWon, gameLost } = useContext(
     CodleContext
   ) as CodleInterface;
 
   return (
     <Box
-      display={['none', 'none', 'none', 'block']}
       w={[null, null, null, '424px', '512px']}
       p='2rem'
       pt='1rem'
@@ -25,7 +24,8 @@ const Codle: React.FC = () => {
       boxShadow='0px 2px 0px 0px rgba(255, 255, 255, 0.30) inset'
       borderRadius='.5rem'
       pos='relative'
-      zIndex={1}
+      zIndex={12}
+      {...styles}
     >
       <Bolt variant='top-left' />
       <Bolt variant='top-right' />

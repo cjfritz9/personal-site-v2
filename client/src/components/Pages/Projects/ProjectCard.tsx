@@ -39,12 +39,14 @@ const ProjectCard: React.FC<ProjectItemProps> = ({
           userSelect='none'
         >
           <HStack
+            right={0}
             pos='absolute'
-            w={['292px', '292px', '292px', '292px', '368px']}
+            w='176px'
             mt='1rem'
             px='1.25rem'
             zIndex={2}
             justify='flex-end'
+            flexWrap='wrap'
           >
             {technologies.map((t, i) => (
               <TechBadge key={i} name={t} />

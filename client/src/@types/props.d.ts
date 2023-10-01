@@ -20,6 +20,10 @@ export interface PanelProps {
   styles?: any;
 }
 
+export interface CodleProps {
+  styles?: any;
+}
+
 export interface BoltProps {
   variant: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 }

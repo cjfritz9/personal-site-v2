@@ -33,11 +33,12 @@ const Intro: React.FC = () => {
         ) : (
           <Text>// connect with me on Github </Text>
         )}
-        <Flex gap='8px'>
+        <Flex gap='8px' wrap='wrap'>
           <Text color='Secondary.indigo !important'>const</Text>
           <Text color='Accent.emerald !important'>githubLink</Text>
           <Text color='Secondary.white !important'>{'='}</Text>
           <Text
+            wordBreak='break-word'
             as={Link}
             color='Accent.orange !important'
             href='https://github.com/cjfritz9'

@@ -12,7 +12,7 @@ const HomePage: React.FC = () => {
         <Flex gap='8rem' pointerEvents='none'>
           <Intro />
           <CodleProvider>
-            <Codle />
+            <Codle styles={{ display: ['none', 'none', 'none', 'block'] }} />
           </CodleProvider>
         </Flex>
       </Stack>

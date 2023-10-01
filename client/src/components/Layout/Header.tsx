@@ -33,7 +33,6 @@ const Header: React.FC = () => {
     '(max-width: 480px)',
     '(max-width: 992px)'
   ]);
-
   useEffect(() => {
     if (location.pathname.includes('/about')) {
       setActiveTab('about');
@@ -57,12 +56,15 @@ const Header: React.FC = () => {
   }, [location.pathname]);
 
   useEffect(() => {
-    if (isSudoUser && !links[3]) {
+    if (isSudoUser && !links.find((link) => link.title === 'Sudo.tsx')) {
       links.push({ title: 'Sudo.tsx', path: '/sudo' });
     }
   }, [isSudoUser]);
 
   if (isSmallerThan992) {
+    if (!links.find((link) => link.title === 'Codle.tsx')) {
+      links.push({ title: 'Codle.tsx', path: '/codle' });
+    }
     if (!links.find((link) => link.title === 'ContactMe.tsx')) {
       links.push({ title: 'ContactMe.tsx', path: '/contact' });
     }
@@ -72,11 +74,11 @@ const Header: React.FC = () => {
           content={<Text fontSize='16px'>cj-fritz</Text>}
           variant='mobile'
           width='100%'
-          styles={{ bgColor: '' }}
+          styles={{ pointerEvents: 'none', bgColor: 'transparent' }}
         />
         <Menu
           placement='bottom-end'
-          offset={[0, 18]}
+          offset={[16, -40]}
           lazyBehavior='unmount'
           isLazy
         >
@@ -86,7 +88,7 @@ const Header: React.FC = () => {
                 {isOpen ? <RiCloseLine /> : <RiMenuLine />}
               </MenuButton>
               <MenuList
-                h={isSmallerThan480 ? 'calc(100dvh - 52px)' : '100%'}
+                h='100dvh'
                 w={isSmallerThan480 ? '100dvw' : '100%'}
                 zIndex={10}
               >

@@ -22,7 +22,7 @@ export const projectItems = [
       'https://github.com/cjfritz9/nasa-project'
     ],
     thumbnail: launchTrackerThumbnail,
-    technologies: ['react', 'express', 'mongodb']
+    technologies: ['react', 'node', 'express', 'mongodb']
   },
   {
     title: 'social-media-site',
@@ -32,7 +32,7 @@ export const projectItems = [
       'https://github.com/Social-Stack/Social-Media-Stack'
     ],
     thumbnail: socialSiteThumbnail,
-    technologies: ['react', 'express', 'postgresql', 'firebase']
+    technologies: ['react', 'node', 'express', 'postgresql', 'firebase']
   },
   {
     title: 'cat-gpt',
@@ -42,7 +42,7 @@ export const projectItems = [
       'https://github.com/cjfritz9/cat-gpt'
     ],
     thumbnail: catGptThumbnail,
-    technologies: ['react', 'express', 'firebase']
+    technologies: ['react', 'node', 'express', 'firebase']
   }
 ];
 
