@@ -69,6 +69,7 @@ const Header: React.FC = () => {
           content={<Text fontSize='16px'>cj-fritz</Text>}
           variant='mobile'
           width='100%'
+          styles={{bgColor: ''}}
         />
         <Menu
           placement='bottom-end'
@@ -84,6 +85,7 @@ const Header: React.FC = () => {
               <MenuList
                 h={isSmallerThan480 ? 'calc(100dvh - 52px)' : '100%'}
                 w={isSmallerThan480 ? '100dvw' : '100%'}
+                zIndex={10}
               >
                 {links.map((link, i) => (
                   <MenuItem key={i} onClick={() => navigate(link.path)}>

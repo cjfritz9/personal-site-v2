@@ -48,13 +48,18 @@ const JobApplicationTracker: React.FC<Props> = ({
   }, [refreshList]);
 
   return (
-    <HStack spacing='1rem' alignItems='flex-start' mt='5rem' px='3rem'>
+    <Stack
+      flexDir={['column', 'column', 'column', 'row']}
+      spacing='1rem'
+      alignItems='flex-start'
+      mt='0rem'
+      pr='1rem'
+      mb='1rem'
+    >
       <Stack spacing='5' flex='1' alignItems='center'>
         <Text
           px='2rem'
           py='1rem'
-          pos='absolute'
-          top='4rem'
           borderRadius='8px'
           color='Accent.purple !important'
           bg='Primary.dkSlate'
@@ -98,8 +103,8 @@ const JobApplicationTracker: React.FC<Props> = ({
                   count={activeCount}
                   setEditingData={setEditingData}
                 />
-              ) : null}
-            )}
+              ) : null;
+            })}
           </Stack>
         </List>
       </Stack>
@@ -107,8 +112,6 @@ const JobApplicationTracker: React.FC<Props> = ({
         <Text
           px='2rem'
           py='1rem'
-          pos='absolute'
-          top='4rem'
           borderRadius='8px'
           color='Accent.purple !important'
           bg='Primary.dkSlate'
@@ -154,12 +157,12 @@ const JobApplicationTracker: React.FC<Props> = ({
                   count={inactiveCount}
                   setEditingData={setEditingData}
                 />
-              ) : null}
-            )}
+              ) : null;
+            })}
           </Stack>
         </List>
       </Stack>
-    </HStack>
+    </Stack>
   );
 };
 
@@ -191,7 +194,7 @@ const AppCard: React.FC<CardProps> = ({ data, count, setEditingData }) => {
       boxShadow='sm'
       position='relative'
       borderRadius='lg'
-      minW='480px'
+      w={['320px', '400px', '400px', '400px', '400px', '480px']}
       shadow='dark-lg'
       pos='sticky'
       top={count * 12 + 'px'}

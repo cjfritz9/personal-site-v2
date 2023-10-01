@@ -37,17 +37,17 @@ const ProjectsDisplay: React.FC = () => {
         <Flex
           h='100%'
           // grow={1}
-          py='4rem'
+          py={['2rem','2rem','2rem','2rem','4rem','4rem']}
           px={['1rem', '2rem', '4rem', '4rem', '4rem', '8rem']}
           mt='-1px'
           mb='-1px'
           mr='-1px'
           borderTop='1px solid'
           borderColor='Lines'
-          gap='2.5rem'
+          gap='2rem'
           flexWrap='wrap'
-          justifyContent={['center', 'start']}
-          overflowY={['hidden', 'hidden', 'scroll']}
+          justifyContent={['center', 'center', 'start']}
+          overflowY={['visible', 'visible', 'scroll']}
           css={scrollbarStyles}
         >
           {filteredProjects.length || isUpdating ? (

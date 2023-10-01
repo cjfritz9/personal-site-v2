@@ -44,8 +44,7 @@ const Display: React.FC = () => {
           />
         </Flex>
         <Flex
-          pt='1rem'
-          pb='2rem'
+          py='1rem'
           px='2rem'
           mt='-1px'
           mb='-1px'
@@ -56,7 +55,7 @@ const Display: React.FC = () => {
           grow={1}
           borderTop='1px solid'
           borderColor='Lines'
-          overflowY={['hidden', 'hidden', 'scroll']}
+          overflowY={['visible', 'visible', 'scroll']}
           css={scrollbarStyles}
         >
           <Stack display={['none', 'flex']} pl='8px' pr='40px' gap='0px'>
@@ -70,7 +69,13 @@ const Display: React.FC = () => {
               }
             )}
           </Stack>
-          <Stack display={['none', 'flex']} pl='0' pr='8px' gap='0px' alignItems='center'>
+          <Stack
+            display={['none', 'flex']}
+            pl='0'
+            pr='8px'
+            gap='0px'
+            alignItems='center'
+          >
             <Text variant='label' w='30px' textAlign='right'>
               /**
             </Text>
@@ -90,7 +95,13 @@ const Display: React.FC = () => {
             <Stack ref={textWrapRef} gap='24px'>
               {display[currentDisplayContent].paragraphs.map(
                 (p: string, i: number) => (
-                  <Text key={i} variant='label'>
+                  <Text
+                    key={i}
+                    variant='label'
+                    _last={{
+                      marginBottom: '2rem'
+                    }}
+                  >
                     {p}
                   </Text>
                 )

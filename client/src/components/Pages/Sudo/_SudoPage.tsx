@@ -1,12 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import {
-  Container,
-  HStack,
-  Heading,
-  Link,
-  Stack,
-  Text
-} from '@chakra-ui/react';
+import { Container, Heading, Link, Stack, Text } from '@chakra-ui/react';
 import JobApplicationTracker from './JobApplicationTracker';
 import AppForm from './AppForm';
 import { JobAppResponse } from '../../../@types/responses';
@@ -33,8 +26,20 @@ const SudoPage: React.FC = () => {
   }
 
   return (
-    <Container variant='page'>
-      <HStack alignItems='flex-start' gap='0'>
+    <Container variant='page' overflowY='auto'>
+      <Stack
+        alignItems={[
+          'center',
+          'center',
+          'center',
+          'center',
+          'center',
+          'flex-start'
+        ]}
+        justifyContent='center'
+        flexDir={['column', 'column', 'column', 'column', 'column', 'row']}
+        gap={['3rem', '3rem', '3rem','3rem', '3rem', '1rem']}
+      >
         <AppForm
           editingData={editingData}
           setEditingData={setEditingData}
@@ -44,7 +49,7 @@ const SudoPage: React.FC = () => {
           setEditingData={setEditingData}
           refreshList={refreshList}
         />
-      </HStack>
+      </Stack>
     </Container>
   );
 };

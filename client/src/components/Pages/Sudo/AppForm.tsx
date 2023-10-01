@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Flex,
   FormControl,
   FormLabel,
   HStack,
@@ -100,10 +101,10 @@ const AppForm: React.FC<FormProps> = ({
   if (editingData) {
     return (
       <Box
+        w={['320px', '480px', '100%']}
         bg='Primary.dkGray'
         p='2.5rem'
-        mt='2.5rem'
-        pos='sticky'
+        mt='5rem'
         top='8.5rem'
         borderRadius='8px'
       >
@@ -231,10 +232,10 @@ const AppForm: React.FC<FormProps> = ({
 
   return (
     <Box
+      w={['320px', '480px', '480px', '480px', '100%']}
       bg='Primary.dkGray'
       p='2.5rem'
-      mt='2.5rem'
-      pos='sticky'
+      mt='5rem'
       top='8.5rem'
       borderRadius='8px'
       boxShadow='dark-lg'
@@ -363,47 +364,51 @@ const StatusGroup: React.FC<Props> = ({ dispatchFn }) => {
 
   return (
     <InputGroup id='status' w='100%'>
-      <Button
-        variant='appStatus'
-        bg={activeBtn === 'offer' ? 'Accent.emerald' : 'Primary.black'}
-        color={activeBtn === 'offer' ? 'Primary.black' : 'Secondary.white'}
-        borderRadius='8px 0 0 8px'
-        borderRightColor='Lines'
-        onClick={() => handleUpdate({ name: 'offer', weight: 4 })}
-      >
-        offer
-      </Button>
-      <Button
-        variant='appStatus'
-        bg={activeBtn === 'interviewing' ? 'Accent.emerald' : 'Primary.black'}
-        color={
-          activeBtn === 'interviewing' ? 'Primary.black' : 'Secondary.white'
-        }
-        borderRadius={0}
-        borderRightColor='Lines'
-        onClick={() => handleUpdate({ name: 'interviewing', weight: 3 })}
-      >
-        interviewing
-      </Button>
-      <Button
-        variant='appStatus'
-        bg={activeBtn === 'submitted' ? 'Accent.emerald' : 'Primary.black'}
-        color={activeBtn === 'submitted' ? 'Primary.black' : 'Secondary.white'}
-        borderRadius={0}
-        borderRightColor='Lines'
-        onClick={() => handleUpdate({ name: 'submitted', weight: 2 })}
-      >
-        submitted
-      </Button>
-      <Button
-        variant='appStatus'
-        bg={activeBtn === 'stale' ? 'Accent.emerald' : 'Primary.black'}
-        color={activeBtn === 'stale' ? 'Primary.black' : 'Secondary.white'}
-        borderRadius='0 8px 8px 0'
-        onClick={() => handleUpdate({ name: 'stale', weight: 1 })}
-      >
-        stale
-      </Button>
+      <Flex wrap='wrap'>
+        <Button
+          variant='appStatus'
+          bg={activeBtn === 'offer' ? 'Accent.emerald' : 'Primary.black'}
+          color={activeBtn === 'offer' ? 'Primary.black' : 'Secondary.white'}
+          borderRadius='8px 0 0 8px'
+          borderRightColor='Lines'
+          onClick={() => handleUpdate({ name: 'offer', weight: 4 })}
+        >
+          offer
+        </Button>
+        <Button
+          variant='appStatus'
+          bg={activeBtn === 'interviewing' ? 'Accent.emerald' : 'Primary.black'}
+          color={
+            activeBtn === 'interviewing' ? 'Primary.black' : 'Secondary.white'
+          }
+          borderRadius={0}
+          borderRightColor='Lines'
+          onClick={() => handleUpdate({ name: 'interviewing', weight: 3 })}
+        >
+          interviewing
+        </Button>
+        <Button
+          variant='appStatus'
+          bg={activeBtn === 'submitted' ? 'Accent.emerald' : 'Primary.black'}
+          color={
+            activeBtn === 'submitted' ? 'Primary.black' : 'Secondary.white'
+          }
+          borderRadius={0}
+          borderRightColor='Lines'
+          onClick={() => handleUpdate({ name: 'submitted', weight: 2 })}
+        >
+          submitted
+        </Button>
+        <Button
+          variant='appStatus'
+          bg={activeBtn === 'stale' ? 'Accent.emerald' : 'Primary.black'}
+          color={activeBtn === 'stale' ? 'Primary.black' : 'Secondary.white'}
+          borderRadius='0 8px 8px 0'
+          onClick={() => handleUpdate({ name: 'stale', weight: 1 })}
+        >
+          stale
+        </Button>
+      </Flex>
     </InputGroup>
   );
 };

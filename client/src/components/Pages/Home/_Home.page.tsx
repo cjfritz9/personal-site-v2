@@ -9,7 +9,7 @@ const HomePage: React.FC = () => {
   return (
     <Container variant='page'>
       <Stack pos='relative' h='100%' justifyContent='center'>
-        <Flex gap='8rem'>
+        <Flex gap='8rem' pointerEvents='none'>
           <Intro />
           <CodleProvider>
             <Codle />

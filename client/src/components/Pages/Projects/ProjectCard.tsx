@@ -24,7 +24,7 @@ const ProjectCard: React.FC<ProjectItemProps> = ({
 
   return (
     <SlideFade in={showCard}>
-      <Stack>
+      <Stack _last={{ marginBottom: '2rem' }}>
         <HStack>
           <Text variant='cardHeading'>{`Project ${projectNum}`}</Text>
           <Text>{`// ${title}`}</Text>

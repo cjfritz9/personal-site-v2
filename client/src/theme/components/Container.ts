@@ -21,7 +21,7 @@ const footer = defineStyle({
   alignItems: 'center',
   borderTop: '1px solid',
   borderTopColor: 'Lines',
-  zIndex: 5
+  zIndex: 10
 });
 
 const header = defineStyle({
@@ -33,7 +33,7 @@ const header = defineStyle({
   alignItems: 'center',
   borderBottom: '1px solid',
   borderBottomColor: 'Lines',
-  zIndex: 4
+  zIndex: 10
 });
 
 const page = defineStyle({
