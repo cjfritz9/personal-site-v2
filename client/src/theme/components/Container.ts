@@ -130,7 +130,8 @@ const item = defineStyle({
 
 const display = defineStyle({
   display: 'flex',
-  h: '100%',
+  flexGrow: 1,
+  h: ['100%'],
   w: '100%',
   // minW: '100%',
   maxW: '',

@@ -4,16 +4,19 @@ import SlimNav from './SlimNav';
 import Directory from './Directory';
 import Display from './Display';
 import Snippets from './Snippets/Snippets';
+import { scrollbarStyles } from '../../../theme/BrandColors';
 
 const AboutMePage: React.FC = () => {
   return (
     <Container variant='page'>
-      <HStack
+      <Stack
         alignItems='flex-start'
         h='100%'
-        w='100%'
+        w='fit-content'
         gap={0}
         flexDir={['column', 'row']}
+        overflowY={['scroll', 'scroll', 'hidden']}
+        css={scrollbarStyles}
       >
         <SlimNav />
         <Stack
@@ -27,7 +30,7 @@ const AboutMePage: React.FC = () => {
           <Display />
         </Stack>
         <Snippets />
-      </HStack>
+      </Stack>
     </Container>
   );
 };

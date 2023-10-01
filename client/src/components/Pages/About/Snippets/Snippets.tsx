@@ -9,7 +9,7 @@ const Snippets: React.FC = () => {
 
   return (
     <Container variant='snippets'
-    display={['none', 'none', 'none', 'block']}
+    display={['none', 'none', 'none', 'none', 'flex']}
     >
       <Stack gap='1px' w='100%'>
         <Flex

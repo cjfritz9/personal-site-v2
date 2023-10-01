@@ -44,16 +44,19 @@ const Display: React.FC = () => {
           />
         </Flex>
         <Flex
-          pt='.5rem'
+          pt='1rem'
+          pb='2rem'
           px='2rem'
           mt='-1px'
           mb='-1px'
           mr='-1px'
+          minH='fit-content'
+          h='100% !important'
           w='100% !important'
           grow={1}
           borderTop='1px solid'
           borderColor='Lines'
-          overflowY='auto'
+          overflowY={['hidden', 'hidden', 'scroll']}
           css={scrollbarStyles}
         >
           <Stack display={['none', 'flex']} pl='8px' pr='40px' gap='0px'>
@@ -67,7 +70,7 @@ const Display: React.FC = () => {
               }
             )}
           </Stack>
-          <Stack  display={['none', 'flex']} pl='0' pr='8px' gap='0px' alignItems='center'>
+          <Stack display={['none', 'flex']} pl='0' pr='8px' gap='0px' alignItems='center'>
             <Text variant='label' w='30px' textAlign='right'>
               /**
             </Text>
@@ -82,7 +85,7 @@ const Display: React.FC = () => {
               */
             </Text>
           </Stack>
-          <Stack pt='24px' gap={0} w='100%'>
+          <Stack h='100%' pt='24px' gap={0} w='100%'>
             <Text variant='label'>{display[currentDisplayContent].title}</Text>
             <Stack ref={textWrapRef} gap='24px'>
               {display[currentDisplayContent].paragraphs.map(
