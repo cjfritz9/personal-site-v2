@@ -66,6 +66,8 @@ const suggestions = defineStyle({
 });
 
 const slimNav = defineStyle({
+  pos: 'sticky',
+  top: '0px',
   h: ['fit-content', '100%'],
   minW: '72px',
   w: ['100%', '72px'],
@@ -75,8 +77,10 @@ const slimNav = defineStyle({
   gap: ['4rem', '2rem'],
   justifyContent: ['center', 'start'],
   alignItems: 'center',
+  borderBottom: ['1px solid', 'none'],
   borderRight: '1px solid',
-  borderRightColor: 'Lines'
+  borderColor: 'Lines',
+  bgColor: 'Primary.dkSlate',
 });
 
 const directory = defineStyle({

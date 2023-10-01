@@ -30,8 +30,8 @@ const ProjectCard: React.FC<ProjectItemProps> = ({
           <Text>{`// ${title}`}</Text>
         </HStack>
         <Box
-          h='320px'
-          w='368px'
+          h={['336px', '336px', '336px', '336px', '320px']}
+          w={['292px', '292px', '292px', '292px', '368px']}
           border='1px solid'
           borderColor='Lines'
           borderRadius='15px'
@@ -40,7 +40,7 @@ const ProjectCard: React.FC<ProjectItemProps> = ({
         >
           <HStack
             pos='absolute'
-            w='368px'
+            w={['292px', '292px', '292px', '292px', '368px']}
             mt='1rem'
             px='1.25rem'
             zIndex={2}
@@ -59,7 +59,7 @@ const ProjectCard: React.FC<ProjectItemProps> = ({
             objectFit='cover'
           />
           <Stack
-            h='11rem'
+            h={['12rem', '12rem', '12rem', '12rem', '11rem']}
             py='1.5rem'
             px='2rem'
             justifyContent='space-between'
@@ -69,7 +69,7 @@ const ProjectCard: React.FC<ProjectItemProps> = ({
             bgColor='Primary.dkGray'
             borderBottomRadius='15px'
           >
-            <Text maxH='3.5rem' overflowY='hidden'>
+            <Text variant='label' maxH='3.5rem' overflowY='hidden'>
               {description}
             </Text>
             <HStack w='100%'>

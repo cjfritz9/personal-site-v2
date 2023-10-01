@@ -12,12 +12,13 @@ const ProjectsDisplay: React.FC = () => {
 
   return (
     <Container variant='display'>
-      <Stack gap='1px' w='100%'>
+      <Stack gap='1px' h='100%' w='100%'>
         <Flex
           h='40px'
-          w='fit-content'
+          w='100%'
           m={0}
-          p='.5rem'
+          display={['none', 'none', 'flex']}
+          p='8.5px'
           borderRight='1px solid'
           borderColor='Lines'
           alignItems='center'
@@ -34,17 +35,20 @@ const ProjectsDisplay: React.FC = () => {
           />
         </Flex>
         <Flex
+          h='100%'
+          // grow={1}
           py='4rem'
-          px='8rem'
+          px={['1rem', '2rem', '4rem', '4rem', '4rem', '8rem']}
           mt='-1px'
           mb='-1px'
           mr='-1px'
           borderTop='1px solid'
           borderColor='Lines'
-          overflowY='scroll'
-          css={scrollbarStyles}
           gap='2.5rem'
           flexWrap='wrap'
+          justifyContent={['center', 'start']}
+          overflowY={['hidden', 'hidden', 'scroll']}
+          css={scrollbarStyles}
         >
           {filteredProjects.length || isUpdating ? (
             filteredProjects.map((project, i) => {

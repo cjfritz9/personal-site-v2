@@ -14,7 +14,7 @@ const AboutMePage: React.FC = () => {
         h='100%'
         w='fit-content'
         gap={0}
-        flexDir={['column', 'row']}
+        flexDir={['column', 'row', 'row']}
         overflowY={['scroll', 'scroll', 'hidden']}
         css={scrollbarStyles}
       >
