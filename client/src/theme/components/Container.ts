@@ -62,7 +62,7 @@ const suggestions = defineStyle({
   ml: ['-90px', '-204px', '-24px'],
   bg: 'Primary.black',
   color: 'Secondary.slate',
-  zIndex: 2
+  zIndex: 8
 });
 
 const slimNav = defineStyle({
