@@ -76,9 +76,6 @@ const CodleInputRow: React.FC<CodleInputRowProps> = ({
             maxLength={1}
             pointerEvents={isActive && !currentBoard.isWon ? 'auto' : 'none'}
             onKeyDown={(e) => handleKeyDown(e)}
-            onClick={
-              isActive ? () => firstInputRef.current?.focus() : undefined
-            }
             value={
               (currentBoard.guesses[index] && currentBoard.guesses[index][i]) ||
               guess[i] ||

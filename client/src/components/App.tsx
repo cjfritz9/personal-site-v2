@@ -11,7 +11,6 @@ import { SiteContext } from '../context/Site.context';
 import { SiteInterface } from '../@types/context';
 import ProjectsPage from './Pages/Projects/_Projects.page';
 import ContactMePage from './Pages/ContactMe/_ContactMe.page';
-import CodlePage from './Pages/About/Codle/_Codle.page';
 import validateColorMode from '../utils/app';
 
 const App: React.FC = () => {
@@ -37,7 +36,6 @@ const App: React.FC = () => {
         {['/', '/home'].map((path, i) => (
           <Route key={i} path={path} element={<HomePage />} />
         ))}
-        <Route path='/codle' element={<CodlePage />} />
         <Route path='/about' element={<AboutMePage />} />
         <Route path='/projects' element={<ProjectsPage />} />
         <Route path='/contact' element={<ContactMePage />} />
