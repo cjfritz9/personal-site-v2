@@ -12,7 +12,6 @@ const display: DisplayData = {
       '',
       'Use the career, personal, and hobbies icons to navigate through different sections.',
       'Then, open up folders to view the text files within. Click any text file to read the contents in this display window.',
-      '',
       'Alternatively, if you prefer navigating with a Unix shell you can use the cd command in the terminal below to navigate.'
     ]
   },
