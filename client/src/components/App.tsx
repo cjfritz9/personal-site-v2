@@ -12,6 +12,7 @@ import { SiteInterface } from '../@types/context';
 import ProjectsPage from './Pages/Projects/_Projects.page';
 import ContactMePage from './Pages/ContactMe/_ContactMe.page';
 import CodlePage from './Pages/About/Codle/_Codle.page';
+import validateColorMode from '../utils/app';
 
 const App: React.FC = () => {
   const { setIsSudoUser } = useContext(SiteContext) as SiteInterface;
@@ -21,6 +22,7 @@ const App: React.FC = () => {
     if (sudoUser === 'cjfritz9') {
       setIsSudoUser(true);
     }
+    validateColorMode();
   }, []);
 
   return (
