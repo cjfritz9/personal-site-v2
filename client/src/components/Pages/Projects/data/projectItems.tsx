@@ -25,7 +25,7 @@ export const projectItems: ProjectItem[] = [
       'https://github.com/cjfritz9/astra-skincare'
     ],
     thumbnail: astraThumbnail,
-    technologies: ['react', 'chakraui', 'graphql']
+    technologies: ['typescript', 'react', 'chakraui', 'graphql']
   },
   {
     title: 'launch-tracker',
@@ -55,7 +55,15 @@ export const projectItems: ProjectItem[] = [
       'https://github.com/cjfritz9/cat-gpt'
     ],
     thumbnail: catGptThumbnail,
-    technologies: ['react', 'chakraui', 'node', 'docker', 'express', 'firebase']
+    technologies: [
+      'typescript',
+      'react',
+      'chakraui',
+      'node',
+      'docker',
+      'express',
+      'firebase'
+    ]
   },
   {
     title: 'pokestop',
@@ -75,7 +83,7 @@ export const projectItems: ProjectItem[] = [
       'https://github.com/cjfritz9/elden-ring-randomizer'
     ],
     thumbnail: eldenCreatorThumbnail,
-    technologies: ['react', 'chakraui', 'node', 'express']
+    technologies: ['typescript', 'react', 'chakraui', 'node', 'express']
   },
   {
     title: '50-50 [WIP]',
@@ -85,14 +93,14 @@ export const projectItems: ProjectItem[] = [
       'https://github.com/cjfritz9/50-projects-50-days'
     ],
     thumbnail: fiftyFiftyThumbnail,
-    technologies: ['react', 'tailwind']
+    technologies: ['typescript', 'react', 'tailwind']
   },
   {
     title: 'chatbot-api',
     description: 'Chatbot API used for chatbot games, etc. on twitch.tv',
     links: [null, 'https://github.com/cjfritz9/chatbot-fetch-api'],
     thumbnail: chatbotThumbnail,
-    technologies: ['node', 'docker', 'express', 'firebase']
+    technologies: ['typescript', 'node', 'docker', 'express', 'firebase']
   },
   {
     title: 'simple-shooter-game',
