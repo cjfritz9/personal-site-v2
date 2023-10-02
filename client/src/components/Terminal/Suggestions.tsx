@@ -5,23 +5,9 @@ import { SuggestionsProps } from '../../@types/props';
 const Suggestions: React.FC<SuggestionsProps> = ({
   mode,
   autoCompleteResults,
-  searchResults,
   cdResults
 }) => {
-  if (mode === 'search') {
-    return (
-      <Container variant='suggestions'>
-        <Stack gap='4px'>
-          {searchResults?.map((result, i) => (
-            <Flex key={i} w='100%'>
-              <Text variant='terminalSearch'>{`${result.directory}/`}</Text>
-              <Text w='100%'>{result.name}</Text>
-            </Flex>
-          ))}
-        </Stack>
-      </Container>
-    );
-  } else if (mode === 'cd') {
+ if (mode === 'cd') {
     return (
       <Container variant='suggestions'>
         <Flex w='100%'>

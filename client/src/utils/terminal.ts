@@ -1,4 +1,4 @@
-import { AutoCompletionResult, CDResult, SearchResult } from '../@types/props';
+import { AutoCompletionResult, CDResult } from '../@types/props';
 
 export const terminalSuggestions: AutoCompletionResult[] = [
   {
@@ -12,28 +12,6 @@ export const terminalSuggestions: AutoCompletionResult[] = [
   {
     type: 'cd',
     description: 'navigate by changing directories'
-  },
-  {
-    type: 'search',
-    description: 'quickly find content'
-  }
-];
-
-export const terminalSearchResults: SearchResult[] = [
-  {
-    directory: 'about',
-    name: 'Personal Info',
-    handle: '/about?=personal'
-  },
-  {
-    directory: 'projects',
-    name: 'Astra Skincare',
-    handle: '/projects/astra-skincare'
-  },
-  {
-    directory: 'projects',
-    name: 'Space Launch Simulator',
-    handle: '/projects/nasa'
   }
 ];
 

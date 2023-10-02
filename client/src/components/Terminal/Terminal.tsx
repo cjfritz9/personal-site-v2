@@ -12,12 +12,10 @@ import Suggestions from './Suggestions';
 import {
   AutoCompletionResult,
   CDResult,
-  SearchResult,
   TerminalModes
 } from '../../@types/props';
 import {
   getCdList,
-  terminalSearchResults,
   terminalSuggestions
 } from '../../utils/terminal';
 import { SiteContext } from '../../context/Site.context';
@@ -42,9 +40,6 @@ const Terminal: React.FC = () => {
   const [mode, setMode] = useState<TerminalModes>('auto-complete');
   const [suggestionResults, setSuggestionResults] =
     useState<AutoCompletionResult[]>(terminalSuggestions);
-  const [searchResults, setSearchResults] = useState<SearchResult[]>(
-    terminalSearchResults
-  );
   const [cdResults, setCdResults] = useState<CDResult[]>(
     getCdList(location.pathname)
   );
@@ -105,20 +100,6 @@ const Terminal: React.FC = () => {
       }
     }
 
-    if (mode === 'search') {
-      setSearchResults(
-        terminalSearchResults.filter(
-          (result) =>
-            result.name.includes(comparisonValue) ||
-            result.directory.includes(comparisonValue)
-        )
-      );
-    }
-
-    if (comparisonValue.includes('search:')) {
-      setMode('search');
-      setTerminalInput((prev) => prev.slice(7));
-    }
     if (comparisonValue.includes('cd:') || comparisonValue.includes('cd ')) {
       setMode('cd');
       setTerminalInput((prev) => prev.slice(3));
@@ -142,10 +123,6 @@ const Terminal: React.FC = () => {
         }
       }
       if (mode === 'auto-complete') {
-        if (terminalInput.includes('se')) {
-          setMode('search');
-          setTerminalInput((prev) => prev.slice(7));
-        }
         if (terminalInput === 'cd') {
           setMode('cd');
           setTerminalInput((prev) => prev.slice(3));
@@ -265,16 +242,10 @@ const Terminal: React.FC = () => {
         <Suggestions
           mode={mode}
           autoCompleteResults={suggestionResults}
-          searchResults={searchResults}
           cdResults={cdResults}
         />
       )}
       <Text color='Accent.emerald !important'>{'>'}</Text>
-      {mode === 'search' && (
-        <Badge colorScheme='red' mx='.5rem'>
-          search
-        </Badge>
-      )}
       {mode === 'cd' && (
         <Badge colorScheme='red' mx='.5rem'>
           cd

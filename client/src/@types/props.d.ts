@@ -40,17 +40,11 @@ export interface ContextProps {
 }
 
 // Terminal Types and Interfaces
-export type TerminalModes = 'auto-complete' | 'search' | 'cd' | 'sudo';
+export type TerminalModes = 'auto-complete' | 'cd' | 'sudo';
 
 export interface AutoCompletionResult {
   type: string;
   description: string;
-}
-
-export interface SearchResult {
-  directory: string;
-  name: string;
-  handle: string;
 }
 
 export interface CDResult {
@@ -61,7 +55,6 @@ export interface CDResult {
 export interface SuggestionsProps {
   mode: TerminalModes;
   autoCompleteResults?: AutoCompletionResult[];
-  searchResults?: SearchResult[];
   cdResults?: CDResult[];
 }
 
