@@ -62,9 +62,6 @@ const Header: React.FC = () => {
   }, [isSudoUser]);
 
   if (isSmallerThan992) {
-    if (!links.find((link) => link.title === 'Codle.tsx')) {
-      links.push({ title: 'Codle.tsx', path: '/codle' });
-    }
     if (!links.find((link) => link.title === 'ContactMe.tsx')) {
       links.push({ title: 'ContactMe.tsx', path: '/contact' });
     }
