@@ -76,7 +76,7 @@ const CodleInputRow: React.FC<CodleInputRowProps> = ({
             maxLength={1}
             pointerEvents={isActive && !currentBoard.isWon ? 'auto' : 'none'}
             onKeyDown={(e) => handleKeyDown(e)}
-            onTouchStart={
+            onClick={
               isActive ? () => firstInputRef.current?.focus() : undefined
             }
             value={
