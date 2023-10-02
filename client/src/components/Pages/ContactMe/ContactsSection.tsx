@@ -43,6 +43,7 @@ const ContactsSection: React.FC<ContactsSectionProps> = ({
               name={item.name}
               icon={item.icon}
               iconColor={item.iconColor}
+              link={item.extLink}
             />
           ))}
         </Stack>

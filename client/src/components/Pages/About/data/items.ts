@@ -1,5 +1,4 @@
 import {
-  RiBaiduLine,
   RiBracesFill,
   RiCaravanFill,
   RiCodeBoxFill,
@@ -18,8 +17,16 @@ import {
   RiUser5Fill
 } from 'react-icons/ri';
 import { GiBroadsword, GiCampingTent } from 'react-icons/gi';
+import { IconType } from 'react-icons';
 
 const eggshell = '#D1D2D5';
+
+interface ContactItem {
+  icon: IconType;
+  iconColor: string;
+  name: string;
+  extLink?: string;
+}
 
 export const freelanceItems = [
   {
@@ -125,7 +132,7 @@ export const campingItems = [
   }
 ];
 
-export const contactItems = [
+export const contactItems: ContactItem[] = [
   {
     icon: RiMailFill,
     iconColor: eggshell,
@@ -138,15 +145,17 @@ export const contactItems = [
   }
 ];
 
-export const linksItems = [
+export const linksItems: ContactItem[] = [
   {
     icon: RiExternalLinkFill,
     iconColor: eggshell,
-    name: 'upwork'
+    name: 'upwork',
+    extLink: 'https://www.upwork.com/freelancers/developercj'
   },
   {
     icon: RiExternalLinkFill,
     iconColor: eggshell,
-    name: 'leetcode'
+    name: 'leetcode',
+    extLink: 'https://leetcode.com/cjfritz9/'
   }
 ];

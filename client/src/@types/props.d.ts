@@ -5,7 +5,7 @@ import { IconType } from 'react-icons';
 import { Directories } from './about';
 import { FilterItem } from '../components/Pages/Projects/data/filterItems';
 import { ProjectItem } from '../components/Pages/Projects/data/projectItems';
-import { contactItems } from '../components/Pages/About/data/items';
+import { contactItems, linksItems } from '../components/Pages/About/data/items';
 import { ContactFormData } from '../utils/contact';
 
 export interface TabProps {
@@ -82,6 +82,7 @@ export interface ItemProps {
   icon: IconType;
   iconColor: string;
   name: string;
+  link?: string;
 }
 
 interface SnippetProps {
@@ -113,5 +114,5 @@ interface TechBadgeProps {
 
 export interface ContactsSectionProps {
   title: string;
-  listItems: typeof contactItems;
+  listItems: typeof linksItems;
 }

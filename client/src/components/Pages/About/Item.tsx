@@ -13,13 +13,17 @@ import { SiteContext } from '../../../context/Site.context';
 import { SiteInterface } from '../../../@types/context';
 import { RiClipboardLine } from 'react-icons/ri';
 
-const Item: React.FC<ItemProps> = ({ icon, iconColor, name }) => {
+const Item: React.FC<ItemProps> = ({ icon, iconColor, name, link }) => {
   const { location, navigate, setCurrentDisplayContent } = useContext(
     SiteContext
   ) as SiteInterface;
   const toast = useToast();
 
   const handleClick = (name: string) => {
+    if (link) {
+      window.open(link, '_blank');
+      return;
+    }
     if (name === 'dev.cjfritz@gmail.com' || name === '(785) 217-7125') {
       navigator.clipboard.writeText(name);
       if (!toast.isActive(name)) {
