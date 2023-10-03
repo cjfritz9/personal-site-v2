@@ -7,6 +7,7 @@ import eldenCreatorThumbnail from '../../../../assets/elden-creator-thumb.webp';
 import chatbotThumbnail from '../../../../assets/chatbot-thumb.webp';
 import fiftyFiftyThumbnail from '../../../../assets/5050-thumb.webp';
 import tpsThumbnail from '../../../../assets/tps-thumb.webp';
+import indieReviewsThumbnail from '../../../../assets/indie-reviews-thumb.webp'
 
 export interface ProjectItem {
   title: string;
@@ -63,6 +64,20 @@ export const projectItems: ProjectItem[] = [
       'docker',
       'express',
       'firebase'
+    ]
+  },
+  {
+    title: 'indie-game-reviews',
+    description: 'Indie Game Reviews demo',
+    links: [
+      'https://indie-reviews.vercel.app',
+      'https://github.com/cjfritz9/indie-reviews'
+    ],
+    thumbnail: indieReviewsThumbnail,
+    technologies: [
+      'typescript',
+      'next',
+      'tailwind'
     ]
   },
   {

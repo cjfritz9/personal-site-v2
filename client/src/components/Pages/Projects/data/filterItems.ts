@@ -11,7 +11,8 @@ import {
   SiChakraui,
   SiTailwindcss,
   SiTypescript,
-  SiCplusplus
+  SiCplusplus,
+  SiNextdotjs
 } from 'react-icons/si';
 
 export const filterItems = [
@@ -26,6 +27,10 @@ export const filterItems = [
   {
     name: 'React',
     icon: RiReactjsFill
+  },
+  {
+    name: 'Next',
+    icon: SiNextdotjs
   },
   {
     name: 'ChakraUI',
