@@ -43,7 +43,7 @@ const Filter: React.FC = () => {
           mt='-8px'
           mr='-1px'
           alignItems='flex-start'
-          h={['124px', '148px', '100%']}
+          h={['240px', '240px', '100%']}
           overflowY='auto'
           css={scrollbarStyles}
         >
