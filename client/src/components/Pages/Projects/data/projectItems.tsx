@@ -77,7 +77,8 @@ export const projectItems: ProjectItem[] = [
     technologies: [
       'typescript',
       'next',
-      'tailwind'
+      'tailwind',
+      'graphql'
     ]
   },
   {
