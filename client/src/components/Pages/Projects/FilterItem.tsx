@@ -3,6 +3,7 @@ import { Box, Checkbox, HStack, Icon, Text } from '@chakra-ui/react';
 import { FilterItemProps } from '../../../@types/props';
 import { projectItems } from './data/projectItems';
 import { ProjectsContext } from '../../../context/Projects.context';
+import { Technologies } from '../../../@types/projects';
 
 const FilterItem: React.FC<FilterItemProps> = ({ item }) => {
   const [isSelected, setIsSelected] = useState(false);
@@ -14,7 +15,7 @@ const FilterItem: React.FC<FilterItemProps> = ({ item }) => {
     if (isSelected) {
       setFilters((prev) => prev.filter((tech) => tech !== name.toLowerCase()));
     } else {
-      setFilters((prev) => [...prev, name.toLowerCase()]);
+      setFilters((prev) => [...prev, name.toLowerCase() as Technologies[0]]);
     }
     setIsSelected((prev) => !prev);
   };
@@ -23,7 +24,7 @@ const FilterItem: React.FC<FilterItemProps> = ({ item }) => {
     if (filters.length === 0) {
       setIsSelected(false);
     }
-    if (filters.includes(name.toLowerCase())) {
+    if (filters.includes(name.toLowerCase() as Technologies[0])) {
       setIsSelected(true);
     }
   }, [filters]);

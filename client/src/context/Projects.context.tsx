@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { ProjectsInterface } from '../@types/context';
 import { ContextProps } from '../@types/props';
 import { projectItems } from '../components/Pages/Projects/data/projectItems';
-import { getFilteredProjects } from '../utils/projects';
+import { getFilteredProjects } from '../lib/projects';
+import { Technologies } from '../@types/projects';
 
 export const ProjectsContext = React.createContext<ProjectsInterface | null>(
   null
@@ -11,7 +12,7 @@ export const ProjectsContext = React.createContext<ProjectsInterface | null>(
 
 export const ProjectsProvider: React.FC<ContextProps> = ({ children }) => {
   const [filteredProjects, setFilteredProjects] = useState(projectItems);
-  const [filters, setFilters] = useState<string[]>([]);
+  const [filters, setFilters] = useState<Technologies>([]);
   const [isUpdating, setIsUpdating] = useState(false);
 
   useEffect(() => {

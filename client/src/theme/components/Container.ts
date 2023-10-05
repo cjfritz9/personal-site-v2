@@ -80,13 +80,13 @@ const slimNav = defineStyle({
   borderBottom: ['1px solid', 'none'],
   borderRight: '1px solid',
   borderColor: 'Lines',
-  bgColor: 'Primary.dkSlate',
+  bgColor: 'Primary.dkSlate'
 });
 
 const directory = defineStyle({
-  h: ['fit-content', 'fit-content','100%'],
-  w: ['100%', '100%', '12.5rem', '16.5rem'],
-  minW: ['100%', '100%', '12.5rem', '16.5rem'],
+  h: ['fit-content', 'fit-content', '100%'],
+  w: ['100%', '100%', '12.5rem', '13rem', '16.5rem'],
+  minW: ['100%', '100%', '12.5rem', '13rem', '16.5rem'],
   m: 0,
   p: 0,
   alignItems: 'flex-start',

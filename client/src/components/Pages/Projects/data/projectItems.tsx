@@ -8,16 +8,9 @@ import chatbotThumbnail from '../../../../assets/chatbot-thumb.webp';
 import fiftyFiftyThumbnail from '../../../../assets/5050-thumb.webp';
 import tpsThumbnail from '../../../../assets/tps-thumb.webp';
 import indieReviewsThumbnail from '../../../../assets/indie-reviews-thumb.webp'
+import { ProjectItems, Technologies } from '../../../../@types/projects';
 
-export interface ProjectItem {
-  title: string;
-  description: string;
-  links: [string | null, string];
-  thumbnail: string;
-  technologies: string[];
-}
-
-export const projectItems: ProjectItem[] = [
+export const projectItems: ProjectItems = [
   {
     title: 'astra-skincare',
     description: 'Astra Skincare is a custom Shopify product concept',
@@ -36,7 +29,7 @@ export const projectItems: ProjectItem[] = [
       'https://github.com/cjfritz9/nasa-project'
     ],
     thumbnail: launchTrackerThumbnail,
-    technologies: ['react', 'node', 'docker', 'express', 'mongodb']
+    technologies: ['react', 'node', 'docker', 'express', 'mongodb', 'gcp']
   },
   {
     title: 'social-media-site',
@@ -63,7 +56,8 @@ export const projectItems: ProjectItem[] = [
       'node',
       'docker',
       'express',
-      'firebase'
+      'firebase',
+      'gcp'
     ]
   },
   {
@@ -78,7 +72,9 @@ export const projectItems: ProjectItem[] = [
       'typescript',
       'next',
       'tailwind',
-      'graphql'
+      'graphql',
+      'postgresql',
+      'aws'
     ]
   },
   {
@@ -89,7 +85,7 @@ export const projectItems: ProjectItem[] = [
       'https://github.com/Graceshopper-Team-No-Grace/Trading-Card-Shopper'
     ],
     thumbnail: pokestopThumbnail,
-    technologies: ['react', 'node', 'express', 'postgresql']
+    technologies: ['react', 'node', 'express', 'postgresql', 'gcp']
   },
   {
     title: 'elden-creator',
@@ -99,7 +95,7 @@ export const projectItems: ProjectItem[] = [
       'https://github.com/cjfritz9/elden-ring-randomizer'
     ],
     thumbnail: eldenCreatorThumbnail,
-    technologies: ['typescript', 'react', 'chakraui', 'node', 'express']
+    technologies: ['typescript', 'react', 'chakraui', 'node', 'express', 'gcp']
   },
   {
     title: '50-50 [WIP]',
@@ -116,7 +112,7 @@ export const projectItems: ProjectItem[] = [
     description: 'Chatbot API used for chatbot games, etc. on twitch.tv',
     links: [null, 'https://github.com/cjfritz9/chatbot-fetch-api'],
     thumbnail: chatbotThumbnail,
-    technologies: ['typescript', 'node', 'docker', 'express', 'firebase']
+    technologies: ['typescript', 'node', 'docker', 'express', 'firebase', 'gcp']
   },
   {
     title: 'simple-shooter-game',

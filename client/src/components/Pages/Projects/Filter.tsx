@@ -18,7 +18,8 @@ const Filter: React.FC = () => {
   return (
     <Stack
       h='100%'
-      w={['100%', '100%', '409px']}
+      w={['100%', '100%', '280px', '280px', '336px']}
+      minW={['100%', '100%', '280px', '280px', '336px']}
       borderRight='1px solid'
       borderColor='Lines'
     >

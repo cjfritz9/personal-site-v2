@@ -14,10 +14,7 @@ import {
   CDResult,
   TerminalModes
 } from '../../@types/props';
-import {
-  getCdList,
-  terminalSuggestions
-} from '../../utils/terminal';
+import { getCdList, terminalSuggestions } from '../../lib/terminal';
 import { SiteContext } from '../../context/Site.context';
 import { SiteInterface } from '../../@types/context';
 

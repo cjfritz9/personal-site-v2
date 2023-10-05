@@ -3,7 +3,7 @@ import { Flex, Input } from '@chakra-ui/react';
 
 import { SiteContext } from '../../../../context/Site.context';
 import { CodleContext } from '../../../../context/Codle.context';
-import { getStyleMap, handleUpdateBoard } from '../../../../utils/codle';
+import { getStyleMap, handleUpdateBoard } from '../../../../lib/codle';
 
 import { CodleInputRowProps } from '../../../../@types/props';
 import { StyleMap } from '../../../../@types/codle';

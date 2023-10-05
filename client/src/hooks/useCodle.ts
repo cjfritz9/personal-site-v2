@@ -11,7 +11,7 @@ import {
   getStoragePlayerId,
   hasPlayedToday,
   setStoragePlayerId
-} from '../utils/codle';
+} from '../lib/codle';
 import { GameBoard } from '../models/Codle';
 
 const useCodle = () => {

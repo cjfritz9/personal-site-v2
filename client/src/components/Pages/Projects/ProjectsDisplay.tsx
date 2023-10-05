@@ -4,7 +4,7 @@ import { RiCloseLine } from 'react-icons/ri';
 import { scrollbarStyles } from '../../../theme/BrandColors';
 import ProjectCard from './ProjectCard';
 import { ProjectsContext } from '../../../context/Projects.context';
-import { getFilteredProjects } from '../../../utils/projects';
+import { getFilteredProjects } from '../../../lib/projects';
 
 const ProjectsDisplay: React.FC = () => {
   const { filteredProjects, filters, isUpdating, setFilters } =
@@ -15,10 +15,11 @@ const ProjectsDisplay: React.FC = () => {
       <Stack gap='1px' h='100%' w='100%'>
         <Flex
           h='40px'
-          w={['100%', 'fit-content','fit-content']}
+          w={['100%', 'fit-content', 'fit-content']}
           m={0}
+          // mb='1px'
           display={['none', 'none', 'flex']}
-          p='8.5px'
+          p='9.5px'
           borderRight='1px solid'
           borderColor='Lines'
           alignItems='center'
@@ -36,15 +37,14 @@ const ProjectsDisplay: React.FC = () => {
         </Flex>
         <Flex
           h='100%'
-          // grow={1}
-          py={['2rem','2rem','2rem','2rem','4rem','4rem']}
-          px={['1rem', '1rem', '4rem', '4rem', '4rem', '8rem']}
+          py={['2rem', '2rem', '2rem', '2rem', '4rem', '4rem']}
+          px={['1rem', '1rem', '2rem', '3rem', '4rem', '8rem']}
           mt='-1px'
           mb='-1px'
           mr='-1px'
           borderTop='1px solid'
           borderColor='Lines'
-          gap='2rem'
+          gap={['1rem', '1.5rem', '1.5rem', '2rem']}
           flexWrap='wrap'
           justifyContent={['center', 'center', 'start']}
           overflowY={['visible', 'visible', 'scroll']}

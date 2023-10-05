@@ -11,7 +11,7 @@ import { SiteContext } from '../context/Site.context';
 import { SiteInterface } from '../@types/context';
 import ProjectsPage from './Pages/Projects/_Projects.page';
 import ContactMePage from './Pages/ContactMe/_ContactMe.page';
-import validateColorMode from '../utils/app';
+import validateColorMode from '../lib/app';
 
 const App: React.FC = () => {
   const { setIsSudoUser } = useContext(SiteContext) as SiteInterface;

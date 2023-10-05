@@ -12,7 +12,7 @@ import {
   Text
 } from '@chakra-ui/react';
 import React, { useEffect, useReducer, useState } from 'react';
-import { formReducer, validateForm } from '../../../utils/sudo';
+import { formReducer, validateForm } from '../../../lib/sudo';
 import useJobApps from '../../../hooks/useJobApps';
 import { JobAppResponse } from '../../../@types/responses';
 
@@ -405,7 +405,7 @@ const StatusGroup: React.FC<Props> = ({ dispatchFn }) => {
           variant='appStatus'
           bg={activeBtn === 'stale' ? 'Accent.emerald' : 'Primary.black'}
           color={activeBtn === 'stale' ? 'Primary.black' : 'Secondary.white'}
-          borderRadius={['0px 0px 8px 0px','0 8px 8px 0']}
+          borderRadius={['0px 0px 8px 0px', '0 8px 8px 0']}
           onClick={() => handleUpdate({ name: 'stale', weight: 1 })}
         >
           stale

@@ -3,6 +3,7 @@ import { GameBoard } from '../models/Codle';
 import { Directories } from './about';
 import { Location, NavigateFunction } from 'react-router';
 import { ProjectItem } from '../components/Pages/Projects/data/projectItems';
+import { Technologies } from './projects';
 
 export interface SiteInterface {
   isUsingTerminal: boolean;
@@ -30,9 +31,9 @@ export interface CodleInterface {
 
 export interface ProjectsInterface {
   filteredProjects: ProjectItem[];
-  filters: string[];
+  filters: Technologies;
   isUpdating: boolean;
-  setFilters: React.Dispatch<React.SetStateAction<string[]>>;
+  setFilters: React.Dispatch<React.SetStateAction<Technologies>>;
   setIsUpdating: React.Dispatch<React.SetStateAction<boolean>>;
 }
 

@@ -6,7 +6,8 @@ import { Directories } from './about';
 import { FilterItem } from '../components/Pages/Projects/data/filterItems';
 import { ProjectItem } from '../components/Pages/Projects/data/projectItems';
 import { contactItems, linksItems } from '../components/Pages/About/data/items';
-import { ContactFormData } from '../utils/contact';
+import { ContactFormData } from '../lib/contact';
+import { Technologies } from './projects';
 
 export interface TabProps {
   activeTab: Pages;
@@ -109,7 +110,7 @@ interface ProjectItemProps {
 }
 
 interface TechBadgeProps {
-  name: string;
+  name: Technologies[0];
 }
 
 export interface ContactsSectionProps {

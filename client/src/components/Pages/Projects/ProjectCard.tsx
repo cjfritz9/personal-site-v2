@@ -10,13 +10,15 @@ import {
 } from '@chakra-ui/react';
 import { ProjectItemProps } from '../../../@types/props';
 import TechBadge from './TechBadge';
+import { ProjectItem } from '../../../@types/projects';
 
 const ProjectCard: React.FC<ProjectItemProps> = ({
   showCard,
   projectNum,
   project
 }) => {
-  const { title, description, links, thumbnail, technologies } = project;
+  const { title, description, links, thumbnail, technologies } =
+    project as ProjectItem;
 
   const handleNav = (href: string) => {
     window.open(href, '_blank');

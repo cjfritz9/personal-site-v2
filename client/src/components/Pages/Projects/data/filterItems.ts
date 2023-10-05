@@ -12,7 +12,9 @@ import {
   SiTailwindcss,
   SiTypescript,
   SiCplusplus,
-  SiNextdotjs
+  SiNextdotjs,
+  SiAmazonaws,
+  SiGooglecloud
 } from 'react-icons/si';
 
 export const filterItems = [
@@ -71,7 +73,15 @@ export const filterItems = [
   {
     name: 'MongoDB',
     icon: SiMongodb
-  }
+  },
+  {
+    name: 'AWS',
+    icon: SiAmazonaws
+  },
+  {
+    name: 'GCP',
+    icon: SiGooglecloud
+  },
 ];
 
 export type FilterItem = (typeof filterItems)[0];

@@ -11,7 +11,7 @@ import {
   Stack,
   Textarea
 } from '@chakra-ui/react';
-import getFormIsValid from '../../../utils/contact';
+import getFormIsValid from '../../../lib/contact';
 import { ContactContext } from '../../../context/Contact.context';
 import { postContactForm } from '../../../hooks/requests';
 

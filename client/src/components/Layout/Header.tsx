@@ -106,8 +106,12 @@ const Header: React.FC = () => {
         <Panel
           content={<Text>cj-fritz</Text>}
           variant='left'
-          width='320px'
-          styles={{ _hover: { bgColor: 'Primary.dkSlate' }, cursor: 'auto' }}
+          // width='320px'
+          styles={{
+            _hover: { bgColor: 'Primary.dkSlate' },
+            cursor: 'auto',
+            width: [null, null, '264px', '264px', '320px']
+          }}
         />
         <Flex h='100%' grow={1}>
           <Tabs

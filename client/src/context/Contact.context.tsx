@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer, useState } from 'react';
 import { ContextProps } from '../@types/props';
 import { ContactInterface } from '../@types/context';
-import { contactFormReducer } from '../utils/contact';
+import { contactFormReducer } from '../lib/contact';
 
 export const ContactContext = React.createContext<ContactInterface | null>(
   null

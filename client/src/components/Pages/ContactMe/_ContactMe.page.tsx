@@ -4,16 +4,21 @@ import ContactsPanel from './ContactsPanel';
 import ContactForm from './ContactForm';
 import FormCode from './FormCode';
 import { RiCloseLine } from 'react-icons/ri';
-import { contactFormReducer } from '../../../utils/contact';
+import { contactFormReducer } from '../../../lib/contact';
 import { ContactProvider } from '../../../context/Contact.context';
 import { scrollbarStyles } from '../../../theme/BrandColors';
 
 const ContactMePage: React.FC = () => {
   return (
     <Container variant='page'>
-      <Stack flexDir={['column', 'column', 'row']} alignItems='flex-start' h='100%' w='100%' gap={0}
-      overflowY={['auto', 'auto', 'auto', 'hidden']}
-      css={scrollbarStyles}
+      <Stack
+        flexDir={['column', 'column', 'row']}
+        alignItems='flex-start'
+        h='100%'
+        w='100%'
+        gap={0}
+        overflowY={['auto', 'auto', 'auto', 'hidden']}
+        css={scrollbarStyles}
       >
         <ContactsPanel />
         <Stack h='100%' w='100%' gap={0}>

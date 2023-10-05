@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { UpdatedPlayerData } from '../@types/codle';
-import { setStoragePlayerId } from '../utils/codle';
+import { setStoragePlayerId } from '../lib/codle';
 import { JobAppData, JobAppResponse } from '../@types/responses';
 
 // INTERNAL CLIENT API
@@ -61,10 +61,7 @@ export const postJobApp = async (appData: JobAppData) => {
     });
 };
 
-export const patchJobApp = async ({
-  id,
-  ...appData
-}: JobAppResponse) => {
+export const patchJobApp = async ({ id, ...appData }: JobAppResponse) => {
   return trackingRequest
     .patch(`/job-apps/${id}`, appData)
     .then((res) => {
@@ -121,14 +118,17 @@ export const updatePlayerData = async (
   return result.data;
 };
 
-// EXTERNAL EMAIL API 
+// EXTERNAL EMAIL API
 
 export const postContactForm = async (data: object) => {
-  const response = await axios.post('https://mail-server-379822.uc.r.appspot.com/personal/send', data);
+  const response = await axios.post(
+    'https://mail-server-379822.uc.r.appspot.com/personal/send',
+    data
+  );
 
   if (response.data.success) {
-    return { success: 'Your Message Was Sent'}
+    return { success: 'Your Message Was Sent' };
   } else {
-    return { error: 'Server Error'}
+    return { error: 'Server Error' };
   }
 };
