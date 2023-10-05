@@ -29,6 +29,7 @@ const Header: React.FC = () => {
     SiteContext
   ) as SiteInterface;
   const [activeTab, setActiveTab] = useState<Pages>('home');
+  const [navLinks, setNavLinks] = useState(links);
   const [isSmallerThan480, isSmallerThan992] = useMediaQuery([
     '(max-width: 480px)',
     '(max-width: 992px)'
@@ -56,14 +57,17 @@ const Header: React.FC = () => {
   }, [location.pathname]);
 
   useEffect(() => {
-    if (isSudoUser && !links.find((link) => link.title === 'Sudo.tsx')) {
-      links.push({ title: 'Sudo.tsx', path: '/sudo' });
+    if (isSudoUser && !navLinks.find((link) => link.title === 'Sudo.tsx')) {
+      setNavLinks((prev) => [...prev, { title: 'Sudo.tsx', path: '/sudo' }]);
     }
   }, [isSudoUser]);
 
   if (isSmallerThan992) {
-    if (!links.find((link) => link.title === 'ContactMe.tsx')) {
-      links.push({ title: 'ContactMe.tsx', path: '/contact' });
+    if (!navLinks.find((link) => link.title === 'ContactMe.tsx')) {
+      setNavLinks((prev) => [
+        ...prev,
+        { title: 'ContactMe.tsx', path: '/contact' }
+      ]);
     }
     return (
       <Container variant='header'>
@@ -89,7 +93,7 @@ const Header: React.FC = () => {
                 w={isSmallerThan480 ? '100dvw' : '100%'}
                 zIndex={10}
               >
-                {links.map((link, i) => (
+                {navLinks.map((link, i) => (
                   <MenuItem key={i} onClick={() => navigate(link.path)}>
                     {link.title}
                   </MenuItem>
@@ -128,7 +132,7 @@ const Header: React.FC = () => {
             }
           >
             <TabList>
-              {links.map((link, i) => (
+              {navLinks.map((link, i) => (
                 <Tab key={i} onClick={() => navigate(link.path)}>
                   {link.title}
                 </Tab>
