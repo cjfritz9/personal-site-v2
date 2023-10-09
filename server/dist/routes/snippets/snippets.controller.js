@@ -18,7 +18,7 @@ const githubApi = axios.create({
     }
 });
 export const getAllSnippets = (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const snippetsQueryString = 'query { viewer { gists(first: 10) { nodes { owner { login avatarUrl url } url createdAt description stargazerCount files { name text language { color id name } } } } } }';
+    const snippetsQueryString = 'query { viewer { gists(first: 10, orderBy: {field:CREATED_AT, direction: DESC}) { nodes { owner { login avatarUrl url } url createdAt description stargazerCount files { name text language { color id name } } } } } }';
     try {
         const result = yield githubApi.post('/graphql', {
             query: snippetsQueryString
