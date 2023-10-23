@@ -1,6 +1,6 @@
 import React, { useLayoutEffect, useState } from 'react';
 import { Container, Icon, Stack, Text, useMediaQuery } from '@chakra-ui/react';
-import { filterItems } from './data/filterItems';
+import { techItems } from './data/techItems';
 import FilterItem from './FilterItem';
 import { scrollbarStyles } from '../../../theme/BrandColors';
 import { RiArrowDownSFill, RiArrowRightSFill } from 'react-icons/ri';
@@ -48,7 +48,7 @@ const Filter: React.FC = () => {
           overflowY='auto'
           css={scrollbarStyles}
         >
-          {filterItems.map((item, i) => (
+          {techItems.map((item, i) => (
             <FilterItem key={i} item={item} />
           ))}
         </Stack>

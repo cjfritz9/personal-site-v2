@@ -3,7 +3,7 @@ import { Pages, StyleMap } from './context';
 import { GameBoard } from '../models/Codle';
 import { IconType } from 'react-icons';
 import { Directories } from './about';
-import { FilterItem } from '../components/Pages/Projects/data/filterItems';
+import { FilterItem } from '../components/Pages/Projects/data/techItems';
 import { ProjectItem } from '../components/Pages/Projects/data/projectItems';
 import { contactItems, linksItems } from '../components/Pages/About/data/items';
 import { ContactFormData } from '../lib/contact';

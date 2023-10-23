@@ -7,12 +7,13 @@ import {
   Text,
   useMediaQuery
 } from '@chakra-ui/react';
+import TechBanner from './TechBanner';
 
 const Intro: React.FC = () => {
   const [isLargerThan992] = useMediaQuery('(min-width: 992px)');
 
   return (
-    <Stack h='100%' px='2rem' gap='5rem' justifyContent='center'>
+    <Stack h='100%' px='2rem' gap='3.5rem' justifyContent='center'>
       <Stack gap={0}>
         <Text color='Secondary.white !important'>👋 Hey! I'm</Text>
         <Heading mt='-1rem'>C.J. Fritz</Heading>
@@ -23,6 +24,7 @@ const Intro: React.FC = () => {
         >
           {'>'} Full-stack Developer
         </Heading>
+        <TechBanner />
       </Stack>
       <Stack>
         {isLargerThan992 ? (
@@ -44,6 +46,7 @@ const Intro: React.FC = () => {
             href='https://github.com/cjfritz9'
             isExternal
             overflowWrap='anywhere'
+            pointerEvents='all'
           >
             "github.com/cjfritz9"
           </Text>

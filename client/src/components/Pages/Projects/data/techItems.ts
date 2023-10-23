@@ -17,7 +17,7 @@ import {
   SiGooglecloud
 } from 'react-icons/si';
 
-export const filterItems = [
+export const techItems = [
   {
     name: 'TypeScript',
     icon: SiTypescript
@@ -47,10 +47,6 @@ export const filterItems = [
     icon: SiSvelte
   },
   {
-    name: 'Docker',
-    icon: SiDocker
-  },
-  {
     name: 'Node',
     icon: IoLogoNodejs
   },
@@ -75,6 +71,10 @@ export const filterItems = [
     icon: SiMongodb
   },
   {
+    name: 'Docker',
+    icon: SiDocker
+  },
+  {
     name: 'AWS',
     icon: SiAmazonaws
   },
@@ -84,4 +84,4 @@ export const filterItems = [
   },
 ];
 
-export type FilterItem = (typeof filterItems)[0];
+export type TechItem = (typeof techItems)[0];

@@ -1,17 +1,19 @@
 import React, { useContext } from 'react';
 import { Box, Center, Icon } from '@chakra-ui/react';
-import { filterItems } from './data/filterItems';
+import { techItems } from './data/techItems';
 import { TechBadgeProps } from '../../../@types/props';
 import { ProjectsContext } from '../../../context/Projects.context';
 
 const TechBadge: React.FC<TechBadgeProps> = ({ name }) => {
   const { filters, setFilters, setIsUpdating } = useContext(ProjectsContext)!;
-  const { icon } = filterItems.find((filter) => filter.name.toLowerCase() === name)!;
+  const { icon } = techItems.find(
+    (filter) => filter.name.toLowerCase() === name
+  )!;
 
   const handleClick = () => {
     setIsUpdating(true);
     if (filters.includes(name)) {
-      setFilters((prev) => prev.filter((filter) => filter !== name))
+      setFilters((prev) => prev.filter((filter) => filter !== name));
     } else {
       setFilters((prev) => [...prev, name]);
     }

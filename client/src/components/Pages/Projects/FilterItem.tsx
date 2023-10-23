@@ -4,14 +4,18 @@ import { FilterItemProps } from '../../../@types/props';
 import { projectItems } from './data/projectItems';
 import { ProjectsContext } from '../../../context/Projects.context';
 import { Technologies } from '../../../@types/projects';
+import { SiteContext } from '../../../context/Site.context';
+import { SiteInterface } from '../../../@types/context';
 
 const FilterItem: React.FC<FilterItemProps> = ({ item }) => {
   const [isSelected, setIsSelected] = useState(false);
   const { filters, setFilters, setIsUpdating } = useContext(ProjectsContext)!;
+  const { location } = useContext(SiteContext) as SiteInterface;
   const { name, icon } = item;
 
   const handleUpdateFilter = () => {
     setIsUpdating(true);
+    location.search = ''
     if (isSelected) {
       setFilters((prev) => prev.filter((tech) => tech !== name.toLowerCase()));
     } else {
@@ -24,10 +28,19 @@ const FilterItem: React.FC<FilterItemProps> = ({ item }) => {
     if (filters.length === 0) {
       setIsSelected(false);
     }
-    if (filters.includes(name.toLowerCase() as Technologies[0])) {
+    if (
+      filters.includes(name.toLowerCase() as Technologies[0])
+    ) {
       setIsSelected(true);
     }
   }, [filters]);
+
+  useEffect(() => {
+    if (location.search.includes(name.toLowerCase())) {
+      setIsSelected(true)
+      handleUpdateFilter()
+    }
+  }, [location.search])
 
   return (
     <Box px='1rem'>
