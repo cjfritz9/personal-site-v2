@@ -3,6 +3,8 @@ import { Fade, Flex, Icon, Text } from '@chakra-ui/react';
 import { techItems } from '../Projects/data/techItems';
 import { SiteContext } from '../../../context/Site.context';
 import { SiteInterface } from '../../../@types/context';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from 'swiper/modules';
 
 const TechBanner: React.FC = () => {
   const { navigate } = useContext(SiteContext) as SiteInterface;
@@ -30,56 +32,85 @@ const TechBanner: React.FC = () => {
   });
 
   return (
-    <Fade in>
-      <Flex gap={8} alignItems='center'>
-        <Flex
+    // <Swiper
+    //   spaceBetween={24}
+    //   // freeMode
+    //   // loop
+    //   // autoplay={{
+
+    //   // }}
+    //   modules={[
+    //     // Autoplay
+    //   ]}
+    // >
+    //   {showcaseTechItems.map((item) => (
+    //     <SwiperSlide>
+    //       <Flex
+    //         cursor='pointer'
+    //         pointerEvents='all'
+    //         gap={4}
+    //         onClick={() =>
+    //           navigate(
+    //             `/projects?filter=${showcaseTechItems[
+    //               techItemIndex
+    //             ].name.toLowerCase()}`
+    //           )
+    //         }
+    //       >
+    //         <Icon as={item.icon} />
+    //         <Text>{item.name}</Text>
+    //       </Flex>
+    //     </SwiperSlide>
+    //   ))}
+    // </Swiper>
+    <Flex gap={8} alignItems='center'>
+      <Flex
         cursor='pointer'
+        pointerEvents='all'
+        gap={4}
+        onClick={() =>
+          navigate(
+            `/projects?filter=${showcaseTechItems[
+              techItemIndex
+            ].name.toLowerCase()}`
+          )
+        }
+      >
+        <Icon as={showcaseTechItems[techItemIndex].icon} />
+        <Text>{showcaseTechItems[techItemIndex].name}</Text>
+      </Flex>
+      {showcaseTechItems[techItemIndex + 1] ? (
+        <Flex
+          cursor='pointer'
           pointerEvents='all'
           gap={4}
           onClick={() =>
             navigate(
               `/projects?filter=${showcaseTechItems[
-                techItemIndex
+                techItemIndex + 1
               ].name.toLowerCase()}`
             )
           }
         >
-          <Icon as={showcaseTechItems[techItemIndex].icon} />
-          <Text>{showcaseTechItems[techItemIndex].name}</Text>
+          <Icon as={showcaseTechItems[techItemIndex + 1].icon} />
+          <Text>{showcaseTechItems[techItemIndex + 1].name}</Text>
         </Flex>
-        {showcaseTechItems[techItemIndex + 1] ? (
-          <Flex
+      ) : (
+        <Flex
           cursor='pointer'
-            pointerEvents='all'
-            gap={4}
-            onClick={() =>
-              navigate(
-                `/projects?filter=${showcaseTechItems[
-                  techItemIndex + 1
-                ].name.toLowerCase()}`
-              )
-            }
-          >
-            <Icon as={showcaseTechItems[techItemIndex + 1].icon} />
-            <Text>{showcaseTechItems[techItemIndex + 1].name}</Text>
-          </Flex>
-        ) : (
-          <Flex
-          cursor='pointer'
-            pointerEvents='all'
-            gap={4}
-            onClick={() =>
-              navigate(
-                `/projects?filter=${showcaseTechItems[0].name.toLowerCase()}`
-              )
-            }
-          >
-            <Icon as={showcaseTechItems[0].icon} />
-            <Text>{showcaseTechItems[0].name}</Text>
-          </Flex>
-        )}
-      </Flex>
-    </Fade>
+          pointerEvents='all'
+          gap={4}
+          onClick={() =>
+            navigate(
+              `/projects?filter=${showcaseTechItems[0].name.toLowerCase()}`
+            )
+          }
+        >
+          <Icon as={showcaseTechItems[0].icon} />
+          <Text>{showcaseTechItems[0].name}</Text>
+        </Flex>
+      )}
+    </Flex>
   );
 };
 
