@@ -166,7 +166,7 @@ export const getCdList = (currentDirectory: string): CDResult[] => {
         { dirname: 'PARENT', handle: '/' },
         { dirname: 'about', handle: '/about' },
         { dirname: 'projects', handle: '/projects' },
-        { dirname: 'misc', handle: '/misc' }
+        { dirname: 'contact', handle: '/contact' }
       ];
   }
 };
