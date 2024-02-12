@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "/static/js/main.8f54fd54.js",
+    "main.js": "/static/js/main.742f8804.js",
     "static/media/tps-thumb.webp": "/static/media/tps-thumb.ce3d44fb398fd2fc48a7.webp",
     "static/media/astra-thumbnail.webp": "/static/media/astra-thumbnail.df84d0a5fcdad1315846.webp",
     "static/media/elden-creator-thumb.webp": "/static/media/elden-creator-thumb.4012d77ad01b9a3a4401.webp",
@@ -13,9 +13,9 @@
     "static/media/pokestop-thumb.webp": "/static/media/pokestop-thumb.ed22d946c3d4621f8713.webp",
     "static/media/fbg-thumb.webp": "/static/media/fbg-thumb.3ce5cc63893f94d54a85.webp",
     "index.html": "/index.html",
-    "main.8f54fd54.js.map": "/static/js/main.8f54fd54.js.map"
+    "main.742f8804.js.map": "/static/js/main.742f8804.js.map"
   },
   "entrypoints": [
-    "static/js/main.8f54fd54.js"
+    "static/js/main.742f8804.js"
   ]
 }

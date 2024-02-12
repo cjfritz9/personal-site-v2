@@ -54,7 +54,7 @@ export const projectItems: ProjectItems = [
   },
   {
     title: 'cat-gpt',
-    description: 'NASA + SpaceX tracker and simulator',
+    description: 'Cat-themed assistant powered by ChatGPT 3.5',
     links: [
       'https://catgpt.fritzdesign.co/',
       'https://github.com/cjfritz9/cat-gpt'
