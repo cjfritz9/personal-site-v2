@@ -7,10 +7,21 @@ import eldenCreatorThumbnail from '../../../../assets/elden-creator-thumb.webp';
 import chatbotThumbnail from '../../../../assets/chatbot-thumb.webp';
 import fiftyFiftyThumbnail from '../../../../assets/5050-thumb.webp';
 import tpsThumbnail from '../../../../assets/tps-thumb.webp';
-import indieReviewsThumbnail from '../../../../assets/indie-reviews-thumb.webp'
+import indieReviewsThumbnail from '../../../../assets/indie-reviews-thumb.webp';
+import fbgThumbnail from '../../../../assets/fbg-thumb.webp'
 import { ProjectItems, Technologies } from '../../../../@types/projects';
 
 export const projectItems: ProjectItems = [
+  {
+    title: 'full-blast-gear',
+    description: '[Client Website] Custom-made for Shopify with Next.js & Tailwind.',
+    links: [
+      'fbg-staging.cjfritz.dev',
+      'https://github.com/cjfritz9/full-blast-gear'
+    ],
+    thumbnail: fbgThumbnail,
+    technologies: ['typescript', 'react', 'next', 'node', 'tailwind', 'graphql']
+  },
   {
     title: 'astra-skincare',
     description: 'Astra Skincare is a custom Shopify product concept',
