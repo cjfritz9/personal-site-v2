@@ -14,9 +14,9 @@ import { ProjectItems, Technologies } from '../../../../@types/projects';
 export const projectItems: ProjectItems = [
   {
     title: 'full-blast-gear',
-    description: '[Client Website] Custom-made for Shopify with Next.js & Tailwind.',
+    description: '[Client Website] Custom-made for Shopify with Next.js',
     links: [
-      'fbg-staging.cjfritz.dev',
+      'https://fbg-staging.cjfritz.dev',
       'https://github.com/cjfritz9/full-blast-gear'
     ],
     thumbnail: fbgThumbnail,
