@@ -26,7 +26,7 @@ export const projectItems: ProjectItems = [
     title: 'astra-skincare',
     description: 'Astra Skincare is a custom Shopify product concept',
     links: [
-      'https://www.astra-skincare.com',
+      'https://astra.cjfritz.dev',
       'https://github.com/cjfritz9/astra-skincare'
     ],
     thumbnail: astraThumbnail,
