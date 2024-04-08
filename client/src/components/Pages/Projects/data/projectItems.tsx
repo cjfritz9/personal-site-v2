@@ -43,16 +43,6 @@ export const projectItems: ProjectItems = [
     technologies: ['react', 'node', 'docker', 'express', 'mongodb', 'gcp']
   },
   {
-    title: 'social-media-site',
-    description: 'Collab Project: SWE themed fullstack social app',
-    links: [
-      'https://social-stack-demo.netlify.app',
-      'https://github.com/Social-Stack/Social-Media-Stack'
-    ],
-    thumbnail: socialSiteThumbnail,
-    technologies: ['react', 'node', 'express', 'postgresql', 'firebase']
-  },
-  {
     title: 'cat-gpt',
     description: 'Cat-themed assistant powered by ChatGPT 3.5',
     links: [
@@ -70,6 +60,16 @@ export const projectItems: ProjectItems = [
       'firebase',
       'gcp'
     ]
+  },
+  {
+    title: 'social-media-site',
+    description: 'Collab Project: SWE themed fullstack social app',
+    links: [
+      'https://social-stack-demo.netlify.app',
+      'https://github.com/Social-Stack/Social-Media-Stack'
+    ],
+    thumbnail: socialSiteThumbnail,
+    technologies: ['react', 'node', 'express', 'postgresql', 'firebase']
   },
   {
     title: 'indie-game-reviews',
