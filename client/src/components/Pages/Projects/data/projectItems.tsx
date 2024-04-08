@@ -56,7 +56,7 @@ export const projectItems: ProjectItems = [
     title: 'cat-gpt',
     description: 'Cat-themed assistant powered by ChatGPT 3.5',
     links: [
-      'https://catgpt.fritzdesign.co/',
+      'https://gat-gpt-5wee52lw2a-uc.a.run.app',
       'https://github.com/cjfritz9/cat-gpt'
     ],
     thumbnail: catGptThumbnail,
