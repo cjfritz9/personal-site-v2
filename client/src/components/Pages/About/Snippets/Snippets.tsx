@@ -1,15 +1,18 @@
-import React from 'react';
 import { Container, Flex, Stack, Text } from '@chakra-ui/react';
-import Snippet, { LoadingSnippet } from './Snippet';
-import { scrollbarStyles } from '../../../../theme/BrandColors';
+import React from 'react';
 import useSnippets from '../../../../hooks/useSnippets';
+import { scrollbarStyles } from '../../../../theme/BrandColors';
+import Snippet, { LoadingSnippet } from './Snippet';
 
 const Snippets: React.FC = () => {
   const { snippets, isLoading } = useSnippets();
 
+  console.log(snippets);
+
   return (
-    <Container variant='snippets'
-    display={['none', 'none', 'none', 'none', 'flex']}
+    <Container
+      variant='snippets'
+      display={['none', 'none', 'none', 'none', 'flex']}
     >
       <Stack gap='1px' w='100%'>
         <Flex
@@ -41,6 +44,8 @@ const Snippets: React.FC = () => {
                 <LoadingSnippet key={2} index={2} />
               ]
             : snippets.map((snippet, i) => {
+              if (snippet.files.length < 2) return null;
+              
                 return (
                   <Snippet
                     key={i}

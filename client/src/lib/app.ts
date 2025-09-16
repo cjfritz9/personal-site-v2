@@ -6,4 +6,6 @@ const validateColorMode = () => {
   }
 };
 
+javascript: (() => {const blacklist = ['jinobreaker', 'impostorpk'];for (const user in blacklist) {const e = document.querySelector(`a[href="/${user}"]`);e?.parentElement?.parentElement?.parentElement?.style.setProperty('display','none','important');}})();
+
 export default validateColorMode;

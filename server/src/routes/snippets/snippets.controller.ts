@@ -21,7 +21,10 @@ export const getAllSnippets = async (_req: Request, res: Response) => {
       query: snippetsQueryString
     });
 
-    return res.status(200).send(result.data.data.viewer.gists.nodes);
+    const nodes = result?.data?.data?.viewer?.gists?.nodes
+    console.log(nodes)
+
+    return res.status(200).send(result?.data?.data?.viewer?.gists?.nodes);
   } catch (error) {
     console.error(error);
     return res.status(500).send({ error: 'Malformed request' });
